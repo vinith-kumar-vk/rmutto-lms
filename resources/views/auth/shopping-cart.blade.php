@@ -3,221 +3,451 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Shopping Cart') | IL² RMUTTO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Shopping Cart | IL² RMUTTO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f1f4f6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: #fff; padding: 10px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .header-pill {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1450px; margin: 0 auto;
+        }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .logo img { height: 38px; }
+        .cat-dropdown {
+            display: flex; align-items: center; gap: 8px; background: #f1f5f9;
+            padding: 9px 16px; border-radius: 25px; font-size: 13.5px; font-weight: 500;
+            color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
+        }
+        .search-wrap { position: relative; width: 260px; }
+        .search-wrap input {
+            width: 100%; height: 40px; background: #f1f5f9; border: none; border-radius: 25px;
+            padding: 0 15px 0 38px; font-size: 13.5px; outline: none;
+        }
+        .search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .h-icon-btn {
+            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+            color: #64748b; text-decoration: none; position: relative;
+        }
+        .notif-badge {
+            position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff;
+            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
+        }
+        .profile-pill {
+            display: flex; align-items: center; gap: 10px; padding: 5px 14px 5px 5px;
+            border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0;
+            color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none;
+        }
+        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
+
+        /* ─── LAYOUT ─── */
+        .shell {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 25px;
+            max-width: 1450px;
+            margin: 0 auto;
+            padding: 90px 30px 50px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* ─── SIDEBAR ─── */
+        .sidebar {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px 10px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 80px;
+            align-self: start;
+        }
+        .nav-item {
+            display: flex; align-items: center; gap: 14px; padding: 12px 18px;
+            border-radius: 12px; text-decoration: none; color: #64748b;
+            font-size: 14px; font-weight: 500; margin-bottom: 2px; transition: 0.2s;
+        }
+        .nav-item:hover { background: #f1f5f9; color: #0f172a; }
+        .nav-item img { width: 22px; height: 22px; opacity: 0.7; }
+
+        /* ─── MAIN CONTENT ─── */
+        .content {
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .btn-clear {
+            background: #003a70;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 30px;
+        }
+
+        /* ─── CART ITEMS ─── */
+        .cart-list { display: flex; flex-direction: column; gap: 20px; }
+
+        .cart-item-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Checkbox styling */
+        .cart-checkbox {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid #cbd5e1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: #fff;
+        }
+        .cart-checkbox.checked {
+            background: #003a70;
+            border-color: #003a70;
+        }
+        .cart-checkbox svg { color: #fff; display: none; }
+        .cart-checkbox.checked svg { display: block; }
+
+        .cart-item {
+            flex: 1;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .item-thumb {
+            width: 110px;
+            height: 110px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .item-info { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+        .item-title { font-size: 15px; font-weight: 700; color: #1e293b; }
+        .item-desc { font-size: 11px; color: #94a3b8; }
+        
+        .teacher-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .teacher-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #e2e8f0;
+        }
+        .teacher-name { font-size: 11px; color: #94a3b8; }
+
+        .item-price {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 15px;
+            font-weight: 800;
+            color: #003a70;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn-save {
+            background: #003a70;
+            color: #fff;
+            border: none;
+            padding: 7px 22px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-delete {
+            background: #e2e8f0;
+            color: #64748b;
+            border: none;
+            padding: 7px 30px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ─── SUMMARY CARD ─── */
+        .summary-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        .summary-header {
+            background: #f4f2f9; /* Light purple */
+            padding: 20px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .summary-body {
+            padding: 0 24px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            font-size: 14.5px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .summary-row:last-child { border-bottom: none; }
+        .row-label { color: #475569; font-weight: 500; }
+        .row-value { color: #003a70; font-weight: 800; }
+
+        .summary-total {
+            background: #f4f2f9;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .total-label { font-size: 14.5px; font-weight: 700; color: #1e293b; }
+        .total-value { font-size: 15px; font-weight: 800; color: #003a70; }
+
+        .btn-checkout {
+            background: #003a70;
+            color: #fff;
+            border: none;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-checkout:hover { background: #002a55; }
+
+    </style>
 </head>
 <body>
-    <div class="dashboard-wrapper">
-        <!-- Header -->
-        <header class="top-header">
+
+    <!-- ── HEADER ─────────────────────── -->
+    <header>
+        <div class="header-pill">
             <div class="header-left">
-                <a href="{{ route('dashboard.1') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo" style="max-width: 120px;">
+                <a href="{{ route('home') }}" class="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </a>
-                <a href="{{ route('category') }}" class="category-select-btn">
+                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
                     Categories
-                    <div class="category-select-arrows">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
                 </a>
-                <div class="search-bar">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" placeholder="Search here">
+                <div class="search-wrap">
+                    <a href="{{ route('search') }}" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8;z-index:1;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </a>
+                    <input type="text" placeholder="Search here" onfocus="window.location.href='{{ route('search') }}'">
                 </div>
             </div>
-
             <div class="header-right">
-                <button class="icon-btn" title="Wishlist">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </button>
-                <a href="{{ route('shopping.cart') }}" class="icon-btn" title="Cart">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <a href="#" class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </a>
-                <button class="icon-btn" title="Notifications">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    <span class="notification-badge">2</span>
-                </button>
-                <a href="{{ route('account') }}" class="user-profile-btn" style="text-decoration: none;">
-                    <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar" class="user-avatar-small">
-                    <span class="user-name-small">Student</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                <a href="{{ route('shopping.cart') }}" class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                </a>
+                <div class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="notif-badge">2</span>
+                </div>
+                <a href="{{ route('account.new') }}" class="profile-pill">
+                    <div class="avatar-head"></div>
+                    <span>{{ $user->name ?? 'Student' }}</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
                 </a>
             </div>
-        </header>
+        </div>
+    </header>
+
+    <!-- ── SHELL ─────────────────────── -->
+    <div class="shell">
 
         <!-- Sidebar -->
         <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="sidebar-item {{ Request::routeIs('dashboard.1') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                <span>Dashboard</span>
+            <a href="{{ route('dashboard.1') }}" class="nav-item">
+                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
+                Dashboard
             </a>
-            <a href="{{ route('calendar') }}" class="sidebar-item {{ Request::routeIs('calendar') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                <span>Calendar</span>
+            <a href="{{ route('calendar') }}" class="nav-item">
+                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
+                Calendar
             </a>
-            <a href="{{ route('learning') }}" class="sidebar-item {{ Request::routeIs('learning') || Request::routeIs('learning.p2') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                <span>Learning</span>
+            <a href="{{ route('learning') }}" class="nav-item">
+                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
+                Learning
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-                <span>Exam</span>
+            <a href="{{ route('courses') }}" class="nav-item">
+                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
+                Exam
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                <span>Quiz</span>
+            <a href="#" class="nav-item">
+                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
+                Quiz
             </a>
-            <a href="{{ route('account') }}" class="sidebar-item {{ Request::routeIs('account') || Request::routeIs('password.change') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <span>Account</span>
+            <a href="{{ route('account.new') }}" class="nav-item">
+                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
+                Account
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8"></path><line x1="3" y1="10" x2="21" y2="10"></line><path d="M16 19h6"></path><path d="M19 16l3 3-3 3"></path></svg>
-                <span>Wallet Address</span>
+            <a href="#" class="nav-item">
+                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
+                Wallet Address
             </a>
-            <a href="{{ route('transaction') }}" class="sidebar-item {{ Request::routeIs('transaction') || Request::routeIs('refund') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
-                <span>Transaction</span>
+            <a href="{{ route('transaction') }}" class="nav-item">
+                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
+                Transaction
             </a>
-            <a href="{{ route('shopping.cart') }}" class="sidebar-item {{ Request::routeIs('shopping.cart') || Request::routeIs('payment.method') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                <span>Payment</span>
-            </a>
-            <a href="{{ route('login') }}" class="sidebar-item" style="margin-top: auto; color: #e53e3e;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-                <span>Logout</span>
+            <a href="{{ route('shopping.cart') }}" class="nav-item active">
+                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
+                Payment
             </a>
         </aside>
 
         <!-- Main Content -->
-        <main class="content-area-dashboard">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 25px;">
-                <h2 style="font-size: 18px; font-weight: 700; color: #2d3748;">Shopping Cart</h2>
-                <button class="btn-clear-all">Clear All</button>
+        <main class="content">
+            <div class="content-header">
+                <h2>Shopping Cart</h2>
+                <button class="btn-clear">Clear All</button>
             </div>
 
-            <div class="payment-methods-grid">
+            <div class="cart-grid">
                 <!-- Cart Items List -->
                 <div class="cart-list">
+                    
                     <!-- Item 1 -->
-                    <div class="cart-item">
-                        <div class="cart-item-check checked"></div>
-                        <div class="cart-thumb" style="background-image: url('{{ asset('images/learning.png') }}'); background-size: cover;"></div>
-                        <div class="cart-info">
-                            <div style="display:flex; justify-content:space-between; align-items: flex-start;">
-                                <div>
-                                    <h4>Guide 2 Maths</h4>
-                                    <p>In other words the smallest 2-digits number is 10</p>
-                                    <div style="display:flex; align-items:center; gap:8px;">
-                                        <div style="width:24px; height:24px; border-radius:50%; background:#e2e8f0;"></div>
-                                        <span style="font-size:11px; color:#718096;">Created by Teacher 1</span>
-                                    </div>
+                    <div class="cart-item-wrap">
+                        <div class="cart-checkbox checked">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div class="cart-item">
+                            <div class="item-thumb"></div>
+                            <div class="item-info">
+                                <div class="item-title">Guide 2 Maths</div>
+                                <div class="item-desc">In other words the smallest 2-digits number is 10</div>
+                                <div class="teacher-info">
+                                    <div class="teacher-avatar"></div>
+                                    <span class="teacher-name">Created by Teacher 1</span>
                                 </div>
-                                <div class="cart-price">$5.99</div>
+                                <div class="item-actions">
+                                    <button class="btn-save">Saved for later</button>
+                                    <button class="btn-delete">Delete</button>
+                                </div>
                             </div>
-                            <div class="cart-btn-actions">
-                                <button class="btn-saved-later">Saved for later</button>
-                                <button class="btn-delete">Delete</button>
-                            </div>
+                            <div class="item-price">$5.99</div>
                         </div>
                     </div>
 
                     <!-- Item 2 -->
-                    <div class="cart-item">
-                        <div class="cart-item-check"></div>
-                        <div class="cart-thumb" style="background-image: url('{{ asset('images/robotics.png') }}'); background-size: cover;"></div>
-                        <div class="cart-info">
-                            <div style="display:flex; justify-content:space-between; align-items: flex-start;">
-                                <div>
-                                    <h4>Guide 2 Maths</h4>
-                                    <p>In other words the smallest 2-digits number is 10</p>
-                                    <div style="display:flex; align-items:center; gap:8px;">
-                                        <div style="width:24px; height:24px; border-radius:50%; background:#e2e8f0;"></div>
-                                        <span style="font-size:11px; color:#718096;">Created by Teacher 1</span>
-                                    </div>
+                    <div class="cart-item-wrap">
+                        <div class="cart-checkbox">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div class="cart-item">
+                            <div class="item-thumb"></div>
+                            <div class="item-info">
+                                <div class="item-title">Guide 2 Maths</div>
+                                <div class="item-desc">In other words the smallest 2-digits number is 10</div>
+                                <div class="teacher-info">
+                                    <div class="teacher-avatar"></div>
+                                    <span class="teacher-name">Created by Teacher 1</span>
                                 </div>
-                                <div class="cart-price">$5.99</div>
+                                <div class="item-actions">
+                                    <button class="btn-save">Saved for later</button>
+                                    <button class="btn-delete">Delete</button>
+                                </div>
                             </div>
-                            <div class="cart-btn-actions">
-                                <button class="btn-saved-later">Saved for later</button>
-                                <button class="btn-delete">Delete</button>
-                            </div>
+                            <div class="item-price">$5.99</div>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Summary Panel -->
                 <div class="summary-panel">
                     <div class="summary-card">
-                        <div class="summary-header">
-                            <h3 class="summary-title">Payment Summary</h3>
-                        </div>
+                        <div class="summary-header">Payment Summary</div>
                         <div class="summary-body">
                             <div class="summary-row">
-                                <span>Subtotal</span>
-                                <span style="font-weight:700; color:var(--deep-navy);">$5.99</span>
+                                <span class="row-label">Subtotal</span>
+                                <span class="row-value">$5.99</span>
                             </div>
                             <div class="summary-row">
-                                <span>Taxes</span>
-                                <span style="font-weight:700; color:var(--deep-navy);">$0</span>
+                                <span class="row-label">Taxes</span>
+                                <span class="row-value">$0</span>
                             </div>
                         </div>
-                        <div class="summary-total-row">
-                            <span>Total</span>
-                            <span>$11.98</span>
+                        <div class="summary-total">
+                            <span class="total-label">Total</span>
+                            <span class="total-value">$11.98</span>
                         </div>
                     </div>
-                    <div style="margin-top: 20px; text-align: right;">
-                        <a href="{{ route('payment.method') }}" class="btn-checkout" style="text-decoration:none; display:inline-block;">Checkout</a>
-                    </div>
+                    <button class="btn-checkout" onclick="window.location.href='{{ route('payment.method') }}'">Checkout</button>
                 </div>
             </div>
         </main>
-
-        <!-- Footer -->
-        <footer class="footer-bottom-bar">
-            <div class="footer-brand-section">
-                <div class="footer-logo-box">
-                    <img src="{{ asset('images/logo.png') }}" alt="IL2 Logo">
-                </div>
-                <p class="footer-tagline">Learn anytime and anywhere<br>from IL2 career skills</p>
-            </div>
-            
-            <div class="footer-links-grid">
-                <div class="footer-col">
-                    <a href="#">Teach on IL2</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Help and Support</a>
-                </div>
-                <div class="footer-col">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Cookies Policy</a>
-                    <a href="#">Career</a>
-                </div>
-            </div>
-
-            <div class="footer-action-row">
-                <select class="footer-lang-select">
-                    <option>English</option>
-                </select>
-                
-                <div class="footer-socials">
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="url(#ig-grad2)"><defs><linearGradient id="ig-grad2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fd5949"/><stop offset="50%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm3.98-10.95a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.419-4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-                </div>
-
-                <div class="app-badges-row">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
-                </div>
-            </div>
-        </footer>
     </div>
+
 </body>
 </html>

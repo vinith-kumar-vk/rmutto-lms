@@ -3,220 +3,515 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Learning P2') | IL² RMUTTO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
+    <title>Learning P2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #004b87;
+            --teal: #14a098;
+            --bg-body: #f1f4f8;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --card-gray: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+        }
+
+        /* HEADER */
+        header {
+            padding: 24px 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-pill {
+            background: var(--white);
+            width: 100%;
+            max-width: 1500px;
+            height: 72px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-img { height: 35px; }
+
+        .cat-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #475569;
+            cursor: pointer;
+        }
+
+        .search-box {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 44px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 25px;
+            padding: 0 20px 0 45px;
+            font-size: 14px;
+            outline: none;
+            color: #333;
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .h-icon {
+            color: #64748b;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #f97316;
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #94a3b8;
+        }
+
+        .user-profile span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        /* MAIN LAYOUT */
+        .wrapper {
+            display: flex;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 30px;
+            gap: 30px;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            transition: 0.2s;
+        }
+
+        .nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+        .nav-item:hover, .nav-item.active {
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        /* CONTENT */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            margin-bottom: 25px;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .col-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .panel {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            min-height: 500px;
+        }
+
+        .timeline-section {
+            margin-bottom: 25px;
+        }
+        
+        .date-header {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .event-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .time-col {
+            width: 50px;
+            text-align: right;
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .time-now {
+            color: #1e293b;
+            font-weight: 800;
+        }
+
+        .line-col {
+            position: relative;
+            width: 2px;
+        }
+        
+        .line-marker-blue {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: -20px;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .line-marker-gray {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: -20px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .detail-col {
+            flex: 1;
+        }
+
+        .tag-text {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .event-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 10px 0;
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .thumb-col {
+            width: 70px;
+        }
+        
+        .thumb {
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .icon-circ {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #e2e8f0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            cursor: pointer;
+            margin-right: 8px;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="dashboard-wrapper">
-        <!-- Header -->
-        <header class="top-header">
+
+    <header>
+        <div class="header-pill">
             <div class="header-left">
-                <a href="{{ route('dashboard.1') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo" style="max-width: 120px;">
-                </a>
-                <a href="{{ route('category') }}" class="category-select-btn">
-                    Categories
-                    <div class="category-select-arrows">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                </a>
-                <div class="search-bar">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo-img">
+                <div class="cat-btn">
+                    Categories 
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+                <div class="search-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     <input type="text" placeholder="Search here">
                 </div>
             </div>
-
+            
             <div class="header-right">
-                <button class="icon-btn" title="Wishlist">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </button>
-                <a href="{{ route('shopping.cart') }}" class="icon-btn" title="Cart">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                </a>
-                <button class="icon-btn" title="Notifications">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    <span class="notification-badge">2</span>
-                </button>
-                <a href="{{ route('account') }}" class="user-profile-btn" style="text-decoration: none;">
-                    <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar" class="user-avatar-small">
-                    <span class="user-name-small">Student</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                <div class="h-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div class="h-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+                <div class="h-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <div class="badge">2</div>
+                </div>
+                <a href="{{ route('account.new') }}" style="text-decoration: none;">
+                    <div class="user-profile">
+                        <div class="avatar"></div>
+                        <span>Student</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                    </div>
                 </a>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- Sidebar -->
+    <div class="wrapper">
         <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="sidebar-item {{ Request::routeIs('dashboard.1') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                <span>Dashboard</span>
+            <a href="{{ route('dashboard.1') }}" class="nav-link nav-item">
+                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
+                Dashboard
             </a>
-            <a href="{{ route('calendar') }}" class="sidebar-item {{ Request::routeIs('calendar') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                <span>Calendar</span>
+            <a href="{{ route('calendar') }}" class="nav-link nav-item">
+                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
+                Calendar
             </a>
-            <a href="{{ route('learning') }}" class="sidebar-item {{ Request::routeIs('learning') || Request::routeIs('learning.p2') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                <span>Learning</span>
+            <a href="{{ route('learning') }}" class="nav-link nav-item active">
+                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
+                Learning
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-                <span>Exam</span>
+            <a href="{{ route('courses') }}" class="nav-link nav-item">
+                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
+                Exam
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                <span>Quiz</span>
+            <a href="#" class="nav-link nav-item">
+                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
+                Quiz
             </a>
-            <a href="{{ route('account') }}" class="sidebar-item {{ Request::routeIs('account') || Request::routeIs('password.change') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <span>Account</span>
+            <a href="{{ route('account.new') }}" class="nav-link nav-item">
+                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
+                Account
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8"></path><line x1="3" y1="10" x2="21" y2="10"></line><path d="M16 19h6"></path><path d="M19 16l3 3-3 3"></path></svg>
-                <span>Wallet Address</span>
+            <a href="#" class="nav-link nav-item">
+                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
+                Wallet Address
             </a>
-            <a href="{{ route('transaction') }}" class="sidebar-item {{ Request::routeIs('transaction') || Request::routeIs('refund') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
-                <span>Transaction</span>
+            <a href="{{ route('transaction') }}" class="nav-link nav-item">
+                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
+                Transaction
             </a>
-            <a href="{{ route('shopping.cart') }}" class="sidebar-item {{ Request::routeIs('shopping.cart') || Request::routeIs('payment.method') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                <span>Payment</span>
-            </a>
-            <a href="{{ route('login') }}" class="sidebar-item" style="margin-top: auto; color: #e53e3e;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-                <span>Logout</span>
+            <a href="{{ route('payment.method') }}" class="nav-link nav-item">
+                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
+                Payment
             </a>
         </aside>
 
-        <!-- Main Content -->
-        <main class="content-area-dashboard">
-            
-            <a href="{{ route('learning') }}" class="btn-back">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                Back
+        <main class="content">
+            <a href="{{ route('learning') }}" style="text-decoration: none;">
+                <button class="back-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m15 18-6-6 6-6"/></svg>
+                    Back
+                </button>
             </a>
-
-            <div class="learning-p2-grid">
-                
-                <!-- Live Classes Panel -->
-                <div class="class-board">
-                    <h3 class="class-list-header">Live Classes</h3>
-                    
-                    <p style="font-size:11px; color:#a0aec0; margin-bottom:20px;">December 20, Sunday</p>
-
-                    <div class="class-item">
-                        <div class="class-time highlight">Now</div>
-                        <div class="class-timeline-line active"></div>
-                        <div class="class-info">
-                            <h5>Morning Coffee</h5>
-                            <h3>Breakfast with Mr. Cahyade</h3>
-                            <button class="btn-join">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg> Join
-                            </button>
-                        </div>
-                        <div class="class-thumb-small" style="background-image: url('{{ asset('images/math_bg.png') }}'); background-size: cover; background-position: center;"></div>
-                    </div>
-
-                    <div class="class-item">
-                        <div class="class-time">15:00 am<br><span>to</span><br>18:00 am</div>
-                        <div class="class-timeline-line"></div>
-                        <div class="class-info">
-                            <h5>Morning Coffee</h5>
-                            <h3>Breakfast with Mr. Cahyade</h3>
-                            <button class="btn-starting">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Starting Soon
-                            </button>
-                        </div>
-                        <div class="class-thumb-small" style="background-image: url('{{ asset('images/math_bg.png') }}'); background-size: cover; background-position: center;"></div>
-                    </div>
-                </div>
-
-                <!-- Recorded Classes Panel -->
-                <div class="class-board">
-                    <h3 class="class-list-header">Recorded Classes</h3>
-
-                    <p style="font-size:11px; color:#a0aec0; margin-bottom:20px;">December 20, Sunday</p>
-
-                    <div class="class-item">
-                        <div class="class-time">09:00 am<br><span>to</span><br>10:00 am</div>
-                        <div class="class-timeline-line"></div>
-                        <div class="class-info">
-                            <h5>Category</h5>
-                            <h3>Course Title</h3>
-                            <div class="recorded-actions">
-                                <div class="recorded-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
-                                <div class="recorded-icon" style="color:#718096; background:none; border:1px solid #e2e8f0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></div>
+            
+            <div class="split-layout">
+                <!-- Live Classes -->
+                <div>
+                    <h2 class="col-title">Live Classes</h2>
+                    <div class="panel">
+                        <div class="timeline-section">
+                            <div class="date-header">December 20, Sunday</div>
+                            
+                            <div class="event-row">
+                                <div class="time-col time-now">Now</div>
+                                <div class="line-col"><div class="line-marker-blue"></div></div>
+                                <div class="detail-col">
+                                    <div class="tag-text">Morning Coffee</div>
+                                    <h3 class="event-title">Breakfast with Mr. Cahyade</h3>
+                                    <button class="action-btn">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        Join
+                                    </button>
+                                </div>
+                                <div class="thumb-col">
+                                    <div class="thumb" style="background-image: url('{{ asset('images/math_bg.png') }}');"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="event-row">
+                                <div class="time-col">15:00 pm<br>to<br>18:00 pm</div>
+                                <div class="line-col"><div class="line-marker-blue"></div></div>
+                                <div class="detail-col">
+                                    <div class="tag-text">Morning Coffee</div>
+                                    <h3 class="event-title">Breakfast with Mr. Cahyade</h3>
+                                    <button class="action-btn">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        Starting Soon
+                                    </button>
+                                </div>
+                                <div class="thumb-col">
+                                    <div class="thumb" style="background-image: url('{{ asset('images/math_bg.png') }}');"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="class-thumb-small" style="background-image: url('{{ asset('images/math_bg.png') }}'); background-size: cover; background-position: center;"></div>
                     </div>
+                </div>
 
-                    <p style="font-size:11px; color:#a0aec0; margin-bottom:20px; border-top:1px solid #e2e8f0; padding-top:20px;">December 20, Sunday</p>
-
-                    <div class="class-item">
-                        <div class="class-time">09:00 am<br><span>to</span><br>10:00 am</div>
-                        <div class="class-timeline-line"></div>
-                        <div class="class-info">
-                            <h5>Category</h5>
-                            <h3>Course Title</h3>
-                            <div class="recorded-actions">
-                                <div class="recorded-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
-                                <div class="recorded-icon" style="color:#718096; background:none; border:1px solid #e2e8f0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></div>
+                <!-- Recorded Classes -->
+                <div>
+                    <h2 class="col-title">Recorded Classes</h2>
+                    <div class="panel">
+                        <!-- Date Section 1 -->
+                        <div class="timeline-section">
+                            <div class="date-header">December 20, Sunday</div>
+                            
+                            <div class="event-row">
+                                <div class="time-col">09:00 am<br>to<br>10:00 am</div>
+                                <div class="line-col"><div class="line-marker-blue"></div></div>
+                                <div class="detail-col">
+                                    <div class="tag-text">Category</div>
+                                    <h3 class="event-title">Course Title</h3>
+                                    <div class="icon-circ"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+                                    <div class="icon-circ" style="color: #94a3b8;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                                </div>
+                                <div class="thumb-col">
+                                    <div class="thumb" style="background-image: url('{{ asset('images/math_bg.png') }}');"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="class-thumb-small" style="background-image: url('{{ asset('images/math_bg.png') }}'); background-size: cover; background-position: center;"></div>
+
+                        <!-- Date Section 2 -->
+                        <div class="timeline-section">
+                            <div class="date-header">December 20, Sunday</div>
+                            
+                            <div class="event-row">
+                                <div class="time-col">09:00 am<br>to<br>10:00 am</div>
+                                <div class="line-col"><div class="line-marker-blue"></div></div>
+                                <div class="detail-col">
+                                    <div class="tag-text">Category</div>
+                                    <h3 class="event-title">Course Title</h3>
+                                    <div class="icon-circ"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+                                    <div class="icon-circ" style="color: #94a3b8;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                                </div>
+                                <div class="thumb-col">
+                                    <div class="thumb" style="background-image: url('{{ asset('images/math_bg.png') }}');"></div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    
                 </div>
-            </div>
-
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer-bottom-bar">
-            <div class="footer-brand-section">
-                <div class="footer-logo-box">
-                    <img src="{{ asset('images/logo.png') }}" alt="IL2 Logo">
-                </div>
-                <p class="footer-tagline">Learn anytime and anywhere<br>from IL2 career skills</p>
             </div>
             
-            <div class="footer-links-grid">
-                <div class="footer-col">
-                    <a href="#">Teach on IL2</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Help and Support</a>
-                </div>
-                <div class="footer-col">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Cookies Policy</a>
-                    <a href="#">Career</a>
-                </div>
-            </div>
-
-            <div class="footer-action-row">
-                <select class="footer-lang-select">
-                    <option>English</option>
-                </select>
-                
-                <div class="footer-socials">
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="url(#ig-grad2)"><defs><linearGradient id="ig-grad2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fd5949"/><stop offset="50%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm3.98-10.95a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.419-4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-                </div>
-
-                <div class="app-badges-row">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
-                </div>
-            </div>
-        </footer>
+        </main>
     </div>
+
 </body>
 </html>

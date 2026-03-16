@@ -3,106 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Transaction') | IL² RMUTTO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Transaction | IL² RMUTTO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f1f4f6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: #fff; padding: 10px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .header-pill {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1450px; margin: 0 auto;
+        }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .logo img { height: 38px; }
+        .cat-dropdown {
+            display: flex; align-items: center; gap: 8px; background: #f1f5f9;
+            padding: 9px 16px; border-radius: 25px; font-size: 13.5px; font-weight: 500;
+            color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
+        }
+        .search-wrap { position: relative; width: 260px; }
+        .search-wrap input {
+            width: 100%; height: 40px; background: #f1f5f9; border: none; border-radius: 25px;
+            padding: 0 15px 0 38px; font-size: 13.5px; outline: none;
+        }
+        .search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .h-icon-btn {
+            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+            color: #64748b; text-decoration: none; position: relative;
+        }
+        .notif-badge {
+            position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff;
+            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
+        }
+        .profile-pill {
+            display: flex; align-items: center; gap: 10px; padding: 5px 14px 5px 5px;
+            border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0;
+            color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none;
+        }
+        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
+
+        /* ─── LAYOUT ─── */
+        .shell {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 25px;
+            max-width: 1450px;
+            margin: 0 auto;
+            padding: 90px 30px 50px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* ─── SIDEBAR ─── */
+        .sidebar {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px 10px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 80px;
+            align-self: start;
+        }
+        .nav-item {
+            display: flex; align-items: center; gap: 14px; padding: 12px 18px;
+            border-radius: 12px; text-decoration: none; color: #64748b;
+            font-size: 14px; font-weight: 500; margin-bottom: 2px; transition: 0.2s;
+        }
+        .nav-item:hover { background: #f1f5f9; color: #0f172a; }
+        .nav-item.active { background: #f1f5f9; color: #003a70; font-weight: 700; }
+        .nav-item img { width: 22px; height: 22px; opacity: 0.7; }
+        .nav-item.active img { opacity: 1; }
+
+        /* ─── MAIN CONTENT ─── */
+        .content { display: flex; flex-direction: column; gap: 20px; }
+
+        .page-title {
+            font-size: 18px; font-weight: 700; color: #1a202c;
+        }
+
+        /* ─── TABS ─── */
+        .tabs-wrap {
+            background: #fff;
+            border-radius: 16px;
+            padding: 6px;
+            display: flex;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .tab-btn {
+            flex: 1; padding: 10px 20px; border: none; border-radius: 12px;
+            font-size: 14px; font-weight: 500; cursor: pointer; background: transparent;
+            color: #64748b; transition: 0.2s; font-family: 'Inter', sans-serif;
+        }
+        .tab-btn.active {
+            background: #fff; color: #1e293b; font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* ─── TABLE ─── */
+        .table-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead tr {
+            background: #f8fafc;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        thead th {
+            padding: 14px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            text-align: left;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #f8fafc;
+            transition: background 0.15s;
+        }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background: #fafbfc; }
+
+        tbody td {
+            padding: 16px 20px;
+            font-size: 13.5px;
+            color: #1e293b;
+            vertical-align: middle;
+        }
+
+        .txn-id {
+            font-size: 12px;
+            color: #64748b;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .invoice-cell { display: flex; align-items: center; gap: 12px; }
+        .invoice-avatar {
+            width: 34px; height: 34px; border-radius: 50%; background: #e2e8f0;
+            flex-shrink: 0;
+        }
+        .invoice-name { font-size: 13.5px; font-weight: 700; color: #1e293b; line-height: 1.2; }
+        .invoice-sub { font-size: 11.5px; color: #94a3b8; margin-top: 1px; }
+
+        .stripe-link { color: #6366f1; font-weight: 500; text-decoration: none; font-size: 13.5px; }
+        .stripe-link:hover { text-decoration: underline; }
+
+        .date-cell { color: #475569; font-size: 13px; }
+
+        .amount-cell { font-size: 14px; font-weight: 700; color: #1e293b; }
+
+        .status-cell { display: flex; align-items: center; gap: 12px; }
+
+        .badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+            min-width: 68px;
+        }
+        .badge-paid { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+        .badge-unpaid { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+
+        .btn-download {
+            padding: 7px 16px; border-radius: 8px; font-size: 12.5px; font-weight: 600;
+            cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: 0.2s;
+        }
+        .btn-download.active { background: #003a70; color: #fff; }
+        .btn-download.active:hover { background: #002a55; }
+        .btn-download.inactive { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
+    </style>
 </head>
 <body>
-    <div class="dashboard-wrapper">
-        <!-- Header -->
-        <header class="top-header">
+
+    <!-- ── HEADER ─────────────────────── -->
+    <header>
+        <div class="header-pill">
             <div class="header-left">
-                <a href="{{ route('dashboard.1') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo" style="max-width: 120px;">
+                <a href="{{ route('home') }}" class="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </a>
-                <a href="{{ route('category') }}" class="category-select-btn">
+                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
                     Categories
-                    <div class="category-select-arrows">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
                 </a>
-                <div class="search-bar">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" placeholder="Search here">
+                <div class="search-wrap">
+                    <a href="{{ route('search') }}" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8;z-index:1;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </a>
+                    <input type="text" placeholder="Search here" onfocus="window.location.href='{{ route('search') }}'">
                 </div>
             </div>
-
             <div class="header-right">
-                <button class="icon-btn" title="Wishlist">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </button>
-                <a href="{{ route('shopping.cart') }}" class="icon-btn" title="Cart">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <a href="#" class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </a>
-                <button class="icon-btn" title="Notifications">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    <span class="notification-badge">2</span>
-                </button>
-                <a href="{{ route('account') }}" class="user-profile-btn" style="text-decoration: none;">
-                    <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar" class="user-avatar-small">
-                    <span class="user-name-small">Student</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                <a href="{{ route('shopping.cart') }}" class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                </a>
+                <div class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="notif-badge">2</span>
+                </div>
+                <a href="{{ route('account.new') }}" class="profile-pill">
+                    <div class="avatar-head"></div>
+                    <span>{{ $user->name ?? 'Student' }}</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
                 </a>
             </div>
-        </header>
+        </div>
+    </header>
+
+    <!-- ── SHELL ─────────────────────── -->
+    <div class="shell">
 
         <!-- Sidebar -->
         <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="sidebar-item {{ Request::routeIs('dashboard.1') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                <span>Dashboard</span>
+            <a href="{{ route('dashboard.1') }}" class="nav-item">
+                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
+                Dashboard
             </a>
-            <a href="{{ route('calendar') }}" class="sidebar-item {{ Request::routeIs('calendar') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                <span>Calendar</span>
+            <a href="{{ route('calendar') }}" class="nav-item">
+                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
+                Calendar
             </a>
-            <a href="{{ route('learning') }}" class="sidebar-item {{ Request::routeIs('learning') || Request::routeIs('learning.p2') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                <span>Learning</span>
+            <a href="{{ route('learning') }}" class="nav-item">
+                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
+                Learning
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-                <span>Exam</span>
+            <a href="{{ route('courses') }}" class="nav-item">
+                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
+                Exam
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                <span>Quiz</span>
+            <a href="#" class="nav-item">
+                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
+                Quiz
             </a>
-            <a href="{{ route('account') }}" class="sidebar-item {{ Request::routeIs('account') || Request::routeIs('password.change') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <span>Account</span>
+            <a href="{{ route('account.new') }}" class="nav-item">
+                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
+                Account
             </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8"></path><line x1="3" y1="10" x2="21" y2="10"></line><path d="M16 19h6"></path><path d="M19 16l3 3-3 3"></path></svg>
-                <span>Wallet Address</span>
+            <a href="#" class="nav-item">
+                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
+                Wallet Address
             </a>
-            <a href="{{ route('transaction') }}" class="sidebar-item {{ Request::routeIs('transaction') || Request::routeIs('refund') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
-                <span>Transaction</span>
+            <a href="{{ route('transaction') }}" class="nav-item active">
+                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
+                Transaction
             </a>
-            <a href="{{ route('shopping.cart') }}" class="sidebar-item {{ Request::routeIs('shopping.cart') || Request::routeIs('payment.method') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                <span>Payment</span>
-            </a>
-            <a href="{{ route('login') }}" class="sidebar-item" style="margin-top: auto; color: #e53e3e;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-                <span>Logout</span>
+            <a href="{{ route('payment.method') }}" class="nav-item">
+                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
+                Payment
             </a>
         </aside>
 
         <!-- Main Content -->
-        <main class="content-area-dashboard">
-            <h2 style="font-size: 18px; font-weight: 700; color: #2d3748; margin-bottom: 25px;">Transaction</h2>
+        <main class="content">
+            <h2 class="page-title">Transaction</h2>
 
-            <div class="transaction-tabs">
-                <div class="transaction-tab active">Transactions</div>
-                <div class="transaction-tab" onclick="window.location.href='{{ route('refund') }}'">Refunds</div>
+            <!-- Tabs -->
+            <div class="tabs-wrap">
+                <button class="tab-btn active" onclick="switchTab(this, 'transactions')">Transactions</button>
+                <a href="{{ route('refund') }}" class="tab-btn" style="text-decoration:none; text-align:center;">Refunds</a>
             </div>
 
-            <div style="background:#fff; border-radius:20px; padding:30px; border:1px solid #e2e8f0;">
-                <table class="transaction-table">
+            <!-- Table -->
+            <div class="table-card" id="transactions">
+                <table>
                     <thead>
                         <tr>
                             <th>Transaction ID</th>
@@ -111,107 +300,90 @@
                             <th>Details</th>
                             <th>Amount</th>
                             <th>Status</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="font-weight:700;">xxxxx</td>
+                            <td><span class="txn-id">XXXXX</span></td>
                             <td>
-                                <div style="display:flex; align-items:center; gap:10px;">
-                                    <div style="width:24px; height:24px; border-radius:50%; background:#cbd5e0;"></div>
+                                <div class="invoice-cell">
+                                    <div class="invoice-avatar"></div>
                                     <div>
-                                        <div style="font-weight:700;">Teacher 1</div>
-                                        <div style="font-size:10px; color:#a0aec0;">Course Name</div>
+                                        <div class="invoice-name">Teacher 1</div>
+                                        <div class="invoice-sub">Course Name</div>
                                     </div>
                                 </div>
                             </td>
-                            <td style="color:#3e2fcc; font-weight:600;">Stripe</td>
-                            <td>14 June 2023 | 10:00PM</td>
-                            <td style="font-weight:700;">$9.99</td>
-                            <td><span class="status-badge status-paid">Paid</span></td>
-                            <td><button class="btn-checkout" style="padding: 6px 15px; font-size:11px;">Download</button></td>
+                            <td><a href="#" class="stripe-link">Stripe</a></td>
+                            <td><span class="date-cell">14 June 2023 | 10:00PM</span></td>
+                            <td><span class="amount-cell">$9.99</span></td>
+                            <td>
+                                <div class="status-cell">
+                                    <span class="badge badge-paid">Paid</span>
+                                    <button class="btn-download active">Download</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td style="font-weight:700;">xxxxx</td>
+                            <td><span class="txn-id">XXXXX</span></td>
                             <td>
-                                <div style="display:flex; align-items:center; gap:10px;">
-                                    <div style="width:24px; height:24px; border-radius:50%; background:#cbd5e0;"></div>
+                                <div class="invoice-cell">
+                                    <div class="invoice-avatar"></div>
                                     <div>
-                                        <div style="font-weight:700;">Teacher 2</div>
-                                        <div style="font-size:10px; color:#a0aec0;">Course Name</div>
+                                        <div class="invoice-name">Teacher 2</div>
+                                        <div class="invoice-sub">Course Name</div>
                                     </div>
                                 </div>
                             </td>
-                            <td style="color:#3e2fcc; font-weight:600;">Stripe</td>
-                            <td>14 June 2023 | 10:00PM</td>
-                            <td style="font-weight:700;">$10.00</td>
-                            <td><span class="status-badge status-unpaid">Unpaid</span></td>
-                            <td><button class="btn-delete" style="padding: 6px 15px; font-size:11px;">Download</button></td>
+                            <td><a href="#" class="stripe-link">Stripe</a></td>
+                            <td><span class="date-cell">14 June 2023 | 10:00PM</span></td>
+                            <td><span class="amount-cell">$10.00</span></td>
+                            <td>
+                                <div class="status-cell">
+                                    <span class="badge badge-unpaid">Unpaid</span>
+                                    <button class="btn-download inactive" disabled>Download</button>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td style="font-weight:700;">xxxxxx</td>
+                            <td><span class="txn-id">XXXXXX</span></td>
                             <td>
-                                <div style="display:flex; align-items:center; gap:10px;">
-                                    <div style="width:24px; height:24px; border-radius:50%; background:#cbd5e0;"></div>
+                                <div class="invoice-cell">
+                                    <div class="invoice-avatar"></div>
                                     <div>
-                                        <div style="font-weight:700;">Teacher 3</div>
-                                        <div style="font-size:10px; color:#a0aec0;">Course Name</div>
+                                        <div class="invoice-name">Teacher 3</div>
+                                        <div class="invoice-sub">Course Name</div>
                                     </div>
                                 </div>
                             </td>
-                            <td style="color:#3e2fcc; font-weight:600;">Stripe</td>
-                            <td>14 June 2023 | 10:00PM</td>
-                            <td style="font-weight:700;">$9.99</td>
-                            <td><span class="status-badge status-paid">Paid</span></td>
-                            <td><button class="btn-checkout" style="padding: 6px 15px; font-size:11px;">Download</button></td>
+                            <td><a href="#" class="stripe-link">Stripe</a></td>
+                            <td><span class="date-cell">14 June 2023 | 10:00PM</span></td>
+                            <td><span class="amount-cell">$9.99</span></td>
+                            <td>
+                                <div class="status-cell">
+                                    <span class="badge badge-paid">Paid</span>
+                                    <button class="btn-download active">Download</button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <!-- Refunds tab content (hidden by default) -->
+            <div class="table-card" id="refunds" style="display:none; padding: 40px; text-align: center; color: #94a3b8; font-size: 14px;">
+                No refunds found.
+            </div>
         </main>
-
-        <!-- Footer -->
-        <footer class="footer-bottom-bar">
-            <div class="footer-brand-section">
-                <div class="footer-logo-box">
-                    <img src="{{ asset('images/logo.png') }}" alt="IL2 Logo">
-                </div>
-                <p class="footer-tagline">Learn anytime and anywhere<br>from IL2 career skills</p>
-            </div>
-            
-            <div class="footer-links-grid">
-                <div class="footer-col">
-                    <a href="#">Teach on IL2</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Help and Support</a>
-                </div>
-                <div class="footer-col">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Cookies Policy</a>
-                    <a href="#">Career</a>
-                </div>
-            </div>
-
-            <div class="footer-action-row">
-                <select class="footer-lang-select">
-                    <option>English</option>
-                </select>
-                
-                <div class="footer-socials">
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="url(#ig-grad2)"><defs><linearGradient id="ig-grad2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fd5949"/><stop offset="50%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm3.98-10.95a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-                </div>
-
-                <div class="app-badges-row">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
-                </div>
-            </div>
-        </footer>
     </div>
+
+    <script>
+        function switchTab(btn, tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('transactions').style.display = tabId === 'transactions' ? 'block' : 'none';
+            document.getElementById('refunds').style.display = tabId === 'refunds' ? 'block' : 'none';
+        }
+    </script>
 </body>
 </html>

@@ -3,219 +3,636 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard') | IL² RMUTTO</title>
+    <title>My Account | IL² RMUTTO</title>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
+    <style>
+        body {
+            background-color: #f1f4f9;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+        }
+
+        /* Standardized Header UI */
+        .top-header {
+            background: #f1f4f9;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner-pill {
+            max-width: 1400px;
+            width: 100%;
+            background: #fff;
+            height: 64px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-logo img {
+            height: 38px;
+            width: auto;
+            display: block;
+        }
+
+        .category-select-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #475569;
+            text-decoration: none;
+            border: 1px solid #e2e8f0;
+        }
+
+        .search-bar-pill {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 30px;
+            padding: 0 20px;
+            height: 44px;
+            width: 320px;
+            gap: 12px;
+        }
+
+        .search-bar-pill input {
+            background: transparent;
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .h-icon-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .h-icon-btn svg {
+            width: 22px;
+            height: 22px;
+            stroke-width: 1.5;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #f97316;
+            color: #fff;
+            font-size: 10px;
+            min-width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            border: 2px solid #fff;
+        }
+
+        .profile-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px 6px 6px;
+            border-radius: 40px;
+            background: #f8fafc;
+            text-decoration: none;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+        }
+
+        .profile-avatar-head {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #94a3b8;
+        }
+
+        /* Account Layout */
+        .account-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 24px 80px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background: #fff;
+            border-radius: 24px;
+            padding: 24px 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            height: fit-content;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #64748b;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .nav-item.active {
+            background: #f1f5f9;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .nav-item img {
+            width: 22px;
+            height: 22px;
+            opacity: 0.7;
+        }
+
+        .nav-item.active img {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        .content-header {
+            margin-bottom: 24px;
+        }
+
+        .content-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a202c;
+        }
+
+        .account-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            min-height: 600px;
+        }
+
+        /* Avatar Section */
+        .avatar-section {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 50px;
+        }
+
+        .avatar-main {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #94a3b8;
+        }
+
+        .edit-btn {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #003a70;
+            color: #fff;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        /* Form */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px 40px;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .form-group label span {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .form-group input, .form-group select {
+            height: 52px;
+            background: #fff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0 18px;
+            font-size: 14px;
+            color: #4a5568;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #3b82f6;
+        }
+
+        .btn-navy {
+            height: 52px;
+            background: #003a70;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 0 24px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-update {
+            margin-top: 50px;
+            height: 52px;
+            width: 220px;
+            background: #003a70;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-update:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #d8d8d8;
+            padding: 80px 40px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-logo-section {
+            flex: 1;
+        }
+
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+        }
+
+        .logo-circle img {
+            width: 70px;
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .footer-links-container {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-col a {
+            font-size: 14px;
+            color: #475569;
+            text-decoration: none;
+        }
+
+        .footer-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 24px;
+        }
+
+        .footer-lang {
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            font-size: 14px;
+            color: #64748b;
+            min-width: 140px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icons a img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .app-badges {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .app-badges img {
+            height: 38px;
+        }
+
+        @media (max-width: 1024px) {
+            .account-container { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 40px; }
+            .footer-links-container { justify-content: flex-start; gap: 40px; }
+            .footer-right { align-items: flex-start; }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <div class="dashboard-wrapper">
-        <!-- Header -->
-        <header class="top-header">
-            <div class="header-left">
-                <a href="{{ route('dashboard.1') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo" style="max-width: 120px;">
-                </a>
-                <a href="{{ route('category') }}" class="category-select-btn">
-                    Categories
-                    <div class="category-select-arrows">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                </a>
-                <div class="search-bar">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" placeholder="Search here">
-                </div>
+
+<header class="top-header">
+    <div class="header-inner-pill">
+        <div class="header-left">
+            <a href="{{ route('home') }}" class="header-logo">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo">
+            </a>
+            <a href="{{ route('category') }}" class="category-select-pill">
+                Categories
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="search-bar-pill">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Search here">
             </div>
+        </div>
 
-            <div class="header-right">
-                <button class="icon-btn" title="Wishlist">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </button>
-                    <a href="{{ route('shopping.cart') }}" class="icon-btn" title="Cart">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                    </a>
-                    <button class="icon-btn" title="Notifications">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                        <span class="notification-badge">2</span>
-                    </button>
-                    <a href="{{ route('account') }}" class="user-profile-btn" style="text-decoration: none;">
-                        <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar" class="user-avatar-small">
-                        <span class="user-name-small">Student</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                    </a>
-                </div>
-        </header>
-
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="sidebar-item {{ Request::routeIs('dashboard.1') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                <span>Dashboard</span>
-            </a>
-            <a href="{{ route('calendar') }}" class="sidebar-item {{ Request::routeIs('calendar') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                <span>Calendar</span>
-            </a>
-            <a href="{{ route('learning') }}" class="sidebar-item {{ Request::routeIs('learning') || Request::routeIs('learning.p2') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                <span>Learning</span>
-            </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-                <span>Exam</span>
-            </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                <span>Quiz</span>
-            </a>
-            <a href="{{ route('account') }}" class="sidebar-item {{ Request::routeIs('account') || Request::routeIs('password.change') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <span>Account</span>
-            </a>
-            <a href="#" class="sidebar-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8"></path><line x1="3" y1="10" x2="21" y2="10"></line><path d="M16 19h6"></path><path d="M19 16l3 3-3 3"></path></svg>
-                <span>Wallet Address</span>
-            </a>
-            <a href="{{ route('transaction') }}" class="sidebar-item {{ Request::routeIs('transaction') || Request::routeIs('refund') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
-                <span>Transaction</span>
-            </a>
-            <a href="{{ route('shopping.cart') }}" class="sidebar-item {{ Request::routeIs('shopping.cart') || Request::routeIs('payment.method') ? 'active' : '' }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                <span>Payment</span>
-            </a>
-            <a href="{{ route('login') }}" class="sidebar-item" style="margin-top: auto; color: #e53e3e;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-                <span>Logout</span>
-            </a>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="content-area-dashboard">
-            <h2 class="account-title">My Account</h2>
-            
-            <div class="profile-card-large">
-                <div class="avatar-edit-container">
-                    <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar" class="avatar-large">
-                    <button class="edit-avatar-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                        Edit
-                    </button>
-                </div>
-
-                <form action="#" method="POST" class="auth-form">
-                    @csrf
-                    <div class="form-grid">
-                        <div class="label-field">
-                            <label>Full Name<span>*</span></label>
-                            <input type="text" name="full_name" value="Student" required>
-                        </div>
-                        <div class="label-field">
-                            <label>Username<span>*</span></label>
-                            <input type="text" name="username" value="@Student2" required>
-                        </div>
-                    </div>
-
-                    <div class="form-grid" style="align-items: flex-end;">
-                        <div class="label-field">
-                            <label>Current Password<span>*</span></label>
-                            <input type="password" name="current_password" required>
-                        </div>
-                        <div class="label-field">
-                            <a href="{{ route('password.change') }}" class="change-btn-inline" style="text-decoration: none; display: inline-flex; justify-content: center; align-items: center; box-sizing: border-box; width: 100px;">Change</a>
-                        </div>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="label-field">
-                            <label>Old Password<span>*</span></label>
-                            <input type="password" name="old_password">
-                        </div>
-                        <div class="label-field">
-                            <label>New Password<span>*</span></label>
-                            <input type="password" name="new_password">
-                        </div>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="label-field">
-                            <label>Email<span>*</span></label>
-                            <input type="email" name="email" value="123@gmail.com" required>
-                        </div>
-                        <div class="label-field">
-                            <label>Date of birth<span>*</span></label>
-                            <input type="text" name="dob" value="Teacher" required>
-                        </div>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="label-field">
-                            <label>Phone No<span>*</span></label>
-                            <input type="text" name="phone" value="000-0000 0000" required>
-                        </div>
-                        <div class="label-field">
-                            <label>Country<span>*</span></label>
-                            <select name="country">
-                                <option value="Malaysia" selected>Malaysia</option>
-                                <option value="USA">USA</option>
-                                <option value="UK">UK</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary update-btn-account">Update</button>
-                </form>
+        <div class="header-right">
+            <a href="#" class="h-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+            <a href="{{ route('shopping.cart') }}" class="h-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a>
+            <div class="h-icon-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                <span class="notification-badge">2</span>
             </div>
-        </main>
-        <!-- Footer -->
-        <footer class="footer-bottom-bar">
-            <div class="footer-brand-section">
-                <div class="footer-logo-box">
-                    <img src="{{ asset('images/logo.png') }}" alt="IL2 Logo">
-                </div>
-                <p class="footer-tagline">Learn anytime and anywhere<br>from IL2 career skills</p>
-            </div>
-            
-            <div class="footer-links-grid">
-                <div class="footer-col">
-                    <a href="#">Teach on IL2</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Help and Support</a>
-                </div>
-                <div class="footer-col">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Cookies Policy</a>
-                    <a href="#">Career</a>
-                </div>
-            </div>
-
-            <div class="footer-action-row">
-                <select class="footer-lang-select">
-                    <option>English</option>
-                </select>
-                
-                <div class="footer-socials">
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="url(#ig-grad2)"><defs><linearGradient id="ig-grad2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fd5949"/><stop offset="50%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm3.98-10.95a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
-                    <a href="#" class="social-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-                </div>
-
-                <div class="app-badges-row">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
-                </div>
-            </div>
-        </footer>
+            <a href="{{ route('account') }}" class="profile-dropdown">
+                <div class="profile-avatar-head"></div>
+                <span>Student</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+        </div>
     </div>
+</header>
+
+<div class="account-container">
+    <aside class="sidebar">
+        <a href="{{ route('dashboard.1') }}" class="nav-item">
+            <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
+            Dashboard
+        </a>
+        <a href="{{ route('calendar') }}" class="nav-item">
+            <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
+            Calendar
+        </a>
+        <a href="{{ route('learning') }}" class="nav-item">
+            <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
+            Learning
+        </a>
+        <a href="{{ route('courses') }}" class="nav-item">
+            <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
+            Exam
+        </a>
+        <a href="#" class="nav-item">
+            <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
+            Quiz
+        </a>
+        <a href="{{ route('account.new') }}" class="nav-item active">
+            <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
+            Account
+        </a>
+        <a href="#" class="nav-item">
+            <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
+            Wallet Address
+        </a>
+        <a href="{{ route('transaction') }}" class="nav-item">
+            <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
+            Transaction
+        </a>
+        <a href="{{ route('payment.method') }}" class="nav-item">
+            <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
+            Payment
+        </a>
+    </aside>
+
+    <main class="account-content">
+        <div class="content-header">
+            <h1 class="content-title">My Account</h1>
+        </div>
+
+        <div class="account-card">
+            <div class="avatar-section">
+                <div class="avatar-main"></div>
+                <button class="edit-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    Edit
+                </button>
+            </div>
+
+            <form action="#">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name<span>*</span></label>
+                        <input type="text" value="Student">
+                    </div>
+                    <div class="form-group">
+                        <label>Username<span>*</span></label>
+                        <input type="text" value="@Student2">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Password<span>*</span></label>
+                        <input type="password" value="••••••••">
+                    </div>
+                    <div class="form-group" style="padding-bottom: 2px;">
+                        <a href="{{ route('password.change') }}" class="btn-navy" style="display: flex; align-items: center; justify-content: center; text-decoration: none;">Change</a>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Old Password<span>*</span></label>
+                        <input type="password" placeholder="Enter old password">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password<span>*</span></label>
+                        <input type="password" placeholder="Enter new password">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email<span>*</span></label>
+                        <input type="email" value="123@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Date of birth<span>*</span></label>
+                        <input type="text" value="Teacher">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone No<span>*</span></label>
+                        <input type="tel" value="000-0000 0000">
+                    </div>
+                    <div class="form-group">
+                        <label>Country<span>*</span></label>
+                        <select>
+                            <option>Malaysia</option>
+                            <option>Thailand</option>
+                            <option>Singapore</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: flex;">
+                    <button type="submit" class="btn-update">Update</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-logo-section">
+            <div class="logo-circle">
+                <img src="{{ asset('images/icons/logo.svg') }}" alt="Logo">
+            </div>
+            <p class="footer-tagline">Learn anytime and anywhere<br>from IL2 career skills</p>
+        </div>
+
+        <div class="footer-links-container">
+            <div class="footer-col">
+                <a href="#">Teach on IL2</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Help and Support</a>
+            </div>
+            <div class="footer-col">
+                <a href="#">Terms</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookies Policy</a>
+                <a href="#">Career</a>
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <select class="footer-lang">
+                <option>English</option>
+                <option>Thai</option>
+            </select>
+            
+            <div class="social-icons">
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter"></a>
+            </div>
+
+            <div class="app-badges">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
+

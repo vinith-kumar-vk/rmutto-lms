@@ -3,513 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories | IL² RMUTTO</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Favicon -->
+    <title>Category | IL² RMUTTO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            background-color: #F3F4F6;
-            margin: 0;
-            padding: 0;
             font-family: 'Inter', sans-serif;
-        }
-        
-        .category-page-wrapper {
+            background: #f1f4f6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
-        /* Categories Header Button */
-        .category-select-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background-color: #F0F2F5;
-            color: #4B5563;
-            padding: 8px 12px 8px 20px;
-            border-radius: 24px;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            border: 1px solid #E5E7EB;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .category-select-btn:hover {
-            background-color: #E5E7EB;
-        }
-        
-        .category-select-arrows {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            background: white;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        
-        .category-select-arrows svg {
-            width: 8px;
-            height: 8px;
-            stroke: #6B7280;
-            stroke-width: 3;
-        }
 
-        /* Category page layout */
-        .category-layout {
-            display: flex;
-            padding: 24px;
-            gap: 24px;
-            max-width: 1440px;
-            margin: 0 auto;
-            width: 100%;
-            flex: 1;
+        /* ─── HEADER ─── */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: #fff; padding: 10px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
         }
+        .header-pill {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1450px; margin: 0 auto;
+        }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .logo img { height: 38px; }
+        .cat-dropdown {
+            display: flex; align-items: center; gap: 8px; background: #f1f5f9;
+            padding: 9px 16px; border-radius: 25px; font-size: 13.5px; font-weight: 500;
+            color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
+        }
+        .search-wrap { position: relative; width: 260px; }
+        .search-wrap input {
+            width: 100%; height: 40px; background: #f1f5f9; border: none; border-radius: 25px;
+            padding: 0 15px 0 38px; font-size: 13.5px; outline: none;
+        }
+        .search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .h-icon-btn {
+            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+            color: #64748b; text-decoration: none; position: relative;
+        }
+        .notif-badge {
+            position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff;
+            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
+        }
+        .profile-pill {
+            display: flex; align-items: center; gap: 10px; padding: 5px 14px 5px 5px;
+            border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0;
+            color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none;
+        }
+        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        /* Sidebar Filters */
-        .filter-sidebar {
-            width: 260px;
-            background: white;
-            border-radius: 12px;
-            padding: 24px 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            flex-shrink: 0;
-            height: fit-content;
-        }
-
-        .filter-sidebar h3 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #E5E7EB;
-        }
-
-        .filter-group {
-            margin-bottom: 24px;
-        }
-
-        .filter-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 16px;
-            cursor: pointer;
-        }
-        
-        .filter-header svg {
-            color: #9CA3AF;
-        }
-
-        .filter-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .filter-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .filter-checkbox input {
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border: 1.5px solid #D1D5DB;
-            border-radius: 4px;
-            background: #F9FAFB;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .filter-checkbox input:checked {
-            background: #2563EB;
-            border-color: #2563EB;
-        }
-
-        .filter-checkbox input:checked::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 2px;
-            width: 3px;
-            height: 7px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-
-        .filter-checkbox span {
-            font-size: 13px;
-            color: #6B7280;
-            flex: 1;
-        }
-
-        .filter-checkbox .count {
-            color: #9CA3AF;
-            font-size: 12px;
-        }
-
-        /* Main Content Grid */
-        .category-main {
-            flex: 1;
-            background: #F3F4F6;
-            border-radius: 16px;
-            padding: 0;
-            /* box-shadow: 0 1px 3px rgba(0,0,0,0.05); */
-        }
-
-        .category-header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .category-header-top h1 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #111827;
-            margin: 0;
-        }
-
-        .sort-by-wrap {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            color: #6B7280;
-        }
-
-        .sort-select-btn {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            background: white;
-            border: 1px solid #E5E7EB;
-            padding: 8px 16px;
-            border-radius: 20px;
-            color: #374151;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            position: relative;
-            min-width: 140px;
-            justify-content: space-between;
-        }
-
-        .sort-dropdown {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 8px 0;
-            min-width: 160px;
-            z-index: 100;
-            display: none;
-        }
-        
-        .sort-dropdown.active {
-            display: block;
-        }
-
-        .sort-option {
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            color: #4B5563;
-        }
-
-        .sort-option:hover {
-            background: #F3F4F6;
-        }
-
-        .sort-option.active {
-            color: #111827;
-            font-weight: 500;
-        }
-
-        /* Category Grid */
-        .cards-grid {
+        /* ─── LAYOUT ─── */
+        .shell {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 280px 1fr;
+            gap: 25px;
+            max-width: 1450px;
+            margin: 0 auto;
+            padding: 90px 30px 50px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* ─── SIDEBAR FILTERS ─── */
+        .filter-sidebar {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky; top: 80px; align-self: start;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        .filter-sidebar::-webkit-scrollbar { width: 5px; }
+        .filter-sidebar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+
+        .sidebar-header { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+        
+        .filter-group { margin-bottom: 24px; }
+        .filter-title {
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 12px; cursor: pointer;
+        }
+        .filter-content { display: flex; flex-direction: column; gap: 10px; }
+        .filter-item {
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer;
+        }
+        .filter-item label {
+            display: flex; align-items: center; gap: 10px; font-size: 13px; color: #64748b; font-weight: 500; cursor: pointer;
+        }
+        .filter-item input {
+            width: 18px; height: 18px; border-radius: 4px; border: 2px solid #e2e8f0; 
+            appearance: none; cursor: pointer; background: #fff; transition: 0.2s;
+        }
+        .filter-item input:checked { background: #003a70; border-color: #003a70; }
+        .filter-count { font-size: 12px; color: #94a3b8; font-weight: 500; }
+
+        /* ─── MAIN CONTENT ─── */
+        .main-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
             gap: 24px;
         }
 
-        .category-card {
-            border-radius: 16px;
-            overflow: hidden;
+        .main-header {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .main-header h2 { font-size: 18px; font-weight: 700; color: #1e293b; }
+        
+        .sort-wrap { display: flex; align-items: center; gap: 12px; }
+        .sort-label { font-size: 13.5px; color: #64748b; font-weight: 500; }
+        .sort-select {
+            padding: 8px 16px; border-radius: 20px; border: 1px solid #e2e8f0;
+            background: #fff; color: #1e293b; font-size: 13px; font-weight: 600; outline: none; cursor: pointer;
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .cat-card {
             position: relative;
-            background: #F9FAFB;
             aspect-ratio: 16/10;
+            border-radius: 20px;
+            overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: 0.3s;
         }
-
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .cat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .cat-card img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .cat-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.4));
+            display: flex; flex-direction: column; justify-content: flex-end;
         }
-
-        .category-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .cat-blur {
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding: 16px 20px;
         }
-
-        .category-card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(30, 58, 138, 0.9) 0%, rgba(30, 58, 138, 0.7) 40%, transparent 100%);
-            padding: 30px 20px 20px;
-        }
-
-        .category-title {
-            color: white;
-            font-size: 16px;
-            font-weight: 700;
-        }
+        .cat-name { font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
 
     </style>
 </head>
 <body>
-    <div class="category-page-wrapper">
-        <!-- Header -->
-        <header class="top-header" style="background: white; border-bottom: 1px solid #E5E7EB; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;">
-            <div class="header-left" style="display: flex; align-items: center; gap: 24px;">
-                <a href="{{ route('dashboard.1') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo" style="max-width: 120px;">
+
+    <!-- ── HEADER ─────────────────────── -->
+    <header>
+        <div class="header-pill">
+            <div class="header-left">
+                <a href="{{ route('home') }}" class="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </a>
-                
-                <a href="{{ route('category') }}" class="category-select-btn">
+                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
                     Categories
-                    <div class="category-select-arrows">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
                 </a>
-                
-                <div class="search-bar" style="background: #F3F4F6; border: none; padding: 10px 16px; border-radius: 20px; display: flex; align-items: center; gap: 10px; width: 300px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" placeholder="Search here" style="border: none; background: transparent; outline: none; flex: 1; font-size: 14px;">
+                <div class="search-wrap">
+                    <a href="{{ route('search') }}" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8;z-index:1;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </a>
+                    <input type="text" placeholder="Search here" onfocus="window.location.href='{{ route('search') }}'">
                 </div>
             </div>
-
-            <div class="header-right" style="display: flex; align-items: center; gap: 16px;">
-                <button class="icon-btn" title="Wishlist" style="background: none; border: none; color: #4B5563; cursor: pointer;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </button>
-                <a href="{{ route('shopping.cart') }}" class="icon-btn" title="Cart" style="background: none; border: none; color: #4B5563; cursor: pointer;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <div class="header-right">
+                <a href="#" class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </a>
-                <button class="icon-btn" title="Notifications" style="background: none; border: none; color: #4B5563; cursor: pointer; position: relative;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    <span class="notification-badge" style="position: absolute; top: -5px; right: -5px; background: #EF4444; color: white; font-size: 10px; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">2</span>
-                </button>
-                <a href="{{ route('account') }}" class="user-profile-btn" style="text-decoration: none; display: flex; align-items: center; gap: 8px; background: white; border: 1px solid #E5E7EB; padding: 6px 16px 6px 6px; border-radius: 30px; margin-left: 8px;">
-                    <img src="{{ asset('images/default_avatar.png') }}" alt="Avatar" class="user-avatar-small" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
-                    <span class="user-name-small" style="font-size: 14px; font-weight: 500; color: #111827;">Student</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                <a href="{{ route('shopping.cart') }}" class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                </a>
+                <div class="h-icon-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="notif-badge">2</span>
+                </div>
+                <a href="{{ route('account.new') }}" class="profile-pill">
+                    <div class="avatar-head"></div>
+                    <span>{{ $user->name ?? 'Student' }}</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
                 </a>
             </div>
-        </header>
-
-        <!-- Main Content -->
-        <div class="category-layout">
-            <!-- Sidebar -->
-            <aside class="filter-sidebar">
-                <h3>Filters:</h3>
-                
-                <div class="filter-group">
-                    <div class="filter-header">
-                        Category
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                    </div>
-                    <div class="filter-options">
-                        <label class="filter-checkbox">
-                            <input type="checkbox" checked>
-                            <span>Category 1</span>
-                            <span class="count">0</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>Category 1</span>
-                            <span class="count">4</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>Category 1</span>
-                            <span class="count">4</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-header">
-                        Sub-Category
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
-                    </div>
-                    <div class="filter-options">
-                        <label class="filter-checkbox">
-                            <input type="checkbox" checked>
-                            <span>Lorem Ipsum</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>Lorem Ipsum</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-header">
-                        Subject
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-header">
-                        Class
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-header">
-                        Tutor
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
-                    </div>
-                    <div class="filter-options">
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>Verified</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>Experienced</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-header">
-                        Course Price
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                </div>
-                
-                <div class="filter-group">
-                    <div class="filter-header">
-                        Ratings
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <div class="filter-header">
-                        Duration
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                </div>
-
-                <div class="filter-group" style="margin-bottom: 0;">
-                    <div class="filter-header">
-                        Language
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                </div>
-
-            </aside>
-
-            <!-- Grid Content -->
-            <main class="category-main">
-                <div class="category-header-top">
-                    <h1>Categories</h1>
-                    <div class="sort-by-wrap">
-                        <span>Sort by</span>
-                        <div class="sort-select-btn" onclick="document.getElementById('sortDrop').classList.toggle('active')">
-                            Default
-                            <div class="category-select-arrows" style="width: 20px; height: 20px;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" style="width: 6px; height: 6px;"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" style="width: 6px; height: 6px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </div>
-                            
-                            <div id="sortDrop" class="sort-dropdown active" style="top: calc(100% + 4px);">
-                                <div class="sort-option active">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    Default
-                                </div>
-                                <div class="sort-option">
-                                    <div style="width: 16px;"></div>
-                                    Most Popular
-                                </div>
-                                <div class="sort-option">
-                                    <div style="width: 16px;"></div>
-                                    Most Rated
-                                </div>
-                                <div class="sort-option">
-                                    <div style="width: 16px;"></div>
-                                    Date
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cards-grid">
-                    @for($i = 0; $i < 9; $i++)
-                    <div class="category-card">
-                        <img src="{{ asset('images/category-robotics.jpg') }}" alt="Business Category">
-                        <div class="category-card-overlay">
-                            <span class="category-title">Business</span>
-                        </div>
-                    </div>
-                    @endfor
-                </div>
-            </main>
         </div>
-        
+    </header>
+
+    <!-- ── SHELL ─────────────────────── -->
+    <div class="shell">
+
+        <!-- Filters Sidebar -->
+        <aside class="filter-sidebar">
+            <div class="sidebar-header">Filters:</div>
+
+            <div class="filter-group">
+                <div class="filter-title">Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
+                <div class="filter-content">
+                    <div class="filter-item">
+                        <label><input type="checkbox"> Category 1</label>
+                        <span class="filter-count">0</span>
+                    </div>
+                    <div class="filter-item">
+                        <label><input type="checkbox"> Category 1</label>
+                        <span class="filter-count">4</span>
+                    </div>
+                    <div class="filter-item">
+                        <label><input type="checkbox"> Category 1</label>
+                        <span class="filter-count">4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Sub-Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
+                <div class="filter-content">
+                    <div class="filter-item"><label><input type="checkbox"> Lorem Ipsum</label></div>
+                    <div class="filter-item"><label><input type="checkbox"> Lorem Ipsum</label></div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Subject <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title">Class <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Tutor <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
+                <div class="filter-content">
+                    <div class="filter-item"><label><input type="checkbox"> Verified</label></div>
+                    <div class="filter-item"><label><input type="checkbox"> Experienced</label></div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Course Price <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Ratings <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Duration <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+
+            <div class="filter-group" style="margin-bottom:0">
+                <div class="filter-title">Language <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+        </aside>
+
+        <!-- Main Categories -->
+        <main class="main-card">
+            <div class="main-header">
+                <h2>Categories</h2>
+                <div class="sort-wrap">
+                    <span class="sort-label">Sort by</span>
+                    <select class="sort-select">
+                        <option>Default</option>
+                        <option>Most Popular</option>
+                        <option>Most Rated</option>
+                        <option>Date</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="cat-grid">
+                @for ($i = 0; $i < 9; $i++)
+                <a href="{{ route('courses') }}" class="cat-card" style="text-decoration:none;">
+                    <img src="{{ asset('images/learning.png') }}" alt="Category">
+                    <div class="cat-overlay">
+                        <div class="cat-blur">
+                            <span class="cat-name">Business</span>
+                        </div>
+                    </div>
+                </a>
+                @endfor
+            </div>
+        </main>
     </div>
 
-    <script>
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('sortDrop');
-            const btn = dropdown.parentElement;
-            if (!btn.contains(event.target)) {
-                dropdown.classList.remove('active');
-            }
-        });
-    </script>
 </body>
 </html>
