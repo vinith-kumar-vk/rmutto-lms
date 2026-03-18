@@ -259,7 +259,19 @@ Route::post('/register', function (Request $request) {
 })->name('register.post');
 
 Route::get('/all-courses', function () {
-    return view('auth.category');
+    // Temporary demo data for the category grid
+    $courses = [
+        ['img' => 'learning.png', 'title' => 'Veterinary Nursing Assistant Course'],
+        ['img' => 'learning.png', 'title' => 'Digital Marketing Essentials'],
+        ['img' => 'learning.png', 'title' => 'Beginner Mathematics Refresher'],
+        ['img' => 'learning.png', 'title' => 'Introduction to Programming'],
+        ['img' => 'learning.png', 'title' => 'Business Communication Skills'],
+        ['img' => 'learning.png', 'title' => 'Creative Design Basics'],
+        ['img' => 'learning.png', 'title' => 'Language & Communication'],
+        ['img' => 'learning.png', 'title' => 'STEM Exploration Series'],
+    ];
+
+    return view('auth.category', compact('courses'));
 })->name('category');
 
 Route::get('/all', function () {
