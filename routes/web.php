@@ -116,7 +116,7 @@ Route::post('/register', function () {
     return redirect()->route('login'); // Flow: Register -> Login
 })->name('register.post');
 
-Route::get('/category', function () {
+Route::get('/all-courses', function () {
     return view('auth.category');
 })->name('category');
 

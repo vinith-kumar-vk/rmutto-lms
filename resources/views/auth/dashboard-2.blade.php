@@ -116,7 +116,7 @@
                 <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
                 Learning
             </a>
-            <a href="{{ route('courses') }}" class="nav-link">
+            <a href="{{ route('category') }}" class="nav-link">
                 <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
                 Exam
             </a>

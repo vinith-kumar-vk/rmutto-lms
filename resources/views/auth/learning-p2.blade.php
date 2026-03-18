@@ -345,10 +345,10 @@
         <div class="header-pill">
             <div class="header-left">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo-img">
-                <div class="cat-btn">
+                <a href="{{ route('category') }}" class="cat-btn" style="text-decoration: none;">
                     Categories 
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                </div>
+                </a>
                 <div class="search-box">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     <input type="text" placeholder="Search here">
@@ -387,7 +387,7 @@
                 <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
                 Learning
             </a>
-            <a href="{{ route('courses') }}" class="nav-link nav-item">
+            <a href="{{ route('category') }}" class="nav-link nav-item">
                 <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
                 Exam
             </a>
