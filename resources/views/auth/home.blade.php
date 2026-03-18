@@ -274,7 +274,7 @@
     <section class="course-section">
         <div class="course-section-header">
             <div>
-                <h2 class="section-heading" style="font-size: 24px; margin-bottom: 8px;">Pick a free session course<br>to get started</h2>
+                <h2 class="section-heading">Pick a free session course<br>to get started</h2>
                 <p class="section-sub">Once you done with your free videos, for continue you have to subscribe the course</p>
             </div>
             <div style="display: flex; align-items: center; gap: 20px;">
@@ -334,7 +334,7 @@
     <!-- ONGOING COURSES -->
     <section class="course-section" style=" border-top: none;">
         <div class="course-section-header">
-            <h2 class="section-heading" style="font-size: 24px; margin-bottom: 0;">Ongoing Courses</h2>
+            <h2 class="section-heading" >Ongoing Courses</h2>
             <div class="carousel-arrows">
                 <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">‹</button>
                 <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">›</button>
@@ -370,7 +370,7 @@
     <!-- POPULAR COURSES -->
     <section class="course-section" style=" border-top: none;">
         <div class="course-section-header">
-            <h2 class="section-heading" style="font-size: 24px; margin-bottom: 0;">Popular Courses</h2>
+            <h2 class="section-heading" >Popular Courses</h2>
             <div class="carousel-arrows" style="display: flex; gap: 12px;">
                 <button class="arrow-btn" style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #dbeafe; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -418,7 +418,7 @@
     <!-- COMPLETED COURSES -->
     <section class="course-section" style=" border-top: none; padding-bottom: 80px;">
         <div class="course-section-header">
-            <h2 class="section-heading" style="font-size: 24px; margin-bottom: 0;">Completed Courses</h2>
+            <h2 class="section-heading" >Completed Courses</h2>
             <div class="carousel-arrows">
                 <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">‹</button>
                 <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">›</button>

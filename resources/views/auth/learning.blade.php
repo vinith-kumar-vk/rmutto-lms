@@ -189,10 +189,11 @@
         }
 
         .page-title {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 40px;
+            font-weight: 800;
             color: #1e293b;
-            margin: 0 0 15px 10px;
+            margin: 0 0 25px 0;
+            line-height: 1.2;
         }
 
         .main-card {
