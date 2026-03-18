@@ -140,6 +140,27 @@
         .apps { display: flex; gap: 10px; justify-content: flex-end; }
         .apps img { height: 32px; }
 
+        @media (max-width: 1024px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .course-hero { grid-template-columns: 1fr; gap: 30px; }
+            .footer-inner { flex-direction: column; gap: 40px; }
+            .f-right-col { align-items: flex-start; margin-left: 0; border-top: 1px solid #e2e8f0; padding-top: 30px; width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 10px; height: auto; }
+            .header-pill { flex-direction: column; gap: 10px; }
+            .logo img { height: 32px; }
+            .wrapper { padding: 120px 15px 40px; }
+            .main-card { padding: 25px 15px; }
+            .title-price-row h1 { font-size: 24px; }
+            .tab-strip { gap: 15px; overflow-x: auto; justify-content: flex-start; padding: 0 5px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-btns { flex-direction: column; }
+            .btn-dark-blue { width: 100%; text-align: center; }
+        }
     </style>
 </head>
 <body>

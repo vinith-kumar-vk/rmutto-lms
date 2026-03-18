@@ -34,93 +34,44 @@
         /* ─── HEADER (Pill Shape) ─── */
         header { padding: 15px 30px; display: flex; justify-content: center; position: sticky; top: 0; z-index: 1000; }
         .header-pill {
-            background: #fff; width: 100%; max-width: 1400px; height: 68px; border-radius: 40px; 
+            background: #fff; width: 100%; max-width: 1440px; height: 68px; border-radius: 40px; 
             display: flex; align-items: center; justify-content: space-between; padding: 0 25px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
-        .header-left { display: flex; align-items: center; gap: 20px; }
-        .logo img { height: 38px; }
-        .cat-dropdown { 
-            display: flex; align-items: center; gap: 8px; background: #f1f5f9; padding: 10px 18px; 
-            border-radius: 25px; font-size: 13.5px; font-weight: 500; color: #475569; 
-            cursor: pointer; border: 1px solid #e2e8f0; 
-        }
-        .search-wrap { position: relative; width: 280px; }
-        .search-wrap input { 
-            width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px; 
-            padding: 0 15px 0 40px; font-size: 13.5px; outline: none; 
-        }
-        .search-wrap svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-        .header-right { display: flex; align-items: center; gap: 15px; }
-        .h-icon-btn { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; color: #64748b; text-decoration: none; position: relative; }
-        .notif-badge { position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff; font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #fff; }
-        .profile-pill { 
-            display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px; border-radius: 35px; 
-            background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; font-weight: 600; font-size: 13.5px; 
-            text-decoration: none; 
-        }
-        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
-
+        
         /* ─── MAIN LAYOUT ─── */
-        .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 25px; max-width: 1450px; margin: 0 auto; padding: 10px 30px 50px; }
-
-        /* ─── SIDEBAR ─── */
-        .sidebar { background: #fff; border-radius: 20px; padding: 20px 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); height: fit-content; }
-        .nav-link { 
-            display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 12px; 
-            text-decoration: none; color: #64748b; font-size: 14px; font-weight: 500; margin-bottom: 2px; transition: 0.2s; 
-        }
-        .nav-link:hover { background: #f1f5f9; color: #0f172a; }
-        .nav-link.active { background: #f1f5f9; color: var(--primary); font-weight: 700; }
-        .nav-link img { width: 20px; height: 20px; opacity: 0.7; }
-        .nav-link.active img { opacity: 1; }
-
-        /* ─── CONTENT AREA ─── */
-        .content { display: flex; flex-direction: column; gap: 25px; }
-        .flex-container { display: flex; gap: 25px; }
-
-        .section-card { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
-        .section-header { font-size: 17px; font-weight: 700; margin-bottom: 20px; }
-
-        /* ─── EMPTY STATES ─── */
-        .empty-row { display: flex; align-items: center; gap: 15px; padding: 20px; border-radius: 15px; border: 1px dashed #e2e8f0; position: relative; }
-        .empty-icon { width: 50px; height: 50px; border-radius: 50%; background: #f1f5f9; flex-shrink: 0; }
-        .empty-body { flex: 1; }
-        .empty-body h4 { font-size: 14px; font-weight: 700; color: #475569; }
-        .empty-body p { font-size: 12px; color: #94a3b8; }
-
-        .btn-enrol { background: #003a70; color: #fff; border: none; padding: 8px 18px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-
-        /* ─── NOTES ─── */
-        .notes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 10px; }
-        .note-column { background: #f8fafc; border-radius: 15px; padding: 15px; display: flex; flex-direction: column; gap: 12px; }
-        .note-col-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 5px; font-size: 13.5px; font-weight: 700; }
-
-        .add-task-form { background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #e2e8f0; }
-        .add-task-form input { width: 100%; border: none; outline: none; font-size: 12px; margin-bottom: 10px; }
-        .prio-row { display: flex; gap: 8px; margin-bottom: 10px; }
-        .prio-tag { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 4px; cursor: pointer; border: 1px solid #e2e8f0; }
-        .prio-tag.low { background: #f0fdf4; color: #22c55e; }
-        .prio-tag.med { background: #fff7ed; color: #f97316; }
-        .prio-tag.high { background: #fef2f2; color: #ef4444; }
-        .form-btns { display: flex; gap: 10px; }
-        .btn-add { background: #003a70; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px; }
-        .btn-cancel { background: #f1f5f9; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; }
+        .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 25px; max-width: 1440px; margin: 0 auto; padding: 10px 30px 50px; }
 
         /* ─── FOOTER ─── */
-        footer { margin-top: 60px; background: #d8d8d8; padding: 60px 40px; border-top: 1px solid #e2e8f0; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 40px; }
-        .footer-brand img { height: 60px; margin-bottom: 20px; }
-        .footer-brand p { font-size: 14px; color: #64748b; line-height: 1.6; }
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        footer { margin-top: 60px; background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9; display: flex; justify-content: flex-start; gap: 100px; flex-wrap: wrap; }
+        .footer-brand .f-logo-circle { width: 70px; height: 70px; border-radius: 50%; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
+        .footer-brand p { font-size: 13px; color: #64748b; line-height: 1.6; max-width: 250px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; padding: 0; }
         .footer-col ul li a { text-decoration: none; color: #4b5563; font-size: 14px; }
-        .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+        .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; margin-left: auto; }
         .footer-lang { padding: 8px 15px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; min-width: 120px; }
         .social-row { display: flex; gap: 15px; }
         .social-row img { width: 20px; height: 20px; }
         .app-row { display: flex; gap: 10px; }
         .app-row img { height: 35px; }
 
-        @media (max-width: 1100px) { .wrapper { grid-template-columns: 1fr; } .flex-container { flex-direction: column; } .notes-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1024px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .flex-container { flex-direction: column; }
+            .notes-grid { grid-template-columns: 1fr; }
+            .footer { flex-direction: column; gap: 40px; }
+            .footer-right { align-items: flex-start; margin-left: 0; border-top: 1px solid #e2e8f0; padding-top: 30px; width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
+            .header-pill { height: auto; padding: 15px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
+            .search-wrap { width: 100%; }
+            .logo img { height: 32px; }
+            .header-right { width: 100%; justify-content: center; }
+            .wrapper { padding: 140px 24px 40px; }
+            .section-card { padding: 40px 24px; }
+        }
     </style>
 </head>
 <body>

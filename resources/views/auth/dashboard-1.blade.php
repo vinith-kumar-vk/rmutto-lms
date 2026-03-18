@@ -42,7 +42,7 @@
         }
 
         .header-pill {
-            background: #fff; width: 100%; max-width: 1400px; height: 68px; border-radius: 40px; 
+            background: #fff; width: 100%; max-width: 1440px; height: 68px; border-radius: 40px; 
             display: flex; align-items: center; justify-content: space-between; padding: 0 25px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
@@ -82,7 +82,7 @@
             display: grid;
             grid-template-columns: 240px 1fr;
             gap: 25px;
-            max-width: 1450px;
+            max-width: 1440px;
             margin: 0 auto;
             padding: 90px 30px 50px;
             flex: 1;
@@ -453,11 +453,27 @@
 
 
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1024px) {
             .wrapper { grid-template-columns: 1fr; }
+            .header-pill { max-width: 95%; }
             .flex-container { flex-direction: column; }
             .notes-grid { grid-template-columns: 1fr; }
-            footer { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
+            .header-pill { height: auto; padding: 15px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
+            .search-wrap { width: 100%; }
+            .logo img { height: 32px; }
+            .header-right { width: 100%; justify-content: center; }
+            
+            .wrapper { padding: 140px 24px 40px; }
+            .section-card { padding: 40px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-link { font-size: 13px; padding: 10px 15px; }
+            .chart-box { padding-left: 40px; }
         }
     </style>
 </head>

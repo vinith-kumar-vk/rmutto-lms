@@ -106,7 +106,7 @@
             
             <!-- RIGHT SIDE: Text Content -->
             <div class="hero-right-column">
-                <h1 class="hero-title-main">Investing in<br>Knowledge and<br>your future</h1>
+                <h1 class="hero-title-main">Investing in Knowledge and your future</h1>
                 <p class="hero-desc-main">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
                 <div class="hero-action-btns">
                     <a href="{{ route('login') }}" class="btn-step-1">Login</a>
@@ -123,8 +123,8 @@
     <section class="features-section">
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon" style="background: #ff8a00;">
-                    <img src="{{ asset('images/icons/badge 1.svg') }}" alt="Great Deals" style="width:36px;height:36px;object-fit:contain;">
+                <div class="feature-icon" style="background: #ff8000;">
+                    <img src="{{ asset('images/icons/badge 1.svg') }}" alt="Great Deals">
                 </div>
                 <div>
                     <h4>Great Deals for you</h4>
@@ -132,8 +132,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-icon" style="background: #93c5fd;">
-                    <img src="{{ asset('images/icons/video streaming 1.svg') }}" alt="Audio & Video" style="width:36px;height:36px;object-fit:contain;">
+                <div class="feature-icon" style="background: #a2d2ff;">
+                    <img src="{{ asset('images/icons/video streaming 1.svg') }}" alt="Audio & Video">
                 </div>
                 <div>
                     <h4>Audio &amp; Video</h4>
@@ -141,8 +141,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-icon" style="background: #34d399;">
-                    <img src="{{ asset('images/icons/video call 1.svg') }}" alt="Virtual Classroom" style="width:36px;height:36px;object-fit:contain;">
+                <div class="feature-icon" style="background: #40ffff;">
+                    <img src="{{ asset('images/icons/video call 1.svg') }}" alt="Virtual Classroom">
                 </div>
                 <div>
                     <h4>Virtual Classroom</h4>
@@ -150,8 +150,8 @@
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-icon" style="background: #0d9488;">
-                    <img src="{{ asset('images/icons/study 1.svg') }}" alt="Group learning" style="width:36px;height:36px;object-fit:contain;">
+                <div class="feature-icon" style="background: #20a0a0;">
+                    <img src="{{ asset('images/icons/study 1.svg') }}" alt="Group learning">
                 </div>
                 <div>
                     <h4>Group learning</h4>
@@ -270,7 +270,8 @@
     </section>
 
     <!-- FREE SESSION COURSES -->
-    <section class="course-section" style="background: white;">
+
+    <section class="course-section">
         <div class="course-section-header">
             <div>
                 <h2 class="section-heading" style="font-size: 24px; margin-bottom: 8px;">Pick a free session course<br>to get started</h2>
@@ -288,7 +289,7 @@
                 </div>
             </div>
         </div>
-        <div class="course-cards-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto;">
+        <div class="course-cards-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px">
             @for($i = 0; $i < 4; $i++)
             <a href="{{ route('dashboard.1') }}" class="vertical-course-card" style="text-decoration:none; color:inherit;">
                 <div class="card-image-wrap">
@@ -331,7 +332,7 @@
 
     {{-- 
     <!-- ONGOING COURSES -->
-    <section class="course-section" style="background: white; border-top: none;">
+    <section class="course-section" style=" border-top: none;">
         <div class="course-section-header">
             <h2 class="section-heading" style="font-size: 24px; margin-bottom: 0;">Ongoing Courses</h2>
             <div class="carousel-arrows">
@@ -367,7 +368,7 @@
     --}}
 
     <!-- POPULAR COURSES -->
-    <section class="course-section" style="background: white; border-top: none;">
+    <section class="course-section" style=" border-top: none;">
         <div class="course-section-header">
             <h2 class="section-heading" style="font-size: 24px; margin-bottom: 0;">Popular Courses</h2>
             <div class="carousel-arrows" style="display: flex; gap: 12px;">
@@ -379,7 +380,7 @@
                 </button>
             </div>
         </div>
-        <div class="course-cards-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto;">
+        <div class="course-cards-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px">
             @for($i = 0; $i < 4; $i++)
             <a href="{{ route('dashboard.1') }}" class="vertical-course-card" style="text-decoration:none; color:inherit;">
                 <div class="card-image-wrap">
@@ -415,7 +416,7 @@
 
     {{-- 
     <!-- COMPLETED COURSES -->
-    <section class="course-section" style="background: white; border-top: none; padding-bottom: 80px;">
+    <section class="course-section" style=" border-top: none; padding-bottom: 80px;">
         <div class="course-section-header">
             <h2 class="section-heading" style="font-size: 24px; margin-bottom: 0;">Completed Courses</h2>
             <div class="carousel-arrows">

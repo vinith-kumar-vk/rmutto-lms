@@ -327,6 +327,23 @@
             padding-top: 20px;
         }
 
+        @media (max-width: 1024px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
+            .header-pill { height: auto; padding: 12px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
+            .search-box { width: 100%; }
+            .header-left { flex-direction: column; width: 100%; }
+            .header-right { width: 100%; justify-content: center; }
+            
+            .wrapper { padding: 140px 24px 40px; flex-direction: column; }
+            .sidebar { width: 100%; margin-bottom: 20px; }
+            .main-card { padding: 40px 24px; }
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>

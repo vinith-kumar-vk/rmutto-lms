@@ -38,7 +38,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
             padding: 0 30px;
         }
-        .header-pill { width: 100%; max-width: 1400px; display: flex; align-items: center; justify-content: space-between; }
+        .header-pill { width: 100%; max-width: 1440px; display: flex; align-items: center; justify-content: space-between; }
         .header-left { display: flex; align-items: center; gap: 20px; }
         .logo img { height: 38px; }
         .search-wrap { position: relative; width: 280px; }
@@ -49,7 +49,7 @@
         .profile-pill { display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px; border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none; }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 30px; max-width: 1450px; margin: 0 auto; padding: 100px 30px 40px; }
+        .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 30px; max-width: 1440px; margin: 0 auto; padding: 100px 30px 40px; }
         .sidebar { background: #fff; border-radius: 24px; padding: 25px 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); position: sticky; top: 100px; height: fit-content; grid-row: 1/span 2; }
         .nav-link { display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 14px; text-decoration: none; color: #64748b; font-size: 14px; font-weight: 500; margin-bottom: 4px; transition: 0.2s; }
         .nav-link:hover { background: #f8fafc; color: #0f172a; }
@@ -145,8 +145,8 @@
         
         .view-more-rev { display: inline-block; font-size: 13.5px; font-weight: 800; color: var(--blue-link); text-decoration: underline; margin-top: 30px; cursor: pointer; }
 
-        footer { grid-column: 2; border-radius: 26px; background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9; display: flex; justify-content: center; width: 100%; margin-top: 10px; box-sizing: border-box; }
-        .footer-inner { max-width: 1400px; width: 100%; display: grid; grid-template-columns: 1.5fr repeat(2, 1fr) 1.2fr; gap: 60px; }
+        footer { grid-column: 1 / -1; border-radius: 26px; background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9; display: flex; justify-content: center; width: 100%; margin-top: 40px; box-sizing: border-box; }
+        .footer-inner { max-width: 1440px; width: 100%; display: grid; grid-template-columns: 1.2fr repeat(2, 1fr) 1.2fr; gap: 60px; }
         .f-brand .f-logo-circle { width: 70px; height: 70px; border-radius: 50%; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
         .f-brand .f-logo-circle img { height: 45px; }
         .f-brand p { font-size: 13px; color: #64748b; line-height: 1.6; max-width: 250px; }
@@ -163,6 +163,34 @@
         .app-badges { display: flex; gap: 12px; }
         .app-badges img { height: 36px; border-radius: 6px; }
 
+        @media (max-width: 1024px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .course-hero { grid-template-columns: 1fr; gap: 30px; }
+            .reviews-container { grid-template-columns: 1fr; gap: 30px; }
+            .footer-inner { flex-direction: column; gap: 40px; }
+            .f-right-col { align-items: flex-start; border-top: 1px solid #e2e8f0; padding-top: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 12px 24px; height: auto; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
+            .header-pill { height: auto; padding: 15px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
+            .search-wrap { width: 100%; }
+            .logo img { height: 32px; }
+            .header-right { width: 100%; justify-content: center; }
+            
+            .wrapper { padding: 140px 24px 40px; }
+            .main-card { padding: 40px 24px; }
+            .title-price-row h1 { font-size: 24px; }
+            .price-text { font-size: 22px; }
+            .tab-strip { gap: 15px; overflow-x: auto; justify-content: flex-start; padding: 0 5px; }
+            footer { padding: 40px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-btns { flex-direction: column; }
+            .btn-dark-blue { width: 100%; text-align: center; }
+            .rev-card { padding: 20px 15px; gap: 15px; flex-direction: column; align-items: center; text-align: center; }
+        }
     </style>
 </head>
 <body>

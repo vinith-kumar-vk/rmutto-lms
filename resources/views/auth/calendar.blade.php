@@ -47,7 +47,7 @@
         }
 
         .header-pill {
-            background: #fff; width: 100%; max-width: 1400px; height: 68px; border-radius: 40px; 
+            background: #fff; width: 100%; max-width: 1440px; height: 68px; border-radius: 40px; 
             display: flex; align-items: center; justify-content: space-between; padding: 0 25px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
@@ -87,7 +87,7 @@
             display: grid; 
             grid-template-columns: 240px 1fr; 
             gap: 25px; 
-            max-width: 1450px; 
+            max-width: 1440px; 
             margin: 0 auto; 
             padding: 90px 30px 50px; 
             flex: 1; 
@@ -188,10 +188,10 @@
 
         /* ─── FOOTER ─── */
         footer {
-            grid-column: 2;
+            grid-column: 1 / -1;
             border-radius: 26px;
-            background: #fff; padding: 60px 30px; border-top: 1px solid #f1f5f9;
-            display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-top: 10px;
+            background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9;
+            display: flex; justify-content: flex-start; gap: 100px; flex-wrap: wrap; margin-top: 40px;
         }
         .f-brand { flex: 1; min-width: 250px; }
         .f-logo-circle { width: 60px; height: 60px; border-radius: 50%; background: #f8fafc; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
@@ -261,6 +261,37 @@
         .btn-done { 
             width: 100%; background: #003a70; color: #fff; border: none; padding: 14px; 
             border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 15px; 
+        }
+        @media (max-width: 1024px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .header-pill { max-width: 95%; }
+            .footer { flex-direction: column; gap: 40px; }
+            .f-right { align-items: flex-start; border-top: 1px solid #e2e8f0; padding-top: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
+            .header-pill { height: auto; padding: 15px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
+            .search-wrap { width: 100%; }
+            .logo img { height: 32px; }
+            .header-right { width: 100%; justify-content: center; }
+            
+            .wrapper { padding: 140px 24px 40px; }
+            .main-content { flex-direction: column; }
+            .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 10px; }
+            .cal-cell { padding: 4px; font-size: 11px; }
+            .date-num { margin-bottom: 2px; }
+            .circle-num { width: 18px; height: 18px; font-size: 10px; }
+            .event-box h5 { font-size: 8px; }
+            
+            .btn-download, .btn-new-schedule { padding: 8px 12px; font-size: 11px; }
+            footer { padding: 40px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 3px; }
+            .cal-cell { min-height: 40px; }
+            .tab-group { overflow-x: auto; width: 100%; white-space: nowrap; padding-bottom: 5px; }
         }
     </style>
 </head>

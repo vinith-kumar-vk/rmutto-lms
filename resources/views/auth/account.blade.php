@@ -35,7 +35,7 @@
         }
 
         .header-inner-pill {
-            max-width: 1400px;
+            max-width: 1440px;
             width: 100%;
             background: #fff;
             height: 64px;
@@ -156,9 +156,9 @@
 
         /* Account Layout */
         .account-container {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
-            padding: 20px 24px 80px;
+            padding: 20px 20px 80px;
             display: grid;
             grid-template-columns: 260px 1fr;
             gap: 30px;
@@ -340,11 +340,12 @@
         }
 
         .footer-inner {
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: flex-start;
+            gap: 100px;
         }
 
         .footer-logo-section {
@@ -374,10 +375,9 @@
         }
 
         .footer-links-container {
-            flex: 2;
             display: flex;
-            justify-content: center;
-            gap: 100px;
+            justify-content: flex-start;
+            gap: 80px;
         }
 
         .footer-col {
@@ -435,10 +435,31 @@
 
         @media (max-width: 1024px) {
             .account-container { grid-template-columns: 1fr; }
+            .header-inner-pill { max-width: 95%; }
             .footer-inner { flex-direction: column; gap: 40px; }
             .footer-links-container { justify-content: flex-start; gap: 40px; }
             .footer-right { align-items: flex-start; }
             .form-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .top-header { padding: 12px 24px; position: fixed; width: 100%; top: 0; left: 0; right: 0; box-sizing: border-box; }
+            .header-inner-pill { height: auto; padding: 12px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
+            .search-bar-pill { width: 100%; }
+            .category-select-pill, .h-icon-btn:not(:last-child) { display: none; }
+            .header-right { width: 100%; justify-content: center; }
+            
+            .account-container { padding: 120px 24px 40px; }
+            .account-card { padding: 30px 24px; }
+            .footer { padding: 40px 24px; }
+            .footer-inner { gap: 30px; }
+            .footer-links-container { flex-direction: column; gap: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .content-title { font-size: 18px; }
+            .btn-update { width: 100%; }
+            .avatar-section { margin-bottom: 30px; }
         }
     </style>
 </head>
