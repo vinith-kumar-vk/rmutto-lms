@@ -454,26 +454,41 @@
 
 
         @media (max-width: 1024px) {
-            .wrapper { grid-template-columns: 1fr; }
-            .header-pill { max-width: 95%; }
+            .wrapper { display: flex; flex-direction: column; }
+            .sidebar { order: 2; min-height: auto; margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .content { order: 1; width: 100%; }
             .flex-container { flex-direction: column; }
             .notes-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
-            .header-pill { height: auto; padding: 15px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
-            .search-wrap { width: 100%; }
+            header { padding: 15px; position: fixed; height: auto; outline: none; border: none; background: none; box-shadow: none; z-index: 1000;}
+            .header-pill { height: auto; padding: 15px; border-radius: 20px; flex-direction: column; gap: 15px; width: 100%; max-width: 100%; }
+            .header-left { width: 100%; flex-wrap: wrap; justify-content: space-between; }
+            .search-wrap { width: 100%; order: 3; margin-top: 5px; }
             .logo img { height: 32px; }
-            .header-right { width: 100%; justify-content: center; }
+            .header-right { width: 100%; flex-wrap: wrap; justify-content: center; }
             
-            .wrapper { padding: 140px 24px 40px; }
-            .section-card { padding: 40px 24px; }
+            .wrapper { padding: 180px 15px 30px; }
+            .section-card { padding: 25px 15px; }
+
+            .section-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .notes-header-actions { width: 100%; flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+            .notes-header-actions .search-wrap { width: 100% !important; margin-top: 0; order: auto; }
+            .notes-header-actions .btn-add { width: 100%; justify-content: center; margin-top: 10px; }
+
+            .sidebar { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 20px 15px;}
         }
 
         @media (max-width: 480px) {
-            .nav-link { font-size: 13px; padding: 10px 15px; }
-            .chart-box { padding-left: 40px; }
+            .nav-link { font-size: 13px; padding: 10px; border-radius: 8px; justify-content: center; flex-direction: column; gap: 5px; text-align: center;}
+            .chart-box { padding-left: 20px; }
+            .bar-container { width: 25px; }
+            .bar-actual { width: 25px; }
+            .x-label { font-size: 10px; }
+            .y-labels { font-size: 10px; }
+            .sidebar { grid-template-columns: repeat(2, 1fr); }
+            .course-card { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -486,9 +501,9 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </a>
                 
-                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
-                    Categories 
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none; display: flex; align-items: center; gap: 8px;">
+                    Courses
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </a>
 
                 <div class="search-wrap">
@@ -675,7 +690,7 @@
             <div class="section-card">
                 <div class="section-header">
                     Notes
-                    <div style="display:flex; gap:15px; align-items:center;">
+                    <div class="notes-header-actions" style="display:flex; gap:15px; align-items:center;">
                         <div class="search-wrap" style="width:180px;">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                             <input type="text" placeholder="Search here" style="height:32px; font-size:12px;">

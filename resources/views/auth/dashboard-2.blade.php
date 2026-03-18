@@ -81,9 +81,9 @@
             <div class="header-left">
                 <a href="{{ route('home') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
                 
-                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
-                    Categories 
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none; display: flex; align-items: center; gap: 8px;">
+                    Courses
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </a>
 
                 <div class="search-wrap">

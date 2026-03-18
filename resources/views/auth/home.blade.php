@@ -8,6 +8,29 @@
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}?v={{ time() }}">
+    <style>
+        /* Hover Interaction for Cards */
+        .vertical-course-card, .free-session-card, .category-card-custom {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
+        }
+
+        .vertical-course-card:hover, .free-session-card:hover, .category-card-custom:hover {
+            transform: translateY(-8px) scale(1.02) !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important;
+            z-index: 10;
+        }
+
+        /* Top Bar glass interaction */
+        .glass-header {
+            transition: all 0.3s ease;
+        }
+        .glass-header.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 8px 30px;
+        }
+    </style>
 </head>
 <body class="home-page">
     <!-- Header / Navigation -->
@@ -17,12 +40,9 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
             </a>
             
-            <a href="{{ route('category') }}" class="category-btn">
-                Categories
-                <div class="arrow-icons">
-                    <svg viewBox="0 0 24 24" style="width:8px;height:8px;" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                    <svg viewBox="0 0 24 24" style="width:8px;height:8px;" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
+            <a href="{{ route('category') }}" class="category-btn" style="display: flex; align-items: center; gap: 6px;">
+                Courses
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
             
             <div class="search-box">
@@ -75,7 +95,7 @@
             </div>
             <ul class="mobile-nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('category') }}">Categories</a></li>
+                <li><a href="{{ route('category') }}">Courses</a></li>
                 <li><a href="{{ route('courses') }}">All Courses</a></li>
                 <li><a href="{{ route('free.courses') }}">Free Courses</a></li>
                 <li><a href="{{ route('dashboard.1') }}">My Dashboard</a></li>
@@ -237,10 +257,17 @@
             <p class="section-sub-center">We just don't give our students only lecture but real life experience</p>
             
             <div class="live-classes-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-                @for($i = 0; $i < 3; $i++)
+                @php
+                $live_courses = [
+                    ['title' => 'Veterinary Nursing Assistant Course', 'img' => '9. Animal care.jpg'],
+                    ['title' => 'Building a Sustainable Startup: Strategies for Success', 'img' => '10. Create a startup.jpg'],
+                    ['title' => 'Rajamangala Identity Course', 'img' => '1. Identity.png'],
+                ];
+                @endphp
+                @foreach($live_courses as $course)
                 <div class="free-session-card">
                     <div class="free-session-thumb">
-                        <img src="{{ asset('images/learning.png') }}" alt="Live Class">
+                        <img src="{{ asset('images/' . $course['img']) }}" alt="Live Class">
                     </div>
                     <div class="free-session-info">
                         <div class="free-card-meta">
@@ -250,7 +277,7 @@
                                 Live
                             </div>
                         </div>
-                        <h4>Mastering Maths</h4>
+                        <h4>{{ \Illuminate\Support\Str::limit($course['title'], 35, '...') }}</h4>
                         <p class="topic-text">Topic Description</p>
                         <div class="free-card-footer">
                             <div class="footer-item">
@@ -264,7 +291,7 @@
                         </div>
                     </div>
                 </div>
-                @endfor
+                @endforeach
             </div>
         </div>
     </section>
@@ -290,18 +317,30 @@
             </div>
         </div>
         <div class="course-cards-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px">
-            @for($i = 0; $i < 4; $i++)
-            <a href="{{ route('dashboard.1') }}" class="vertical-course-card" style="text-decoration:none; color:inherit;">
+            @php
+            $free_courses = [
+                ['title' => 'Veterinary Nursing Assistant Course', 'img' => '9. Animal care.jpg'],
+                ['title' => 'Building a Sustainable Startup: Strategies for Success', 'img' => '10. Create a startup.jpg'],
+                ['title' => 'Rajamangala Identity Course', 'img' => '1. Identity.png'],
+                ['title' => 'Building Relationships to Create a Digital Business Foundation', 'img' => '2. Relationship building digital business base.png'],
+            ];
+            @endphp
+            @foreach($free_courses as $index => $course)
+            @if($index == 0)
+            <a href="{{ route('courses') }}" class="vertical-course-card" style="text-decoration:none; color:inherit; display:block;">
+            @else
+            <div class="vertical-course-card" style="color:inherit;">
+            @endif
                 <div class="card-image-wrap">
-                    <img src="{{ asset('images/learning.png') }}" alt="Course">
+                    <img src="{{ asset('images/' . $course['img']) }}" alt="Course">
                     <span class="badge-orange-free">Free</span>
                 </div>
                 <div class="vertical-card-body">
-                    <h4 class="vertical-card-title">The most complete scien..</h4>
+                    <h4 class="vertical-card-title">{{ \Illuminate\Support\Str::limit($course['title'], 35, '...') }}</h4>
                     <p class="vertical-card-desc">Topic Description Lorem ipsum<br>dolor sit amet, consectetur adip..</p>
                     <div class="vertical-card-footer">
                         <div class="footer-stats-wrap">
-                            <div class="instructor-avatar-circle"></div>
+                            <img src="{{ asset('images/logo.png') }}" class="instructor-avatar-circle" style="object-fit: contain; background: #f1f5f9; padding: 3px; border: 1px solid #e2e8f0;">
                             <div class="stat-v-item">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                                 4k
@@ -316,7 +355,7 @@
                             </div>
                         </div>
                         <div class="heart-action-wrap" style="position: relative;">
-                            @if($i == 2)
+                            @if($index == 2)
                             <div class="tooltip-added">Added to Wishlist!</div>
                             <svg class="heart-action-btn active" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                             @else
@@ -325,8 +364,13 @@
                         </div>
                     </div>
                 </div>
+            @if($index == 0)
             </a>
-            @endfor
+            @else
+            </div>
+            @endif
+            @endforeach
+
         </div>
     </section>
 
@@ -381,18 +425,26 @@
             </div>
         </div>
         <div class="course-cards-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px">
-            @for($i = 0; $i < 4; $i++)
-            <a href="{{ route('dashboard.1') }}" class="vertical-course-card" style="text-decoration:none; color:inherit;">
+            @php
+            $popular_courses = [
+                ['title' => 'Beverage Business: From Idea to Sustainable Success', 'img' => '3. drinks.jpg'],
+                ['title' => 'Anti-Aging Business with Bioproducts', 'img' => '4. Business.jpg'],
+                ['title' => 'Learn and Get Rich', 'img' => '5. Customer management and satisfaction.jpg'],
+                ['title' => 'Camping Tourism and Campsite Entrepreneurship', 'img' => '6. Camping tourism education and camping business.png'],
+            ];
+            @endphp
+            @foreach($popular_courses as $course)
+            <div class="vertical-course-card" style="color:inherit;">
                 <div class="card-image-wrap">
-                    <img src="{{ asset('images/learning.png') }}" alt="Course">
+                    <img src="{{ asset('images/' . $course['img']) }}" alt="Course">
                     <span class="badge-orange-free">Free</span>
                 </div>
                 <div class="vertical-card-body">
-                    <h4 class="vertical-card-title">The most complete scien..</h4>
+                    <h4 class="vertical-card-title">{{ \Illuminate\Support\Str::limit($course['title'], 35, '...') }}</h4>
                     <p class="vertical-card-desc">Topic Description Lorem ipsum<br>dolor sit amet, consectetur adip..</p>
                     <div class="vertical-card-footer">
                         <div class="footer-stats-wrap">
-                            <div class="instructor-avatar-circle"></div>
+                            <img src="{{ asset('images/logo.png') }}" class="instructor-avatar-circle" style="object-fit: contain; background: #f1f5f9; padding: 3px; border: 1px solid #e2e8f0;">
                             <div class="stat-v-item">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                                 4k
@@ -409,8 +461,8 @@
                         <svg class="heart-action-btn" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                     </div>
                 </div>
-            </a>
-            @endfor
+            </div>
+            @endforeach
         </div>
     </section>
 
@@ -543,6 +595,16 @@
                 document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
             });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.glass-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
     </script>
 </body>

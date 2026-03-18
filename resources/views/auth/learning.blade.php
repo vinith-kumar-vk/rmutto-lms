@@ -353,9 +353,9 @@
         <div class="header-pill">
             <div class="header-left">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo-img">
-                <div class="cat-btn">
-                    Categories 
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                <div class="cat-btn" style="display: flex; align-items: center; gap: 8px;">
+                    Courses
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </div>
                 <div class="search-box">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>

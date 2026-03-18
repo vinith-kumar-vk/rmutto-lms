@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category | IL² RMUTTO</title>
+    <title>Courses | IL² RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
@@ -33,6 +33,7 @@
             display: flex; align-items: center; gap: 8px; background: #f1f5f9;
             padding: 9px 16px; border-radius: 25px; font-size: 13.5px; font-weight: 500;
             color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
+            text-decoration: none;
         }
         .search-wrap { position: relative; width: 260px; }
         .search-wrap input {
@@ -59,50 +60,12 @@
 
         /* ─── LAYOUT ─── */
         .shell {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 25px;
             max-width: 1450px;
             margin: 0 auto;
             padding: 90px 30px 50px;
             flex: 1;
             width: 100%;
         }
-
-        /* ─── SIDEBAR FILTERS ─── */
-        .filter-sidebar {
-            background: #fff;
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            position: sticky; top: 80px; align-self: start;
-            max-height: calc(100vh - 120px);
-            overflow-y: auto;
-        }
-        .filter-sidebar::-webkit-scrollbar { width: 5px; }
-        .filter-sidebar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-
-        .sidebar-header { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
-        
-        .filter-group { margin-bottom: 24px; }
-        .filter-title {
-            display: flex; align-items: center; justify-content: space-between;
-            font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 12px; cursor: pointer;
-        }
-        .filter-content { display: flex; flex-direction: column; gap: 10px; }
-        .filter-item {
-            display: flex; align-items: center; justify-content: space-between;
-            cursor: pointer;
-        }
-        .filter-item label {
-            display: flex; align-items: center; gap: 10px; font-size: 13px; color: #64748b; font-weight: 500; cursor: pointer;
-        }
-        .filter-item input {
-            width: 18px; height: 18px; border-radius: 4px; border: 2px solid #e2e8f0; 
-            appearance: none; cursor: pointer; background: #fff; transition: 0.2s;
-        }
-        .filter-item input:checked { background: #003a70; border-color: #003a70; }
-        .filter-count { font-size: 12px; color: #94a3b8; font-weight: 500; }
 
         /* ─── MAIN CONTENT ─── */
         .main-card {
@@ -129,33 +92,67 @@
 
         .cat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
 
         .cat-card {
             position: relative;
             aspect-ratio: 16/10;
-            border-radius: 20px;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
             transition: 0.3s;
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
         }
         .cat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .cat-card img { width: 100%; height: 100%; object-fit: cover; }
         
         .cat-overlay {
             position: absolute; inset: 0;
-            background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.4));
+            background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.5));
             display: flex; flex-direction: column; justify-content: flex-end;
         }
         .cat-blur {
-            backdrop-filter: blur(8px);
-            background: rgba(255,255,255,0.1);
-            border-top: 1px solid rgba(255,255,255,0.3);
-            padding: 16px 20px;
+            backdrop-filter: blur(4px);
+            background: rgba(255,255,255,0.15);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 15px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
         }
-        .cat-name { font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+        .cat-name { 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: #fff; 
+            letter-spacing: 0.2px; 
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        @media (max-width: 1024px) {
+            .cat-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            header { padding: 15px; height: auto; }
+            .header-pill { flex-direction: column; gap: 15px; }
+            .header-left { width: 100%; flex-wrap: wrap; justify-content: space-between; }
+            .search-wrap { width: 100%; order: 3; margin-top: 5px; }
+            .logo img { height: 32px; }
+            
+            .cat-grid { grid-template-columns: repeat(2, 1fr); }
+            .shell { padding: 160px 15px 30px; }
+            .main-card { padding: 20px 15px;         margin-top: 50px;}
+        }
+        @media (max-width: 480px) {
+            .cat-grid { grid-template-columns: 1fr; }
+            .header-right { flex-wrap: wrap; justify-content: center; }
+        }
 
     </style>
 </head>
@@ -168,12 +165,12 @@
                 <a href="{{ route('home') }}" class="logo">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </a>
-                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
-                    Categories
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none; display: flex; align-items: center; gap: 8px;">
+                    Courses
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </a>
                 <div class="search-wrap">
-                    <a href="{{ route('search') }}" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8;z-index:1;">
+                    <a href="{{ route('search') }}">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </a>
                     <input type="text" placeholder="Search here" onfocus="window.location.href='{{ route('search') }}'">
@@ -199,76 +196,42 @@
         </div>
     </header>
 
+    @php
+    $courses = [
+        ['title' => 'Veterinary Nursing Assistant Course', 'img' => '9. Animal care.jpg'],
+        ['title' => 'Building a Sustainable Startup: Strategies for Success', 'img' => '10. Create a startup.jpg'],
+        ['title' => 'Rajamangala Identity Course', 'img' => '1. Identity.png'],
+        ['title' => 'Building Relationships to Create a Digital Business Foundation', 'img' => '2. Relationship building digital business base.png'],
+        ['title' => 'Beverage Business: From Idea to Sustainable Success', 'img' => '3. drinks.jpg'],
+        ['title' => 'Anti-Aging Business with Bioproducts', 'img' => '4. Business.jpg'],
+        ['title' => 'Learn and Get Rich', 'img' => '5. Customer management and satisfaction.jpg'],
+        ['title' => 'Camping Tourism and Campsite Entrepreneurship', 'img' => '6. Camping tourism education and camping business.png'],
+        ['title' => 'Pet Business', 'img' => '7. Pet business.jpg'],
+        ['title' => 'Creating a Business from Local Wisdom to Added Value', 'img' => '8. Building a business from knowledge to added value.jpg'],
+        ['title' => 'Dare to Dream: Becoming a Startup Business', 'img' => '18. Dare to dream of becoming a business startup.png'],
+        ['title' => 'Craft Tech: Turning Creativity into Income', 'img' => '19. Craft Tech is money.png'],
+        ['title' => 'Gem Trader / Gemstone Business', 'img' => '20. People walk.png'],
+        ['title' => 'Proactive Business Plan', 'img' => '21. Proactive business plan.png'],
+        ['title' => 'Customer-Centric Research', 'img' => '22. Research to please customers.png'],
+        ['title' => 'Smart Investment for Digital Entrepreneurs', 'img' => '23. Smart investment for digital entrepreneurs.png'],
+        ['title' => 'Safety Strategies for Professional Entrepreneurs', 'img' => '24. Security tips for professional entrepreneurs.png'],
+        ['title' => 'Secrets of Live Streaming in the Streaming World', 'img' => '25. The secret recipe of live streaming in the world.png'],
+        ['title' => 'Data Analysis and Presentation for Entrepreneurs', 'img' => '11. Analysis and presentation.jpg'],
+        ['title' => 'Smart Finance: Don’t Be Clueless About Money', 'img' => '12. Finance must not be stupid.jpg'],
+        ['title' => 'Building Digital Business Partnerships', 'img' => '13. Make thousands of business friends.jpg'],
+        ['title' => 'Artificial Intelligence Skills', 'img' => '14. skills in using artificial intelligence.png'],
+        ['title' => 'Advanced Techniques for Creating Powerful Media', 'img' => '15. Learn how to create powerful media.png'],
+        ['title' => 'Digital Business Plan Developer', 'img' => '16. Digital business developer.jpg'],
+        ['title' => 'Start Investing: Your First Step into the Financial World', 'img' => '17. Start investing first step in the financial world.png'],
+    ];
+    @endphp
+
     <!-- ── SHELL ─────────────────────── -->
     <div class="shell">
-
-        <!-- Filters Sidebar -->
-        <aside class="filter-sidebar">
-            <div class="sidebar-header">Filters:</div>
-
-            <div class="filter-group">
-                <div class="filter-title">Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
-                <div class="filter-content">
-                    <div class="filter-item">
-                        <label><input type="checkbox"> Category 1</label>
-                        <span class="filter-count">0</span>
-                    </div>
-                    <div class="filter-item">
-                        <label><input type="checkbox"> Category 1</label>
-                        <span class="filter-count">4</span>
-                    </div>
-                    <div class="filter-item">
-                        <label><input type="checkbox"> Category 1</label>
-                        <span class="filter-count">4</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <div class="filter-title">Sub-Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
-                <div class="filter-content">
-                    <div class="filter-item"><label><input type="checkbox"> Lorem Ipsum</label></div>
-                    <div class="filter-item"><label><input type="checkbox"> Lorem Ipsum</label></div>
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <div class="filter-title">Subject <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
-            </div>
-            
-            <div class="filter-group">
-                <div class="filter-title">Class <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
-            </div>
-
-            <div class="filter-group">
-                <div class="filter-title">Tutor <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
-                <div class="filter-content">
-                    <div class="filter-item"><label><input type="checkbox"> Verified</label></div>
-                    <div class="filter-item"><label><input type="checkbox"> Experienced</label></div>
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <div class="filter-title">Course Price <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
-            </div>
-
-            <div class="filter-group">
-                <div class="filter-title">Ratings <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
-            </div>
-
-            <div class="filter-group">
-                <div class="filter-title">Duration <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
-            </div>
-
-            <div class="filter-group" style="margin-bottom:0">
-                <div class="filter-title">Language <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
-            </div>
-        </aside>
-
-        <!-- Main Categories -->
+        <!-- Main Courses Card -->
         <main class="main-card">
             <div class="main-header">
-                <h2>Categories</h2>
+                <h2>Courses</h2>
                 <div class="sort-wrap">
                     <span class="sort-label">Sort by</span>
                     <select class="sort-select">
@@ -281,16 +244,16 @@
             </div>
 
             <div class="cat-grid">
-                @for ($i = 0; $i < 9; $i++)
+                @foreach ($courses as $course)
                 <a href="{{ route('courses') }}" class="cat-card" style="text-decoration:none;">
-                    <img src="{{ asset('images/learning.png') }}" alt="Category">
+                    <img src="{{ asset('images/' . $course['img']) }}" alt="{{ $course['title'] }}">
                     <div class="cat-overlay">
                         <div class="cat-blur">
-                            <span class="cat-name">Business</span>
+                            <span class="cat-name">{{ $course['title'] }}</span>
                         </div>
                     </div>
                 </a>
-                @endfor
+                @endforeach
             </div>
         </main>
     </div>

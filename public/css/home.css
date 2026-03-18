@@ -1242,7 +1242,6 @@ img {
     gap: 22px;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 40px 15px 40px;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -1704,6 +1703,7 @@ img {
         flex-direction: column !important;
         gap: 40px !important;
         text-align: left;
+        padding: 0;
     }
 
     .footer-brand-section {
