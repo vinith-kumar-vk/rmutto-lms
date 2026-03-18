@@ -42,7 +42,7 @@
                 " style="padding: 6px 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; background: #f1f5f9; color: #334155;">
                     @php
                         $languages = config('languages.languages') ?? [
-                            'en' => ['flag' => '🇬🇧', 'native_name' => 'English'],
+                            'en' => ['flag' => 'en-US', 'native_name' => 'English'],
                             'th' => ['flag' => '🇹🇭', 'native_name' => 'ไทย'],
                         ];
                     @endphp

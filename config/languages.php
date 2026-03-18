@@ -18,7 +18,7 @@ return [
             'code' => 'en',
             'name' => 'English',
             'native_name' => 'English',
-            'flag' => '🇬🇧',
+            'flag' => 'en-US',
             'rtl' => false,
             'enabled' => true,
         ],
