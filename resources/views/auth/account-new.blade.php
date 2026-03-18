@@ -30,50 +30,6 @@
             overflow-x: hidden;
         }
 
-        /* â”€â”€â”€ HEADER â”€â”€â”€ */
-        header { 
-            padding: 15px 30px; 
-            display: flex; 
-            justify-content: center; 
-            position: absolute; 
-            top: 0; left: 0; right: 0; 
-            z-index: 1000; 
-        }
-
-        .header-pill {
-            background: #fff; width: 100%; max-width: 1400px; height: 68px; border-radius: 40px; 
-            display: flex; align-items: center; justify-content: space-between; padding: 0 25px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .header-left { display: flex; align-items: center; gap: 20px; }
-        .logo img { height: 38px; }
-        .cat-dropdown { 
-            display: flex; align-items: center; gap: 8px; background: #f1f5f9; padding: 10px 18px; 
-            border-radius: 25px; font-size: 13.5px; font-weight: 500; color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
-        }
-        .search-wrap { position: relative; width: 280px; }
-        .search-wrap input { 
-            width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px; 
-            padding: 0 15px 0 50px; font-size: 13.5px; outline: none; 
-        }
-        .search-wrap svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-
-        .header-right { display: flex; align-items: center; gap: 15px; }
-        .h-icon-btn { 
-            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; 
-            color: #64748b; text-decoration: none; position: relative; 
-        }
-        .notif-badge { 
-            position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff; 
-            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; border: 2px solid #fff; 
-        }
-        .profile-pill { 
-            display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px; 
-            border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; 
-            font-weight: 600; font-size: 13.5px; text-decoration: none; 
-        }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
         /* â”€â”€â”€ MAIN LAYOUT â”€â”€â”€ */

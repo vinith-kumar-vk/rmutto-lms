@@ -18,53 +18,6 @@
             flex-direction: column;
         }
 
-        header {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: #fff; padding: 10px 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-        }
-
-        .header-pill {
-            display: flex; align-items: center; justify-content: space-between;
-            max-width: 1450px; margin: 0 auto;
-        }
-
-        .header-left { display: flex; align-items: center; gap: 16px; }
-        .logo img { height: 38px; }
-
-        .cat-dropdown {
-            display: flex; align-items: center; gap: 8px; background: #f1f5f9;
-            padding: 9px 16px; border-radius: 25px; font-size: 13.5px; font-weight: 500;
-            color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
-        }
-
-        .search-wrap { position: relative; width: 260px; }
-        .search-wrap input {
-            width: 100%; height: 40px; background: #f1f5f9; border: none; border-radius: 25px;
-            padding: 0 15px 0 50px; font-size: 13.5px; outline: none;
-        }
-
-        .search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-
-        .header-right { display: flex; align-items: center; gap: 14px; }
-
-        .h-icon-btn {
-            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
-            color: #64748b; text-decoration: none; position: relative;
-        }
-
-        .notif-badge {
-            position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff;
-            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
-        }
-
-        .profile-pill {
-            display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px;
-            border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b;
-            font-weight: 600; font-size: 13.5px; text-decoration: none;
-        }
-
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
         .shell {

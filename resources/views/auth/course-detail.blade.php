@@ -114,9 +114,8 @@
             width: 100%; aspect-ratio: 16/10; border-radius: 25px; background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat;
             position: relative; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
-        .pause-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
-        .pause-btn:hover { transform: scale(1.08); }
-        .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
+        .play-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
+        .play-btn:hover { transform: scale(1.08); }
 
         /* ” TAB NAVIGATION ” */
         .tab-strip { 
@@ -208,7 +207,14 @@
                             <div class="avatar-circle" style="width:44px; height:44px;"></div>
                             <div class="t-labels">
                                 <p>Created by : <span>Teacher</span></p>
-                                <div class="t-stats-row"><span>0 Ratings</span> <span>0 Students</span></div>
+                                <div class="t-stats-row" style="display: flex; gap: 15px; align-items: center; margin-top: 4px;">
+                                    <span style="display: inline-flex; align-items: center; font-size: 11px; color: #94a3b8;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" style="margin-right: 4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 0 Ratings
+                                    </span>
+                                    <span style="display: inline-flex; align-items: center; font-size: 11px; color: #94a3b8;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="margin-right: 4px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 0 Students
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="t-actions-wrap">
@@ -221,7 +227,10 @@
                         <h1>Veterinary Nursing Assistant Course</h1>
                         <span class="price-text">Free</span>
                     </div>
-                    <div class="updated-date">Updated date : 26 march 2026</div>
+                    <div class="updated-date" style="display: flex; align-items: center; gap: 8px; font-size: 11px; color: #94a3b8; margin-bottom: 20px; font-weight: 500;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Updated date : 26 march 2026
+                    </div>
                     <p class="course-summary">Types and categories of pet animals; pet care and management; diseases and health management; </p>
                     <div class="dates-flex" style="display: flex; gap: 30px; font-size: 13px; color: #64748b; margin-bottom: 35px;">
                         <p>Course start date : <span style="color: #2563eb; font-weight: 800;">26 march 2026</span></p>
@@ -234,7 +243,9 @@
 
                 <div class="hero-right">
                     <div class="video-box">
-                        <div class="pause-btn"><div class="pause-bar"></div><div class="pause-bar"></div></div>
+                        <div class="play-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
             </div>

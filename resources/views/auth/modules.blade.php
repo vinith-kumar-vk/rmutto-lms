@@ -97,9 +97,8 @@
         .btn-dark-blue { padding: 12px 30px; border-radius: 10px; font-size: 14px; font-weight: 700; color: #fff; background: #003a70; text-decoration: none; border: none; cursor: pointer; }
 
         .hero-right .video-preview {     border: 1px solid #94a3b8;width: 100%; aspect-ratio: 1.6; background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat; border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
-        .pause-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
-        .pause-btn:hover { transform: scale(1.08); }
-        .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
+        .play-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
+        .play-btn:hover { transform: scale(1.08); }
 
         /* ─── TAB NAVIGATION ─── */
         .tab-strip { display: flex; justify-content: center; gap: 60px; border-bottom: 1px solid #f1f5f9; margin-bottom: 50px; }
@@ -233,8 +232,14 @@
                             <div class="t-info">
                                 <div class="t-avatar"></div>
                                 <div class="t-content">
-                                    <p>Created by : <span>Teacher</span></p>
-                                    <div class="t-meta"><span>⭐ 0 Ratings</span><span>👥 0 Students</span></div>
+                                    <div class="t-meta" style="display: flex; gap: 15px; align-items: center; margin-top: 4px;">
+                                        <span style="display: inline-flex; align-items: center; font-size: 11px; color: #94a3b8;">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" style="margin-right: 4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 0 Ratings
+                                        </span>
+                                        <span style="display: inline-flex; align-items: center; font-size: 11px; color: #94a3b8;">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="margin-right: 4px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 0 Students
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="hero-left-actions">
@@ -246,19 +251,24 @@
                             <h1>Veterinary Nursing Assistant Course</h1>
                             <span class="price-text">Free</span>
                         </div>
-                        <div class="update-date">📅 Updated date : 26 march 2026</div>
+                        <div class="update-date" style="display: flex; align-items: center; gap: 8px; font-size: 11px; color: #94a3b8; margin-bottom: 20px;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            Updated date : 26 march 2026
+                        </div>
                         <p class="course-short-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</p>
                         <div class="date-info" style="font-size: 13px; color: #64748b; margin-top: 15px;">
                             Course start date : <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">26 march 2026</span>
                             Course end date : <span style="color: #2563eb; font-weight: 700;">26 June 2026</span>
                         </div>
-                        <div class="hero-btns">
-                            <button class="btn-dark-blue" style="background: #002b55;">Add to Cart</button>
+                        <div class="hero-btns" style="margin-top:25px;">
+                            <button class="btn-dark-blue" style="background: #002b55; padding:10px 25px; border-radius:10px; color:#fff; border:none; font-weight:700; cursor:pointer;">Add to Cart</button>
                         </div>
                     </div>
                     <div class="hero-right">
                         <div class="video-preview">
-                            <div class="pause-btn"><div class="pause-bar"></div><div class="pause-bar"></div></div>
+                            <div class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
                         </div>
                     </div>
                 </div>
