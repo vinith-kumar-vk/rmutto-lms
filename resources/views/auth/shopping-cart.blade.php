@@ -309,7 +309,7 @@
                             <div class="item-thumb"></div>
                             <div class="item-info">
                                 <div class="item-title">Guide 2 Maths</div>
-                                <div class="item-desc">In other words the smallest 2-digits number is 10</div>
+                                <div class="item-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</div>
                                 <div class="teacher-info">
                                     <div class="teacher-avatar"></div>
                                     <span class="teacher-name">Created by Teacher 1</span>
@@ -319,12 +319,12 @@
                                     <button class="btn-delete">Delete</button>
                                 </div>
                             </div>
-                            <div class="item-price">$5.99</div>
+                            <div class="item-price">Free</div>
                         </div>
                     </div>
 
                     <!-- Item 2 -->
-                    <div class="cart-item-wrap">
+                    <!-- <div class="cart-item-wrap">
                         <div class="cart-checkbox">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="20 6 9 17 4 12"/></svg>
                         </div>
@@ -344,7 +344,7 @@
                             </div>
                             <div class="item-price">$5.99</div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -355,7 +355,7 @@
                         <div class="summary-body">
                             <div class="summary-row">
                                 <span class="row-label">Subtotal</span>
-                                <span class="row-value">$5.99</span>
+                                <span class="row-value">$0</span>
                             </div>
                             <div class="summary-row">
                                 <span class="row-label">Taxes</span>
@@ -364,7 +364,7 @@
                         </div>
                         <div class="summary-total">
                             <span class="total-label">Total</span>
-                            <span class="total-value">$11.98</span>
+                            <span class="total-value">$0</span>
                         </div>
                     </div>
                     <button class="btn-checkout" onclick="window.location.href='{{ route('payment.method') }}'">Checkout</button>
