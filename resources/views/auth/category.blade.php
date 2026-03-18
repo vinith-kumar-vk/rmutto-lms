@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category | IL² RMUTTO</title>
+    <title>Category | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,7 +18,7 @@
             flex-direction: column;
         }
 
-        /* ─── HEADER ─── */
+        /* â”€â”€â”€ HEADER â”€â”€â”€ */
         header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             background: #fff; padding: 10px 30px;
@@ -57,7 +58,7 @@
         }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        /* ─── LAYOUT ─── */
+        /* â”€â”€â”€ LAYOUT â”€â”€â”€ */
         .shell {
             display: grid;
             grid-template-columns: 280px 1fr;
@@ -69,7 +70,7 @@
             width: 100%;
         }
 
-        /* ─── SIDEBAR FILTERS ─── */
+        /* â”€â”€â”€ SIDEBAR FILTERS â”€â”€â”€ */
         .filter-sidebar {
             background: #fff;
             border-radius: 20px;
@@ -104,7 +105,7 @@
         .filter-item input:checked { background: #003a70; border-color: #003a70; }
         .filter-count { font-size: 12px; color: #94a3b8; font-weight: 500; }
 
-        /* ─── MAIN CONTENT ─── */
+        /* â”€â”€â”€ MAIN CONTENT â”€â”€â”€ */
         .main-card {
             background: #fff;
             border-radius: 24px;
@@ -161,46 +162,11 @@
 </head>
 <body>
 
-    <!-- ── HEADER ─────────────────────── -->
-    <header>
-        <div class="header-pill">
-            <div class="header-left">
-                <a href="{{ route('home') }}" class="logo">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
-                </a>
-                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
-                    Categories
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-                <div class="search-wrap">
-                    <a href="{{ route('search') }}" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8;z-index:1;">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </a>
-                    <input type="text" placeholder="Search here" onfocus="window.location.href='{{ route('search') }}'">
-                </div>
-            </div>
-            <div class="header-right">
-                <a href="#" class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                </a>
-                <a href="{{ route('shopping.cart') }}" class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                </a>
-                <div class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    <span class="notif-badge">2</span>
-                </div>
-                <a href="{{ route('account.new') }}" class="profile-pill">
-                    <div class="avatar-head"></div>
-                    <span>{{ $user->name ?? 'Student' }}</span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-            </div>
-        </div>
-    </header>
+    <!-- â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    @include('partials.header')
 
-    <!-- ── SHELL ─────────────────────── -->
-    <div class="shell">
+    <!-- â”€â”€ SHELL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <div class="shared-shell">
 
         <!-- Filters Sidebar -->
         <aside class="filter-sidebar">

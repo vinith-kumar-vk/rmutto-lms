@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account | IL² RMUTTO</title>
+    <title>My Account | IL2 RMUTTO</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
@@ -464,78 +465,10 @@
     </style>
 </head>
 <body>
+    @include('partials.header')
 
-<header class="top-header">
-    <div class="header-inner-pill">
-        <div class="header-left">
-            <a href="{{ route('home') }}" class="header-logo">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo">
-            </a>
-            <a href="{{ route('category') }}" class="category-select-pill">
-                Categories
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-            </a>
-            <div class="search-bar-pill">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" placeholder="Search here">
-            </div>
-        </div>
-
-        <div class="header-right">
-            <a href="#" class="h-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
-            <a href="{{ route('shopping.cart') }}" class="h-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a>
-            <div class="h-icon-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                <span class="notification-badge">2</span>
-            </div>
-            <a href="{{ route('account') }}" class="profile-dropdown">
-                <div class="profile-avatar-head"></div>
-                <span>Student</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
-            </a>
-        </div>
-    </div>
-</header>
-
-<div class="account-container">
-    <aside class="sidebar">
-        <a href="{{ route('dashboard.1') }}" class="nav-item">
-            <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-            Dashboard
-        </a>
-        <a href="{{ route('calendar') }}" class="nav-item">
-            <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-            Calendar
-        </a>
-        <a href="{{ route('learning') }}" class="nav-item">
-            <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-            Learning
-        </a>
-        <a href="{{ route('courses') }}" class="nav-item">
-            <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-            Exam
-        </a>
-        <a href="#" class="nav-item">
-            <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-            Quiz
-        </a>
-        <a href="{{ route('account.new') }}" class="nav-item active">
-            <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-            Account
-        </a>
-        <a href="#" class="nav-item">
-            <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-            Wallet Address
-        </a>
-        <a href="{{ route('transaction') }}" class="nav-item">
-            <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-            Transaction
-        </a>
-        <a href="{{ route('payment.method') }}" class="nav-item">
-            <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-            Payment
-        </a>
-    </aside>
+    <div class="shared-shell">
+        @include('partials.sidebar', ['activePage' => 'account'])
 
     <main class="account-content">
         <div class="content-header">
@@ -564,7 +497,7 @@
 
                     <div class="form-group">
                         <label>Current Password<span>*</span></label>
-                        <input type="password" value="••••••••">
+                        <input type="password" value="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
                     </div>
                     <div class="form-group" style="padding-bottom: 2px;">
                         <a href="{{ route('password.change') }}" class="btn-navy" style="display: flex; align-items: center; justify-content: center; text-decoration: none;">Change</a>

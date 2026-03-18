@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Courses | IL² RMUTTO</title>
+    <title>Free Courses | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
         :root {
@@ -28,7 +29,7 @@
             padding: 20px;
         }
 
-        /* ─── HEADER ─── */
+        /* â”€â”€â”€ HEADER â”€â”€â”€ */
         header {
             width: 100%;
             max-width: 1600px;
@@ -101,7 +102,7 @@
         }
         .avatar-head { width: 34px; height: 34px; border-radius: 50%; background: #94a3b8; }
 
-        /* ─── MAIN SHELL ─── */
+        /* â”€â”€â”€ MAIN SHELL â”€â”€â”€ */
         .wrapper {
             width: 100%;
             max-width: 1600px;
@@ -112,7 +113,7 @@
             flex: 1;
         }
 
-        /* ─── SIDEBAR ─── */
+        /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
         .sidebar {
             background: #fff;
             padding: 25px 15px;
@@ -139,7 +140,7 @@
         .nav-link.active { color: #000; font-weight: 700; }
         .nav-link.active img { opacity: 1; }
 
-        /* ─── CONTENT AREA ─── */
+        /* â”€â”€â”€ CONTENT AREA â”€â”€â”€ */
         .main-content {
             background: #fff;
             border-radius: 35px;
@@ -150,7 +151,7 @@
             gap: 25px;
         }
 
-        /* ─── COURSE CARD ─── */
+        /* â”€â”€â”€ COURSE CARD â”€â”€â”€ */
         .course-card {
             border: 1px solid #e2e8f0;
             border-radius: 25px;
@@ -187,7 +188,7 @@
         .heart-icon { width: 18px; height: 18px; color: #1e293b; margin-left: 5px; cursor: pointer; transition: 0.2s; }
         .heart-icon:hover { color: #f43f5e; }
 
-        /* ─── ACTION AREA ─── */
+        /* â”€â”€â”€ ACTION AREA â”€â”€â”€ */
         .card-action { width: 140px; display: flex; justify-content: flex-end; align-items: center; }
 
         .btn-play {
@@ -220,7 +221,7 @@
         }
         .btn-soon svg { width: 16px; height: 16px; }
 
-        /* ─── FOOTER ─── */
+        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
         footer {
             grid-column: 2;
             background: #fff;
@@ -258,69 +259,11 @@
 </head>
 <body>
     <!-- HEADER -->
-    <header>
-        <div class="header-pill">
-            <div class="h-left">
-                <a href="{{ route('dashboard.1') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                <div class="cat-select">
-                    Categories
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
-                </div>
-                <div class="search-wrap">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" placeholder="Search here">
-                </div>
-            </div>
+    @include('partials.header')
 
-            <div class="h-right">
-                <div class="h-icons">
-                    <a href="#" class="icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
-                    <a href="{{ route('shopping.cart') }}" class="icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a>
-                    <div class="icon-btn">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                        <span class="badge">2</span>
-                    </div>
-                </div>
-                <a href="{{ route('account.new') }}" class="profile-btn">
-                    <div class="avatar-head"></div>
-                    <span>{{ $user->name ?? 'Student' }}</span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <div class="wrapper">
+    <div class="shared-shell">
         <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="nav-link">
-                <img src="{{ asset('images/icons/1.png') }}"> Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link">
-                <img src="{{ asset('images/icons/2.png') }}"> Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}"> Learning
-            </a>
-            <a href="{{ route('courses') }}" class="nav-link">
-                <img src="{{ asset('images/icons/4.png') }}"> Exam
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}"> Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link">
-                <img src="{{ asset('images/icons/6.png') }}"> Account
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}"> Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}"> Transaction
-            </a>
-            <a href="{{ route('payment.method') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}"> Payment
-            </a>
-        </aside>
+        @include('partials.sidebar', ['activePage' => 'courses'])
 
         <!-- MAIN CONTENT -->
         <main class="main-content">
@@ -339,7 +282,7 @@
                         <div class="stats-row">
                             <div class="stat-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> 4k</div>
                             <div class="stat-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 200</div>
-                            <div class="stat-item">⭐ 4.5</div>
+                            <div class="stat-item">â­ 4.5</div>
                             <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                         </div>
                     </div>
@@ -365,7 +308,7 @@
                         <div class="stats-row">
                             <div class="stat-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> 4k</div>
                             <div class="stat-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 200</div>
-                            <div class="stat-item">⭐ 4.5</div>
+                            <div class="stat-item">â­ 4.5</div>
                             <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                         </div>
                     </div>

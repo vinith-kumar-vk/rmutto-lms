@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Load language configuration
+        config(['app.supported_locales' => config('languages.supported')]);
+        config(['app.locale' => config('languages.default')]);
+        config(['app.fallback_locale' => config('languages.fallback')]);
     }
 }

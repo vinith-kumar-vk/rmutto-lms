@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Detail | Mathematic Class</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
         :root {
@@ -21,7 +22,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg); color: var(--text-dark); overflow-x: hidden; }
 
-        /* ─── HEADER ─── */
+        /* â”€â”€â”€ HEADER â”€â”€â”€ */
         header { 
             background: transparent; padding: 25px 30px 10px; display: flex; justify-content: center; 
             position: relative; z-index: 1000;
@@ -57,10 +58,10 @@
         }
         .avatar-circle { width: 36px; height: 36px; border-radius: 50%; background: #94a3b8; }
 
-        /* ─── LAYOUT ─── */
+        /* â”€â”€â”€ LAYOUT â”€â”€â”€ */
         .wrapper { display: flex; max-width: 1600px; margin: 15px auto 40px; padding: 0 30px; gap: 30px; }
 
-        /* ─── SIDEBAR ─── */
+        /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
         .sidebar { 
             width: 200px; padding: 20px 0; height: fit-content; flex-shrink: 0;
         }
@@ -72,7 +73,7 @@
         .nav-link.active { background: #fff; color: #000; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         .nav-link img { width: 20px; height: 20px; }
 
-        /* ─── MAIN CONTENT ─── */
+        /* â”€â”€â”€ MAIN CONTENT â”€â”€â”€ */
         .content { 
             flex: 1; background: #fff; border-radius: 35px; overflow: hidden;
             box-shadow: 0 10px 40px rgba(0,0,0,0.02); display: flex; flex-direction: column; 
@@ -140,7 +141,7 @@
         .learn-list li { 
             position: relative; padding-left: 20px; margin-bottom: 12px; font-size: 14px; color: #475569; font-weight: 500; line-height: 1.6;
         }
-        .learn-list li::before { content: '•'; position: absolute; left: 0; color: #000; font-weight: 900; }
+        .learn-list li::before { content: 'â€¢'; position: absolute; left: 0; color: #000; font-weight: 900; }
 
         /* PILL TAGS */
         .pill-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
@@ -175,69 +176,14 @@
 </head>
 <body>
 
-    <!-- ── HEADER ── -->
-    <header>
-        <div class="header-pill">
-            <div class="h-left">
-                <a href="{{ route('home') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                <a href="{{ route('category') }}" class="cat-dropdown">
-                    Categories
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-                <div class="search-wrap">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" placeholder="Search here">
-                </div>
-            </div>
-            <div class="h-right">
-                <a href="#" class="h-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
-                <a href="{{ route('shopping.cart') }}" class="h-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a>
-                <div class="h-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    <span class="notif-badge">2</span>
-                </div>
-                <a href="{{ route('account.new') }}" class="profile-btn">
-                    <div class="avatar-circle"></div>
-                    <span>Student</span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-            </div>
-        </div>
-    </header>
+    <!-- â”€â”€ HEADER â”€â”€ -->
+    @include('partials.header')
 
-    <div class="wrapper">
-        <!-- ── SIDEBAR ── -->
-        <aside class="sidebar">
-            <a href="{{ route('home') }}" class="nav-link">
-                <img src="{{ asset('images/icons/1.png') }}"> Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link">
-                <img src="{{ asset('images/icons/2.png') }}"> Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}"> Learning
-            </a>
-            <a href="{{ route('courses') }}" class="nav-link active">
-                <img src="{{ asset('images/icons/4.png') }}"> Exam
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}"> Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link">
-                <img src="{{ asset('images/icons/6.png') }}"> Account
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}"> Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}"> Transaction
-            </a>
-            <a href="{{ route('payment.method') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}"> Payment
-            </a>
-        </aside>
+    <div class="shared-shell">
+        <!-- â”€â”€ SIDEBAR â”€â”€ -->
+        @include('partials.sidebar', ['activePage' => 'courses'])
 
-        <!-- ── MAIN CONTENT ── -->
+        <!-- â”€â”€ MAIN CONTENT â”€â”€ -->
         <main class="content">
             <!-- HERO -->
             <div class="hero">
@@ -247,7 +193,7 @@
                             <div class="avatar-circle" style="width:44px; height:44px;"></div>
                             <div class="t-labels">
                                 <p>Created by : <span>Teacher</span></p>
-                                <div class="t-stats-row"><span>⭐ 0 Ratings</span> <span>👥 0 Students</span></div>
+                                <div class="t-stats-row"><span>â­ 0 Ratings</span> <span>ðŸ‘¥ 0 Students</span></div>
                             </div>
                         </div>
                         <div class="t-actions-wrap">
@@ -260,7 +206,7 @@
                         <h1>Mathematic Class</h1>
                         <span class="price-text">$10.99</span>
                     </div>
-                    <div class="updated-date">📅 Updated date : 26 June 2023</div>
+                    <div class="updated-date">ðŸ“… Updated date : 26 June 2023</div>
                     <p class="course-summary">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
                     <div class="dates-flex">
                         <p>Course start date : <span>26 June 2023</span></p>
