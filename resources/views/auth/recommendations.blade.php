@@ -74,7 +74,7 @@
         
         .hero-left .teacher-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
         .t-info { display: flex; align-items: center; gap: 12px; }
-        .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #6b7280; }
+        .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #f1f5f9 url('{{ asset('images/logo.png') }}') no-repeat center; background-size: contain; border: 1.5px solid #e2e8f0; }
         .t-content p { font-size: 11px; color: #94a3b8; margin: 0; }
         .t-content span { color: #2563eb; font-weight: 700; cursor: pointer; }
         .t-meta { display: flex; gap: 15px; margin-top: 4px; font-size: 11px; color: #94a3b8; }
@@ -95,7 +95,7 @@
         .hero-btns { display: flex; gap: 12px; margin-top: 30px; }
         .btn-dark-blue { padding: 12px 30px; border-radius: 10px; font-size: 14px; font-weight: 700; color: #fff; background: #003a70; text-decoration: none; border: none; cursor: pointer; }
 
-        .hero-right .video-preview { width: 100%; aspect-ratio: 1.6; background: linear-gradient(180deg, #c8cdd6 0%, #6b7280 100%); border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .hero-right .video-preview {     border: 1px solid #94a3b8;width: 100%; aspect-ratio: 1.6; background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat; border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
         .pause-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
         .pause-btn:hover { transform: scale(1.08); }
         .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
@@ -204,17 +204,16 @@
                         </div>
                     </div>
                     <div class="title-price-row">
-                        <h1>Mathematic Class</h1>
-                        <span class="price-text">$10.99</span>
+                        <h1>Veterinary Nursing Assistant Course</h1>
+                        <span class="price-text">Free</span>
                     </div>
-                    <div class="update-date">ðŸ“… Updated date : 26 June 2023</div>
-                    <p class="course-short-desc">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
-                    <div class="date-info">
-                        Course start date : <span>26 June 2023</span>
-                        Course end date : <span>26 June 2023</span>
+                    <div class="update-date">📅 Updated date : 26 march 2026</div>
+                    <p class="course-short-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</p>
+                    <div class="date-info" style="font-size: 13px; color: #64748b; margin-top: 15px;">
+                        Course start date : <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">26 march 2026</span>
+                        Course end date : <span style="color: #2563eb; font-weight: 700;">26 June 2026</span>
                     </div>
                     <div class="hero-btns">
-                        <button class="btn-dark-blue">Subscribe Now</button>
                         <button class="btn-dark-blue" style="background: #002b55;">Add to Cart</button>
                     </div>
                 </div>

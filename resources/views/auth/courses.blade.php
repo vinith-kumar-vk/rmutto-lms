@@ -26,7 +26,7 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* â”€â”€â”€ HEADER â”€â”€â”€ */
+        /* --- HEADER --- */
         header { 
             background: #fff; 
             height: 74px; 
@@ -56,7 +56,7 @@
         .profile-pill { display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px; border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none; }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        /* â”€â”€â”€ SHELL â”€â”€â”€ */
+        /* --- SHELL --- */
         .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 30px; max-width: 1450px; margin: 0 auto; padding: 100px 30px 40px; }
         
         .sidebar { background: #fff; border-radius: 24px; padding: 25px 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); position: sticky; top: 100px; height: fit-content; grid-row: 1 / span 2; }
@@ -66,7 +66,7 @@
         .nav-link img { width: 22px; height: 22px; opacity: 0.7; }
         .nav-link.active img { opacity: 1; }
 
-        /* â”€â”€â”€ MAIN CONTENT â”€â”€â”€ */
+        /* --- MAIN CONTENT --- */
         .main-card { background: #fff; border-radius: 30px; padding: 40px; box-shadow: 0 4px 25px rgba(0,0,0,0.02); }
 
         /* HERO SECTION */
@@ -74,7 +74,7 @@
         
         .hero-left .teacher-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
         .t-info { display: flex; align-items: center; gap: 12px; }
-        .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #6b7280; }
+        .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #f1f5f9 url('{{ asset('images/logo.png') }}') no-repeat center; background-size: contain; border: 1.5px solid #e2e8f0; }
         .t-content p { font-size: 11px; color: #94a3b8; margin: 0; }
         .t-content span { color: #2563eb; font-weight: 700; cursor: pointer; }
         .t-meta { display: flex; gap: 15px; margin-top: 4px; font-size: 11px; color: #94a3b8; }
@@ -98,12 +98,12 @@
         .btn-dark-blue { padding: 12px 30px; border-radius: 10px; font-size: 14px; font-weight: 700; color: #fff; background: #003a70; text-decoration: none; border: none; cursor: pointer; }
         .btn-fill-blue { padding: 12px 30px; border-radius: 10px; font-size: 14px; font-weight: 700; color: #fff; background: #004d95; text-decoration: none; }
 
-        .hero-right .video-preview { width: 100%; aspect-ratio: 1.6; background: linear-gradient(180deg, #c8cdd6 0%, #6b7280 100%); border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .hero-right .video-preview {    border: 1px solid #94a3b8; width: 100%; aspect-ratio: 1.6; background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat; border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
         .pause-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
         .pause-btn:hover { transform: scale(1.08); }
         .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
 
-        /* â”€â”€â”€ TAB NAVIGATION â”€â”€â”€ */
+        /* --- TAB NAVIGATION --- */
         .tab-strip { display: flex; justify-content: center; gap: 60px; border-bottom: 1px solid #f1f5f9; margin-bottom: 50px; }
         .tab-item { padding: 15px 0; font-size: 13px; font-weight: 500; color: #94a3b8; border-bottom: 3px solid transparent; cursor: pointer; transition: 0.2s; text-decoration: none; }
         .tab-item:hover { color: #1e293b; }
@@ -120,9 +120,9 @@
         .outcomes-content p { font-size: 13.5px; color: #475569; line-height: 1.6; margin-bottom: 20px; }
         .outcomes-content ul { list-style: none; padding: 0; }
         .outcomes-content li { font-size: 13.5px; color: #475569; margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start; }
-        .outcomes-content li::before { content: 'â€¢'; color: #000; font-weight: 900; font-size: 18px; line-height: 1; }
+        .outcomes-content li::before { content: '\2022'; color: #000; font-weight: 900; font-size: 18px; line-height: 1; }
 
-        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
+        /* --- FOOTER --- */
         footer { grid-column: 2; border-radius: 26px; box-sizing: border-box; background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9; display: flex; justify-content: center; width: 100%; margin-top: 10px; }
         .footer-inner { max-width: 1400px; width: 100%; display: grid; grid-template-columns: 1.5fr repeat(2, 1fr) 1.2fr; gap: 40px; }
         .f-logo-wrap { width: 60px; height: 60px; border-radius: 50%; background: #f8fafc; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid #e2e8f0; }
@@ -192,18 +192,17 @@
 
                     <div class="title-price-row">
                         <h1>Veterinary Nursing Assistant Course</h1>
-                        <span class="price-text">Free<</span>
+                        <span class="price-text">Free</span>
                     </div>
-                    <div class="update-date">Updated date : 26 June 2023</div>
-                    <p class="course-short-desc">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
+                    <div class="update-date">Updated date : 26 march 2026</div>
+                    <p class="course-short-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</p>
                     
-                    <div class="date-range">
-                        Course start date : <span>26 June 2023</span>
-                        Course end date : <span>26 June 2023</span>
+                    <div class="date-range" style="font-size: 13px; color: #64748b; margin-bottom: 30px;">
+                        Course start date : <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">26 march 2026</span>
+                        Course end date : <span style="color: #2563eb; font-weight: 700;">26 June 2026</span>
                     </div>
 
                     <div class="hero-btns">
-                        <a href="{{ route('shopping.cart') }}" class="btn-dark-blue" style="text-decoration:none;">Subscribe Now</a>
                         <a href="{{ route('shopping.cart') }}" class="btn-dark-blue" style="background: #002b55; text-decoration:none;">Add to Cart</a>
                     </div>
                 </div>
@@ -227,14 +226,11 @@
             <div class="tab-panels">
                 <div class="pane active" id="pane-outcomes">
                     <div class="outcomes-content">
-                        <h2>Build your Marketing expertise</h2>
-                        <p>This course is part of the Google Digital Marketing & E-commerce Professional Certificate When you enroll in this course, youâ€™ll also be enrolled in this Professional Certificate</p>
-                        <ul>
-                            <li>Learn new concepts from industry experts</li>
-                            <li>Gain a foundational understanding of a subject or tool</li>
-                            <li>Develop job-relevant skills with hands-on projects</li>
-                            <li>Earn a shareable career certificate from Google</li>
-                        </ul>
+                        <h2>Expected Learning Outcomes (CLOs) of the Course:</h2>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.8;">
+                            <p><strong>1. Students can write a business plan related to raising livestock:</strong> Possesses broad knowledge, a wide worldview, communicates effectively, and values oneself, others, and society. SPLO integrates various disciplines to solve problems appropriately.</p>
+                            <p><strong>2. Students can explain animal health management:</strong> Possesses broad knowledge, a wide worldview, communicates effectively, and values oneself, others, and society. SPLO: Integrates various disciplines to solve problems appropriately.</p>
+                        </div>
                     </div>
                 </div>
             </div>

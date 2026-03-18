@@ -57,7 +57,7 @@
             display: flex; align-items: center; gap: 12px; padding: 6px 18px 6px 6px; 
             border-radius: 40px; background: #f8fafc; border: 1.5px solid #e2e8f0; text-decoration: none; color: inherit; font-weight: 700; font-size: 14px;
         }
-        .avatar-circle { width: 36px; height: 36px; border-radius: 50%; background-image: url('{{ asset("images/logo.png") }}'); background-size: cover; background-position: center; }
+        .avatar-circle { width: 36px; height: 36px; border-radius: 50%; background-image: url('{{ asset("images/logo.png") }}'); background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #f1f5f9; border: 1px solid #e2e8f0; }
 
         /* ” LAYOUT ” */
         .wrapper { display: flex; max-width: 1600px; margin: 15px auto 40px; padding: 0 30px; gap: 30px; }
@@ -111,7 +111,7 @@
         /* VIDEO PLAYER */
         .hero-right { flex: 0.9; }
         .video-box { 
-            width: 100%; aspect-ratio: 16/10; border-radius: 25px; background: linear-gradient(180deg, #c8cdd6 0%, #6b7280 100%);
+            width: 100%; aspect-ratio: 16/10; border-radius: 25px; background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat;
             position: relative; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
         .pause-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
@@ -156,7 +156,7 @@
         .learn-list li { 
             position: relative; padding-left: 20px; margin-bottom: 12px; font-size: 14px; color: #475569; font-weight: 500; line-height: 1.6;
         }
-        .learn-list li::before { content: '¢'; position: absolute; left: 0; color: #000; font-weight: 900; }
+        .learn-list li::before { content: '\2022'; position: absolute; left: 0; color: #000; font-weight: 900; }
 
         /* PILL TAGS */
         .pill-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
@@ -221,14 +221,13 @@
                         <h1>Veterinary Nursing Assistant Course</h1>
                         <span class="price-text">Free</span>
                     </div>
-                    <div class="updated-date">Updated date : 26 June 2023</div>
+                    <div class="updated-date">Updated date : 26 march 2026</div>
                     <p class="course-summary">Types and categories of pet animals; pet care and management; diseases and health management; </p>
-                    <div class="dates-flex">
-                        <p>Course start date : <span>26 June 2023</span></p>
-                        <p>Course end date : <span>26 June 2023</span></p>
+                    <div class="dates-flex" style="display: flex; gap: 30px; font-size: 13px; color: #64748b; margin-bottom: 35px;">
+                        <p>Course start date : <span style="color: #2563eb; font-weight: 800;">26 march 2026</span></p>
+                        <p>Course end date : <span style="color: #2563eb; font-weight: 800;">26 June 2026</span></p>
                     </div>
                     <div class="btn-group">
-                        <a href="{{ route('shopping.cart') }}" class="btn-sub">Subscribe Now</a>
                         <a href="{{ route('shopping.cart') }}" class="btn-cart">Add to Cart</a>
                     </div>
                 </div>
@@ -254,37 +253,24 @@
             <div class="section-container">
                 <div class="content-left">
                     <div class="content-section">
-                        <h2>What you'll learn</h2>
+                        
+                        <p style="color: #475569; line-height: 1.8; font-size: 15px;">
+                            Types and categories of pet animals; pet care and management; diseases and health management; characteristics and qualifications of entrepreneurs; small, medium, and large-scale businesses - business organization structures; marketing management; finance; production - accounting; human resource management - relevant laws and entrepreneurial ethics; business performance evaluation; business operations; types of pet animal businesses; information systems; technology in pet animal hospitals; equipment and products for pet animals; laws related to pet animal businesses. Health of healthcare workers in clinics and hospitals.
+                        </p>
+                    </div>
+                    <div class="content-section">
+                        <h2>Skills you will gain:</h2>
                         <ul class="learn-list">
-                            <li>Understand essential e-commerce strategies and practices</li>
-                            <li>Explain what e-commerce stores and platforms are and how they work</li>
-                            <li>Create an engaging customer experience online using best practices</li>
-                            <li>Set up a mock e-commerce store using Shopify</li>
+                            <li>Pet animal classification and identification</li>
+                            <li>Pet care and management skills</li>
+                            <li>Disease prevention and health management</li>
+                            <li>Entrepreneurial skills and mindset</li>
+                            <li>Business types and organization structures</li>
+                            <li>Marketing and sales management</li>
+                            <li>Basic finance and accounting skills</li>
+                            <li>Production and operations management</li>
+                            <li>Human resource management</li>
                         </ul>
-                    </div>
-
-                    <div class="content-section">
-                        <h2>Skills you'll gain</h2>
-                        <div class="pill-group">
-                            <span class="pill-tag">Target Audience</span>
-                            <span class="pill-tag">Digital Advertising</span>
-                            <span class="pill-tag">E-Commerce</span>
-                            <span class="pill-tag">Market Trend</span>
-                            <span class="pill-tag">Shipping and Receiving</span>
-                            <span class="pill-tag">Market Research</span>
-                            <span class="pill-tag">Customer Experience Improvement</span>
-                            <span class="pill-tag">Order Fulfilment</span>
-                            <span class="pill-tag">Process Optimization</span>
-                            <span class="pill-tag">Sales</span>
-                            <a href="#" class="show-all-link">Show all</a>
-                        </div>
-                    </div>
-
-                    <div class="content-section">
-                        <h2>Tools you'll learn</h2>
-                        <div class="pill-group">
-                            <span class="pill-tag">Google Ads</span>
-                        </div>
                     </div>
                 </div>
 

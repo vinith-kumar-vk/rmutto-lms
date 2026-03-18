@@ -75,7 +75,7 @@
         
         .hero-left .teacher-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
         .t-info { display: flex; align-items: center; gap: 12px; }
-        .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #6b7280; }
+        .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #f1f5f9 url('{{ asset('images/logo.png') }}') no-repeat center; background-size: contain; border: 1.5px solid #e2e8f0; }
         .t-content p { font-size: 11px; color: #94a3b8; margin: 0; }
         .t-content span { color: #2563eb; font-weight: 700; cursor: pointer; }
         .t-meta { display: flex; gap: 15px; margin-top: 4px; font-size: 11px; color: #94a3b8; }
@@ -96,7 +96,7 @@
         .hero-btns { display: flex; gap: 12px; margin-top: 30px; }
         .btn-dark-blue { padding: 12px 30px; border-radius: 10px; font-size: 14px; font-weight: 700; color: #fff; background: #003a70; text-decoration: none; border: none; cursor: pointer; }
 
-        .hero-right .video-preview { width: 100%; aspect-ratio: 1.6; background: linear-gradient(180deg, #c8cdd6 0%, #6b7280 100%); border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .hero-right .video-preview {     border: 1px solid #94a3b8;width: 100%; aspect-ratio: 1.6; background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat; border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
         .pause-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
         .pause-btn:hover { transform: scale(1.08); }
         .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
@@ -244,16 +244,15 @@
                         </div>
                         <div class="title-price-row">
                             <h1>Veterinary Nursing Assistant Course</h1>
-                            <span class="price-text">$10.99</span>
+                            <span class="price-text">Free</span>
                         </div>
-                        <div class="update-date">📅 Updated date : 26 June 2023</div>
-                        <p class="course-short-desc">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
-                        <div class="date-info">
-                            Course start date : <span>26 June 2023</span>
-                            Course end date : <span>26 June 2023</span>
+                        <div class="update-date">📅 Updated date : 26 march 2026</div>
+                        <p class="course-short-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</p>
+                        <div class="date-info" style="font-size: 13px; color: #64748b; margin-top: 15px;">
+                            Course start date : <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">26 march 2026</span>
+                            Course end date : <span style="color: #2563eb; font-weight: 700;">26 June 2026</span>
                         </div>
                         <div class="hero-btns">
-                            <button class="btn-dark-blue">Subscribe Now</button>
                             <button class="btn-dark-blue" style="background: #002b55;">Add to Cart</button>
                         </div>
                     </div>
@@ -275,79 +274,71 @@
 
                 <div class="modules-content">
                     <div class="modules-header-info">
-                        <h2>There are 4 modules in this course</h2>
-                        <p>Make the Sale: Build, Launch, and Manage E-commerce Stores is the sixth of eight courses in the Google Digital Marketing & E-commerce Certificate. This course explores how businesses and individuals sell products online, including using popular platforms like Shopify. You'll go through the process of creating a mock e-commerce store. To do this, you'll build a Shopify store, add the necessary information, and create product listings. You'll explore how to reach customers online through e-commerce customer</p>
-                        <a href="#" class="read-more-btn">Read more</a>
+                        <h2>There are 17 modules in this course</h2>
+                        <p>This course provides comprehensive training for veterinary nursing assistants, covering animal care, health management, business operations, and relevant laws. You'll progress through theoretical concepts and practical applications to prepare for a professional career in animal healthcare and pet business management.</p>
                     </div>
 
                     <div class="modules-list-outer">
-                        <!-- Module 1 -->
-                        <div class="mod-item expanded">
-                            <div class="mod-header">
+                        @php
+                        $modules = [
+                            ['title' => 'Introduction to Animals', 'desc' => 'Introducing the course, Types and kinds of animals, Liang', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Associate Professor Suphansa'],
+                            ['title' => 'Pet Care Management', 'desc' => 'Pet care management', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Rainy Season Army)'],
+                            ['title' => 'Disease and Health Management', 'desc' => 'Disease and management, Health', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. Sri (Characteristics Suwan)'],
+                            ['title' => 'Characteristics and Properties of Entrepreneur', 'desc' => 'Characteristics and properties of entrepreneur', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+                            ['title' => 'Small-Scale and Large-Scale Business', 'desc' => 'Small-scale business, Large and small business concepts, Organization models', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+                            ['title' => 'Marketing Management', 'desc' => 'Marketing management, Finance, Production', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+                            ['title' => 'Human Law and Ethics', 'desc' => 'Human law, Related ethics, Entrepreneurial ethics', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+                            ['title' => 'Evaluation', 'desc' => 'Evaluation, Conducting business systems', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+                            ['title' => 'Midterm test', 'desc' => 'Midterm Assessment', 'clos' => '-', 'hours' => '-', 'activities' => 'Examination', 'media' => 'Test Paper', 'teacher' => 'Asst. Professor'],
+                            ['title' => 'Business Operations', 'desc' => 'Business operations', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+                            ['title' => 'Types of Livestock Farming Businesses', 'desc' => 'Types of livestock farming businesses', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Suwan)'],
+                            ['title' => 'Information Systems', 'desc' => 'Information systems', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Assistant Professor (Pramote Thawitdika)'],
+                            ['title' => 'Hospital Technology for Animals', 'desc' => 'Equipment and products for animals, Liang', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Suwan)'],
+                            ['title' => 'Laws Related to Livestock', 'desc' => 'Laws related to livestock, Business of raising livestock', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Army)'],
+                            ['title' => 'Health of Employees in Clinics and Hospitals', 'desc' => 'Health of employees, Work environment in clinics and hospitals, Body (basic health considerations)', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Suwan)'],
+                            ['title' => 'Business Plan Presentation', 'desc' => 'Presenting a business plan, Self-sustaining business planning, Liang', 'clos' => '1, 2', 'hours' => '3', 'activities' => 'Presenting a business plan', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Tha)'],
+                            ['title' => 'Final Assessment', 'desc' => 'Final Exam', 'clos' => '-', 'hours' => '-', 'activities' => 'Examination', 'media' => 'Test Paper', 'teacher' => 'Asst. Professor'],
+                        ];
+                        @endphp
+
+                        @foreach($modules as $index => $mod)
+                        <div class="mod-item {{ $index === 0 ? 'expanded' : '' }}">
+                            <div class="mod-header" onclick="this.parentElement.classList.toggle('expanded')">
                                 <div class="mh-left-col">
-                                    <h3>Introduction to make the sale: build, launch, and manage e-commerce s...</h3>
-                                    <p>Module 1 • 5 hours to complete</p>
+                                    <h3>{{ $mod['title'] }}</h3>
+                                    <p>{{ $mod['hours'] }} hours • CLOs: {{ $mod['clos'] }}</p>
                                 </div>
                                 <div class="mh-right-col">
-                                    <span>Module details</span>
                                     <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
                                 </div>
                             </div>
-                            <div class="mod-expanded-content">
-                                <p class="mod-desc">You will explore the field of e-commerce and learn about the benefits of selling products online. You’ll study the common terms, tools, roles, and strategies that are used in e-commerce. Then, you’ll learn how to begin an e-commerce project using market research, competitive analysis, target audience identification, product research, product sourcing, and brand strategy.</p>
-                                
-                                <div class="whats-included">
-                                    <h4>What's included</h4>
-                                    <div class="incl-row">
-                                        <div class="incl-item">13 Videos</div>
-                                        <div class="incl-item">11 Reading</div>
-                                        <div class="incl-item">4 Assignments</div>
-                                        <div class="incl-item">1 Plugin</div>
-                                    </div>
-                                </div>
-
-                                <a href="#" class="hide-info-btn">Hide info about module content</a>
-                                <div class="incl-row" style="margin-bottom: 30px;">
-                                    <div class="incl-item">13 Videos</div>
-                                    <div class="incl-item" style="color: #64748b; font-weight: 500;">Total 50 minutes</div>
-                                </div>
-
+                            <div class="mod-expanded-content" style="display: {{ $index === 0 ? 'block' : 'none' }};">
+                                <p class="mod-desc">{{ $mod['desc'] }}</p>
                                 <div class="lesson-list">
-                                    <div class="lesson-row"><span>Introduction to Course 6</span><span class="lesson-duration">4 minutes</span></div>
-                                    <div class="lesson-row"><span>Welcome to module 1</span><span class="lesson-duration">1 minute</span></div>
-                                    <div class="lesson-row"><span>What is e-commerce?</span><span class="lesson-duration">3 minutes</span></div>
-                                    <div class="lesson-row"><span>The benefits of selling online</span><span class="lesson-duration">6 minutes</span></div>
-                                    <div class="lesson-row"><span>Henry - My career path into e-commerce</span><span class="lesson-duration">4 minutes</span></div>
-                                    <div class="lesson-row"><span>Get to know the basics of e-commerce</span><span class="lesson-duration">5 minutes</span></div>
-                                    <div class="lesson-row"><span>Jaylin - The role of an entry-level e-commerce specialist at a big company and a small business</span><span class="lesson-duration">3 minutes</span></div>
-                                    <div class="lesson-row"><span>Market research</span><span class="lesson-duration">4 minutes</span></div>
-                                    <div class="lesson-row"><span>Identify your target audience</span><span class="lesson-duration">3 minutes</span></div>
-                                    <div class="lesson-row"><span>How to do product research</span><span class="lesson-duration">8 minutes</span></div>
-                                    <div class="lesson-row"><span>Product sourcing</span><span class="lesson-duration">3 minutes</span></div>
-                                    <div class="lesson-row"><span>Branding in e-commerce</span><span class="lesson-duration">5 minutes</span></div>
-                                    <div class="lesson-row"><span>Wrap-up</span><span class="lesson-duration">2 minutes</span></div>
+                                    <div class="lesson-row"><strong>Teaching & Learning:</strong> <span>{{ $mod['activities'] }}</span></div>
+                                    <div class="lesson-row"><strong>Media Used:</strong> <span>{{ $mod['media'] }}</span></div>
+                                    <div class="lesson-row"><strong>Teacher:</strong> <span>{{ $mod['teacher'] }}</span></div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Module 2 Collapsed -->
-                        @for($i=0; $i<4; $i++)
-                        <div class="mod-item">
-                            <div class="mod-header">
-                                <div class="mh-left-col">
-                                    <h3>Introduction to make the sale: build, launch, and manage e-commerce s...</h3>
-                                    <p>Module 1 • 5 hours to complete</p>
-                                </div>
-                                <div class="mh-right-col">
-                                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                                </div>
-                            </div>
-                        </div>
-                        @endfor
+                        @endforeach
                     </div>
                 </div>
             </div>
         </main>
+
+        <script>
+            document.querySelectorAll('.mod-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const isExpanded = content.style.display === 'block';
+                    content.style.display = isExpanded ? 'none' : 'block';
+                    header.parentElement.classList.toggle('expanded');
+                });
+            });
+        </script>
+    </div>
+</main>
 
         <footer>
             <div class="footer-inner">

@@ -49,7 +49,7 @@
                 <a href="{{ route('search') }}" style="position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#a0aec0; display: flex; align-items: center;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </a>
-                <input type="text" placeholder="Search here" onfocus="window.location.href='{{ route('search') }}'">
+                <input type="text" placeholder="Search here" >
             </div>
         </div>
 

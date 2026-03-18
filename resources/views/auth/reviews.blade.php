@@ -62,7 +62,7 @@
         .course-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 40px; }
         .hero-left .teacher-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
         .t-info { display: flex; align-items: center; gap: 12px; }
-        .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #6b7280; }
+        .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #f1f5f9 url('{{ asset('images/logo.png') }}') no-repeat center; background-size: contain; border: 1.5px solid #e2e8f0; }
         .t-content p { font-size: 11px; color: #94a3b8; margin: 0; }
         .t-content span { color: #2563eb; font-weight: 700; cursor: pointer; }
         .t-meta { display: flex; gap: 15px; margin-top: 4px; font-size: 11px; color: #94a3b8; }
@@ -83,12 +83,13 @@
         .hero-right .video-preview { 
             width: 100%; 
             aspect-ratio: 1.6; 
-            background: linear-gradient(180deg, #c8cdd6 0%, #6b7280 100%); 
+            background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat; 
             border-radius: 20px; 
             position: relative; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
+                border: 1px solid #94a3b8;
         }
         .pause-btn {
             background: #e11d1d;
@@ -236,17 +237,16 @@
                         </div>
                     </div>
                     <div class="title-price-row">
-                        <h1>Mathematic Class</h1>
-                        <span class="price-text">$10.99</span>
+                        <h1>Veterinary Nursing Assistant Course</h1>
+                        <span class="price-text">Free</span>
                     </div>
-                    <div class="update-date">ðŸ“… Updated date : 26 June 2023</div>
+                    <div class="update-date">📅 Updated date : 26 march 2026</div>
                     <p class="course-short-desc">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
-                    <div class="date-info">
-                        Course start date : <span>26 June 2023</span>
-                        Course end date : <span>26 June 2023</span>
+                    <div class="date-info" style="font-size: 13px; color: #64748b; margin-top: 15px;">
+                        Course start date : <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">26 march 2026</span>
+                        Course end date : <span style="color: #2563eb; font-weight: 700;">26 June 2026</span>
                     </div>
                     <div class="hero-btns">
-                        <button class="btn-dark-blue">Subscribe Now</button>
                         <button class="btn-dark-blue" style="background: #002b55;">Add to Cart</button>
                     </div>
                 </div>
