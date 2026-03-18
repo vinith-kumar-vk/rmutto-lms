@@ -1,0 +1,45 @@
+<?php
+
+return [
+    'title_detail' => 'Course Detail | IL² RMUTTO',
+    'title_courses' => 'Course | IL² RMUTTO',
+    'title_modules' => 'Course Modules | IL² RMUTTO',
+    'title_recommendations' => 'Course Recommendations | IL² RMUTTO',
+    'title_testimonials' => 'Testimonials | IL² RMUTTO',
+
+    'tab_about' => 'About',
+    'tab_outcomes' => 'Outcomes',
+    'tab_modules' => 'Modules',
+    'tab_recommendations' => 'Recommendations',
+    'tab_testimonials' => 'Testimonials',
+    'tab_reviews' => 'Reviews',
+
+    'created_by' => 'Created by :',
+    'teacher' => 'Teacher',
+    'ratings_zero' => '0 Ratings',
+    'students_zero' => '0 Students',
+    'save' => 'Save',
+    'share' => 'Share',
+    'course_title_vet' => 'Veterinary Nursing Assistant Course',
+    'free' => 'Free',
+    'updated_date' => 'Updated date : 26 March 2026',
+    'updated_date_icon' => 'Updated date : 26 March 2026',
+    'course_start' => 'Course start date :',
+    'course_end' => 'Course end date :',
+    'date_march_26' => '26 March 2026',
+    'date_june_26' => '26 June 2026',
+    'short_desc_default' => 'To ensure the content is up-to-date with technology or aligns with learning outcomes.',
+    'add_to_cart' => 'Add to Cart',
+    'subscribe_now' => 'Subscribe Now',
+    'search_placeholder' => 'Search here',
+    'student' => 'Student',
+
+    'recom_heading' => 'Explore more from Marketing',
+    'recom_card_title' => 'The most complete science..',
+    'recom_card_desc' => 'Topic description sample text for display on the card.',
+
+    'testi_heading' => 'Why people choose IL² for their career',
+    'testi_name' => 'Felipe M.',
+    'testi_since' => 'Learner since 2018',
+    'testi_quote' => '"To be able to take courses at my own pace and rhythm has been an amazing experience. I can learn whenever it fits my schedule and mood."',
+];

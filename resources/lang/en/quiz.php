@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'page_title' => 'Quiz | IL² RMUTTO',
+    'heading' => 'Quiz',
+    'upcoming_title' => 'Upcoming Quizzes',
+    'upcoming_desc' => 'Track your pending course quizzes and start each one before the deadline.',
+    'quiz1_title' => 'Veterinary Nursing Assistant Course - Chapter 4',
+    'quiz1_meta' => '20 questions · 30 min',
+    'due_today' => 'Due Today',
+    'quiz2_title' => 'Building a Sustainable Startup: Strategies for Success',
+    'quiz2_meta' => '15 questions · 20 min',
+    'tomorrow' => 'Tomorrow',
+    'quiz3_title' => 'Rajamangala Identity Course',
+    'quiz3_meta' => '25 questions · 35 min',
+    'two_days_left' => '2 Days Left',
+    'quick_title' => 'Quick Actions',
+    'quick_desc' => 'Resume your last attempt or practice with timed mode.',
+    'resume_title' => 'Resume Last Quiz',
+    'resume_sub' => 'Veterinary Nursing Assistant Course',
+    'continue' => 'Continue',
+    'practice_title' => 'Practice Mode',
+    'practice_sub' => 'Unlimited attempts',
+    'start' => 'Start',
+];

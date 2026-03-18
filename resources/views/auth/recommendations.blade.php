@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Recommendations | IL2 RMUTTO</title>
+    <title>{{ __('course_flow.title_recommendations') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -194,27 +194,27 @@
                         <div class="t-info">
                             <div class="t-avatar"></div>
                             <div class="t-content">
-                                <p>Created by : <span>Teacher</span></p>
-                                <div class="t-meta"><span>­ 0 Ratings</span><span>ðŸ‘¥ 0 Students</span></div>
+                                <p>{{ __('course_flow.created_by') }} <span>{{ __('course_flow.teacher') }}</span></p>
+                                <div class="t-meta"><span>{{ __('course_flow.ratings_zero') }}</span><span>{{ __('course_flow.students_zero') }}</span></div>
                             </div>
                         </div>
                         <div class="hero-left-actions">
-                            <a href="#" class="btn-outline-sm">Save</a>
-                            <a href="#" class="btn-outline-sm">Share</a>
+                            <a href="#" class="btn-outline-sm">{{ __('course_flow.save') }}</a>
+                            <a href="#" class="btn-outline-sm">{{ __('course_flow.share') }}</a>
                         </div>
                     </div>
                     <div class="title-price-row">
-                        <h1>Veterinary Nursing Assistant Course</h1>
-                        <span class="price-text">Free</span>
+                        <h1>{{ __('course_flow.course_title_vet') }}</h1>
+                        <span class="price-text">{{ __('course_flow.free') }}</span>
                     </div>
-                    <div class="update-date">📅 Updated date : 26 march 2026</div>
-                    <p class="course-short-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</p>
+                    <div class="update-date">{{ __('course_flow.updated_date_icon') }}</div>
+                    <p class="course-short-desc">{{ __('course_flow.short_desc_default') }}</p>
                     <div class="date-info" style="font-size: 13px; color: #64748b; margin-top: 15px;">
-                        Course start date : <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">26 march 2026</span>
-                        Course end date : <span style="color: #2563eb; font-weight: 700;">26 June 2026</span>
+                        {{ __('course_flow.course_start') }} <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">{{ __('course_flow.date_march_26') }}</span>
+                        {{ __('course_flow.course_end') }} <span style="color: #2563eb; font-weight: 700;">{{ __('course_flow.date_june_26') }}</span>
                     </div>
                     <div class="hero-btns">
-                        <button class="btn-dark-blue" style="background: #002b55;">Add to Cart</button>
+                        <button type="button" class="btn-dark-blue" style="background: #002b55;">{{ __('course_flow.add_to_cart') }}</button>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -225,16 +225,16 @@
             </div>
 
             <div class="tab-strip">
-                <a href="{{ route('course.detail') }}" class="tab-item">About</a>
-                <a href="{{ route('courses') }}" class="tab-item">Outcomes</a>
-                <a href="{{ route('modules') }}" class="tab-item">Modules</a>
-                <div class="tab-item active">Recommendations</div>
-                <a href="{{ route('testimonials') }}" class="tab-item">Testimonials</a>
-                <a href="{{ route('reviews') }}" class="tab-item">Reviews</a>
+                <a href="{{ route('course.detail') }}" class="tab-item">{{ __('course_flow.tab_about') }}</a>
+                <a href="{{ route('courses') }}" class="tab-item">{{ __('course_flow.tab_outcomes') }}</a>
+                <a href="{{ route('modules') }}" class="tab-item">{{ __('course_flow.tab_modules') }}</a>
+                <div class="tab-item active">{{ __('course_flow.tab_recommendations') }}</div>
+                <a href="{{ route('testimonials') }}" class="tab-item">{{ __('course_flow.tab_testimonials') }}</a>
+                <a href="{{ route('reviews') }}" class="tab-item">{{ __('course_flow.tab_reviews') }}</a>
             </div>
 
             <div class="recom-header">
-                <h2>Explore more from Marketing</h2>
+                <h2>{{ __('course_flow.recom_heading') }}</h2>
                 <div class="arrow-btns">
                     <button class="arrow-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
                     <button class="arrow-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
@@ -245,12 +245,12 @@
                 @for($i=0; $i<4; $i++)
                 <div class="c-card">
                     <div class="c-img-wrap">
-                        <span class="badge-free">Free</span>
-                        <img src="{{ asset('images/learning.png') }}">
+                        <span class="badge-free">{{ __('course_flow.free') }}</span>
+                        <img src="{{ asset('images/learning.png') }}" alt="">
                     </div>
                     <div class="c-body">
-                        <h3>The most complete scien..</h3>
-                        <p>Topic Description Lorem ipsum dolor sit amet, consectetur adip..</p>
+                        <h3>{{ __('course_flow.recom_card_title') }}</h3>
+                        <p>{{ __('course_flow.recom_card_desc') }}</p>
                         <div class="c-footer">
                             <div class="cf-left">
                                 <div class="cf-avatar"></div>
@@ -272,28 +272,32 @@
             <div class="footer-inner">
                 <div class="f-brand">
                     <div class="f-logo-circle"><img src="{{ asset('images/icons/logo.svg') }}"></div>
-                    <p>Learn anytime and anywhere from IL2 career skills</p>
+                    <p>{{ __('home.footer_tagline') }}</p>
                 </div>
                 <div class="f-col">
-                    
                     <ul>
-                        <li><a href="#">Teach on IL2</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Help and Support</a></li>
+                        <li><a href="#">{{ __('home.footer_teach') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_about') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_contact') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_help') }}</a></li>
                     </ul>
                 </div>
                 <div class="f-col">
-                    
                     <ul>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookies Policy</a></li>
-                        <li><a href="#">Career</a></li>
+                        <li><a href="#">{{ __('home.footer_terms') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_privacy') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_cookies') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_career') }}</a></li>
                     </ul>
                 </div>
                 <div class="f-right-col">
-                    <select class="lang-picker"><option>English</option></select>
+                    <form method="POST" id="recom-footer-lang" action="{{ route('locale.set', ['locale' => app()->getLocale()]) }}" style="display:inline;">
+                        @csrf
+                        <select class="lang-picker" onchange="document.getElementById('recom-footer-lang').action='{{ url('/set-language') }}/'+this.value; document.getElementById('recom-footer-lang').submit();">
+                            <option value="en" @selected(app()->getLocale() === 'en')>{{ __('home.lang_english') }}</option>
+                            <option value="th" @selected(app()->getLocale() === 'th')>{{ __('home.lang_thai') }}</option>
+                        </select>
+                    </form>
                     <div class="social-row">
                         <div class="s-link"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></div>
                         <div class="s-link"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></div>

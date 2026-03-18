@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Detail | Mathematic Class</title>
+    <title>{{ __('course_flow.title_detail') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -207,28 +207,28 @@
                         <div class="t-profile">
                             <div class="avatar-circle" style="width:44px; height:44px;"></div>
                             <div class="t-labels">
-                                <p>Created by : <span>Teacher</span></p>
-                                <div class="t-stats-row"><span>0 Ratings</span> <span>0 Students</span></div>
+                                <p>{{ __('course_flow.created_by') }} <span>{{ __('course_flow.teacher') }}</span></p>
+                                <div class="t-stats-row"><span>{{ __('course_flow.ratings_zero') }}</span> <span>{{ __('course_flow.students_zero') }}</span></div>
                             </div>
                         </div>
                         <div class="t-actions-wrap">
-                            <a href="#" class="btn-pill-small">Save</a>
-                            <a href="#" class="btn-pill-small">Share</a>
+                            <a href="#" class="btn-pill-small">{{ __('course_flow.save') }}</a>
+                            <a href="#" class="btn-pill-small">{{ __('course_flow.share') }}</a>
                         </div>
                     </div>
 
                     <div class="title-row">
-                        <h1>Veterinary Nursing Assistant Course</h1>
-                        <span class="price-text">Free</span>
+                        <h1>{{ __('course_flow.course_title_vet') }}</h1>
+                        <span class="price-text">{{ __('course_flow.free') }}</span>
                     </div>
-                    <div class="updated-date">Updated date : 26 march 2026</div>
-                    <p class="course-summary">Types and categories of pet animals; pet care and management; diseases and health management; </p>
+                    <div class="updated-date">{{ __('course_flow.updated_date') }}</div>
+                    <p class="course-summary">{{ __('course_detail.summary_short') }}</p>
                     <div class="dates-flex" style="display: flex; gap: 30px; font-size: 13px; color: #64748b; margin-bottom: 35px;">
-                        <p>Course start date : <span style="color: #2563eb; font-weight: 800;">26 march 2026</span></p>
-                        <p>Course end date : <span style="color: #2563eb; font-weight: 800;">26 June 2026</span></p>
+                        <p>{{ __('course_flow.course_start') }} <span style="color: #2563eb; font-weight: 800;">{{ __('course_flow.date_march_26') }}</span></p>
+                        <p>{{ __('course_flow.course_end') }} <span style="color: #2563eb; font-weight: 800;">{{ __('course_flow.date_june_26') }}</span></p>
                     </div>
                     <div class="btn-group">
-                        <a href="{{ route('shopping.cart') }}" class="btn-cart">Add to Cart</a>
+                        <a href="{{ route('shopping.cart') }}" class="btn-cart">{{ __('course_flow.add_to_cart') }}</a>
                     </div>
                 </div>
 
@@ -241,12 +241,12 @@
 
             <!-- TABS -->
             <div class="tab-strip">
-                <div class="tab-item active">About</div>
-                <a href="{{ route('courses') }}" class="tab-item">Outcomes</a>
-                <a href="{{ route('modules') }}" class="tab-item">Modules</a>
-                <a href="{{ route('recommendations') }}" class="tab-item">Recommendations</a>
-                <a href="{{ route('testimonials') }}" class="tab-item">Testimonials</a>
-                <a href="{{ route('reviews') }}" class="tab-item">Reviews</a>
+                <div class="tab-item active">{{ __('course_flow.tab_about') }}</div>
+                <a href="{{ route('courses') }}" class="tab-item">{{ __('course_flow.tab_outcomes') }}</a>
+                <a href="{{ route('modules') }}" class="tab-item">{{ __('course_flow.tab_modules') }}</a>
+                <a href="{{ route('recommendations') }}" class="tab-item">{{ __('course_flow.tab_recommendations') }}</a>
+                <a href="{{ route('testimonials') }}" class="tab-item">{{ __('course_flow.tab_testimonials') }}</a>
+                <a href="{{ route('reviews') }}" class="tab-item">{{ __('course_flow.tab_reviews') }}</a>
             </div>
 
             <!-- SECTION CONTAINER -->
@@ -255,21 +255,15 @@
                     <div class="content-section">
                         
                         <p style="color: #475569; line-height: 1.8; font-size: 15px;">
-                            Types and categories of pet animals; pet care and management; diseases and health management; characteristics and qualifications of entrepreneurs; small, medium, and large-scale businesses - business organization structures; marketing management; finance; production - accounting; human resource management - relevant laws and entrepreneurial ethics; business performance evaluation; business operations; types of pet animal businesses; information systems; technology in pet animal hospitals; equipment and products for pet animals; laws related to pet animal businesses. Health of healthcare workers in clinics and hospitals.
+                            {{ __('course_detail.about_long') }}
                         </p>
                     </div>
                     <div class="content-section">
-                        <h2>Skills you will gain:</h2>
+                        <h2>{{ __('course_detail.skills_heading') }}</h2>
                         <ul class="learn-list">
-                            <li>Pet animal classification and identification</li>
-                            <li>Pet care and management skills</li>
-                            <li>Disease prevention and health management</li>
-                            <li>Entrepreneurial skills and mindset</li>
-                            <li>Business types and organization structures</li>
-                            <li>Marketing and sales management</li>
-                            <li>Basic finance and accounting skills</li>
-                            <li>Production and operations management</li>
-                            <li>Human resource management</li>
+                            @foreach(__('course_detail.skills') as $skill)
+                            <li>{{ $skill }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -277,37 +271,37 @@
                 <!-- RIGHT SIDEBAR -->
                 <div class="sidebar-right">
                     <div class="about-course">
-                        <h3>About this course</h3>
+                        <h3>{{ __('course_detail.about_course') }}</h3>
                         <span class="course-code">34765879709809</span>
                         
                         <div class="free-banner">
                             <div class="free-text">
-                                <h4>Get a free sessions - hello maths</h4>
-                                <p>Watch your favorite guide's free content</p>
+                                <h4>{{ __('course_detail.free_banner_title') }}</h4>
+                                <p>{{ __('course_detail.free_banner_desc') }}</p>
                             </div>
-                            <a href="#" class="btn-free">Free</a>
+                            <a href="#" class="btn-free">{{ __('course_flow.free') }}</a>
                         </div>
 
                         <div class="feature-v-grid">
                             <div class="fv-item">
-                                <img src="{{ asset('images/icons/duration.png') }}">
-                                <span class="lab">Duration</span>
-                                <span class="val">23 Days</span>
+                                <img src="{{ asset('images/icons/duration.png') }}" alt="">
+                                <span class="lab">{{ __('course_detail.duration') }}</span>
+                                <span class="val">{{ __('course_detail.duration_val') }}</span>
                             </div>
                             <div class="fv-item">
-                                <img src="{{ asset('images/icons/weelkly.png') }}">
-                                <span class="lab">Weekly Study</span>
-                                <span class="val">32 Hours</span>
+                                <img src="{{ asset('images/icons/weelkly.png') }}" alt="">
+                                <span class="lab">{{ __('course_detail.weekly_study') }}</span>
+                                <span class="val">{{ __('course_detail.weekly_val') }}</span>
                             </div>
                             <div class="fv-item">
-                                <img src="{{ asset('images/icons/100%.png') }}">
-                                <span class="lab">100% Online</span>
-                                <span class="val">Learn at your own place</span>
+                                <img src="{{ asset('images/icons/100%.png') }}" alt="">
+                                <span class="lab">{{ __('course_detail.online_100') }}</span>
+                                <span class="val">{{ __('course_detail.online_val') }}</span>
                             </div>
                             <div class="fv-item">
-                                <img src="{{ asset('images/icons/quiz.png') }}">
-                                <span class="lab">Quiz</span>
-                                <span class="val">Total Quizzes: 3</span>
+                                <img src="{{ asset('images/icons/quiz.png') }}" alt="">
+                                <span class="lab">{{ __('course_detail.quiz') }}</span>
+                                <span class="val">{{ __('course_detail.quiz_val') }}</span>
                             </div>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | IL2 RMUTTO</title>
+    <title>{{ __('home.page_title') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
@@ -30,6 +30,38 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             padding: 8px 30px;
         }
+        .home-lang-switch {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .home-lang-switch form { margin: 0; display: inline; }
+        .home-lang-btn {
+            padding: 6px 14px;
+            border-radius: 22px;
+            border: 1.5px solid #e2e8f0;
+            background: #f8fafc;
+            font-size: 12px;
+            font-weight: 800;
+            color: #475569;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .home-lang-btn:hover {
+            border-color: #0f3c6e;
+            color: #0f3c6e;
+        }
+        .home-lang-btn.active {
+            background: #0f3c6e;
+            color: #fff;
+            border-color: #0f3c6e;
+        }
+        @media (max-width: 768px) {
+            .home-lang-switch { order: -1; width: 100%; justify-content: center; margin-bottom: 8px; }
+            .header-right { flex-wrap: wrap; justify-content: center; }
+        }
     </style>
 </head>
 <body class="home-page">
@@ -41,7 +73,7 @@
             </a>
             
             <a href="{{ route('category') }}" class="category-btn" style="display: flex; align-items: center; gap: 6px;">
-                Courses
+                {{ __('home.nav_courses') }}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
             
@@ -49,25 +81,36 @@
                 <a href="{{ route('search') }}" style="position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#a0aec0; display: flex; align-items: center;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </a>
-                <input type="text" placeholder="Search here" >
+                <input type="text" placeholder="{{ __('home.search_placeholder') }}">
             </div>
         </div>
 
         <div class="header-right">
-            <button class="icon-btn" title="Wishlist">
+            <button class="icon-btn" title="{{ __('home.title_wishlist') }}">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             </button>
-            <a href="{{ route('shopping.cart') }}" class="icon-btn" title="Cart">
+            <a href="{{ route('shopping.cart') }}" class="icon-btn" title="{{ __('home.title_cart') }}">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             </a>
-            <button class="icon-btn" title="Notifications" style="position:relative;">
+            <button class="icon-btn" title="{{ __('home.title_notifications') }}" style="position:relative;">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                 <span style="position:absolute;top:-5px;right:-5px;background:#f97316;color:white;font-size:10px;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;">2</span>
             </button>
+
+            <div class="home-lang-switch" aria-label="Language">
+                <form method="POST" action="{{ route('locale.set', ['locale' => 'en']) }}">
+                    @csrf
+                    <button type="submit" class="home-lang-btn {{ app()->getLocale() === 'en' ? 'active' : '' }}">{{ __('home.lang_english') }}</button>
+                </form>
+                <form method="POST" action="{{ route('locale.set', ['locale' => 'th']) }}">
+                    @csrf
+                    <button type="submit" class="home-lang-btn {{ app()->getLocale() === 'th' ? 'active' : '' }}">{{ __('home.lang_thai') }}</button>
+                </form>
+            </div>
             
             <a href="{{ route('account.new') }}" class="user-profile">
                 <div class="avatar-circle"></div>
-                <span>Student</span>
+                <span>{{ Auth::check() ? Auth::user()->name : __('home.student') }}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
             </a>
 
@@ -90,24 +133,34 @@
         <div class="mobile-nav-body">
             <div class="mobile-search-box">
                 <form action="{{ route('search') }}" method="GET">
-                    <input type="text" placeholder="Search courses..." name="q">
+                    <input type="text" placeholder="{{ __('home.mobile_search_placeholder') }}" name="q">
+                </form>
+            </div>
+            <div class="home-lang-switch" style="padding: 0 20px 16px; justify-content: center;">
+                <form method="POST" action="{{ route('locale.set', ['locale' => 'en']) }}">
+                    @csrf
+                    <button type="submit" class="home-lang-btn {{ app()->getLocale() === 'en' ? 'active' : '' }}">{{ __('home.lang_english') }}</button>
+                </form>
+                <form method="POST" action="{{ route('locale.set', ['locale' => 'th']) }}">
+                    @csrf
+                    <button type="submit" class="home-lang-btn {{ app()->getLocale() === 'th' ? 'active' : '' }}">{{ __('home.lang_thai') }}</button>
                 </form>
             </div>
             <ul class="mobile-nav-links">
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('category') }}">Courses</a></li>
-                <li><a href="{{ route('courses') }}">All Courses</a></li>
-                <li><a href="{{ route('free.courses') }}">Free Courses</a></li>
-                <li><a href="{{ route('dashboard.1') }}">My Dashboard</a></li>
+                <li><a href="{{ route('home') }}">{{ __('home.mobile_home') }}</a></li>
+                <li><a href="{{ route('category') }}">{{ __('home.mobile_courses') }}</a></li>
+                <li><a href="{{ route('courses') }}">{{ __('home.mobile_all_courses') }}</a></li>
+                <li><a href="{{ route('free.courses') }}">{{ __('home.mobile_free_courses') }}</a></li>
+                <li><a href="{{ route('dashboard.1') }}">{{ __('home.mobile_dashboard') }}</a></li>
             </ul>
             <div class="mobile-nav-footer">
                 @guest
-                    <a href="{{ route('login') }}" class="btn-step-1">Login</a>
-                    <a href="{{ route('register') }}" class="btn-step-1" style="background: transparent; color: #0f3c6e; border: 1px solid #0f3c6e;">Signup</a>
+                    <a href="{{ route('login') }}" class="btn-step-1">{{ __('home.login') }}</a>
+                    <a href="{{ route('register') }}" class="btn-step-1" style="background: transparent; color: #0f3c6e; border: 1px solid #0f3c6e;">{{ __('home.signup') }}</a>
                 @else
                     <a href="{{ route('account.new') }}" class="mobile-user-profile">
                         <div class="avatar-circle"></div>
-                        <span>Student Profile</span>
+                        <span>{{ __('home.student_profile') }}</span>
                     </a>
                 @endguest
             </div>
@@ -126,11 +179,11 @@
             
             <!-- RIGHT SIDE: Text Content -->
             <div class="hero-right-column">
-                <h1 class="hero-title-main">Investing in Knowledge and your future</h1>
-                <p class="hero-desc-main">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
+                <h1 class="hero-title-main">{{ __('home.hero_title') }}</h1>
+                <p class="hero-desc-main">{{ __('home.hero_desc') }}</p>
                 <div class="hero-action-btns">
-                    <a href="{{ route('login') }}" class="btn-step-1">Login</a>
-                    <a href="{{ route('register') }}" class="btn-step-1">Signup</a>
+                    <a href="{{ route('login') }}" class="btn-step-1">{{ __('home.login') }}</a>
+                    <a href="{{ route('register') }}" class="btn-step-1">{{ __('home.signup') }}</a>
                 </div>
             </div>
 
@@ -144,38 +197,38 @@
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon" style="background: #ff8000;">
-                    <img src="{{ asset('images/icons/badge 1.svg') }}" alt="Great Deals">
+                    <img src="{{ asset('images/icons/badge 1.svg') }}" alt="{{ __('home.feature_1_alt') }}">
                 </div>
                 <div>
-                    <h4>Great Deals for you</h4>
-                    <p>Get some great deals and discounts on courses. Avail Now. Happy teaching and learning, everyone!</p>
+                    <h4>{{ __('home.feature_1_title') }}</h4>
+                    <p>{{ __('home.feature_1_desc') }}</p>
                 </div>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background: #a2d2ff;">
-                    <img src="{{ asset('images/icons/video streaming 1.svg') }}" alt="Audio & Video">
+                    <img src="{{ asset('images/icons/video streaming 1.svg') }}" alt="{{ __('home.feature_2_alt') }}">
                 </div>
                 <div>
-                    <h4>Audio &amp; Video</h4>
-                    <p>High-quality audio and video courses make it easy to learn and teach new skills. Get started right away!</p>
+                    <h4>{{ __('home.feature_2_title') }}</h4>
+                    <p>{{ __('home.feature_2_desc') }}</p>
                 </div>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background: #40ffff;">
-                    <img src="{{ asset('images/icons/video call 1.svg') }}" alt="Virtual Classroom">
+                    <img src="{{ asset('images/icons/video call 1.svg') }}" alt="{{ __('home.feature_3_alt') }}">
                 </div>
                 <div>
-                    <h4>Virtual Classroom</h4>
-                    <p>Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
+                    <h4>{{ __('home.feature_3_title') }}</h4>
+                    <p>{{ __('home.feature_3_desc') }}</p>
                 </div>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background: #20a0a0;">
-                    <img src="{{ asset('images/icons/study 1.svg') }}" alt="Group learning">
+                    <img src="{{ asset('images/icons/study 1.svg') }}" alt="{{ __('home.feature_4_alt') }}">
                 </div>
                 <div>
-                    <h4>Group learning</h4>
-                    <p>Put your heads together and increase your knowledge base. With the right platform, transform your course into an interactive group experience.</p>
+                    <h4>{{ __('home.feature_4_title') }}</h4>
+                    <p>{{ __('home.feature_4_desc') }}</p>
                 </div>
             </div>
         </div>
@@ -186,15 +239,15 @@
         <div class="wide-range-inner">
             <!-- Left Side: Heading and Staggered Images -->
             <div class="wide-range-left">
-                <h2 class="section-heading">A wide range of<br>courses to spark<br>your creativity</h2>
+                <h2 class="section-heading">{{ __('home.wide_range_l1') }}<br>{{ __('home.wide_range_l2') }}<br>{{ __('home.wide_range_l3') }}</h2>
                 <div class="wide-range-images-custom">
                     <!-- Girl Image -->
                     <div class="wr-img-block wr-img-1">
-                        <img src="{{ asset('images/learning.png') }}" alt="Learning Robotics">
+                        <img src="{{ asset('images/learning.png') }}" alt="{{ __('home.alt_learning') }}">
                     </div>
                     <!-- Boy Image (Staggered) -->
                     <div class="wr-img-block wr-img-2">
-                        <img src="{{ asset('images/testing1.png') }}" alt="Deep Focus">
+                        <img src="{{ asset('images/testing1.png') }}" alt="{{ __('home.alt_deep_focus') }}">
                     </div>
                 </div>
             </div>
@@ -204,48 +257,48 @@
                 <div class="category-cards-grid">
                     <div class="category-card-item">
                         <div class="cat-icon">
-                            <img src="{{ asset('images/icons/007-vectors 1.svg') }}" alt="Modern Art & Ideas">
+                            <img src="{{ asset('images/icons/007-vectors 1.svg') }}" alt="{{ __('home.cat_1_alt') }}">
                         </div>
                         <div class="cat-text">
-                            <h5>Modern</h5>
-                            <p>Art &amp; Ideas</p>
+                            <h5>{{ __('home.cat_1_h5') }}</h5>
+                            <p>{{ __('home.cat_1_p') }}</p>
                         </div>
                     </div>
                     <div class="category-card-item">
                         <div class="cat-icon">
-                            <img src="{{ asset('images/icons/Group.svg') }}" alt="Ignite Your Everyday Creativity">
+                            <img src="{{ asset('images/icons/Group.svg') }}" alt="{{ __('home.cat_2_alt') }}">
                         </div>
                         <div class="cat-text">
-                            <h5>Ignite Your</h5>
-                            <p>Everyday Creativity</p>
+                            <h5>{{ __('home.cat_2_h5') }}</h5>
+                            <p>{{ __('home.cat_2_p') }}</p>
                         </div>
                     </div>
                     <div class="category-card-item">
                         <div class="cat-icon">
-                            <img src="{{ asset('images/icons/science 1 (1).svg') }}" alt="Electrodynamics">
+                            <img src="{{ asset('images/icons/science 1 (1).svg') }}" alt="{{ __('home.cat_3_alt') }}">
                         </div>
                         <div class="cat-text">
-                            <h5>Electrodynamics</h5>
-                            <p>Specialization</p>
+                            <h5>{{ __('home.cat_3_h5') }}</h5>
+                            <p>{{ __('home.cat_3_p') }}</p>
                         </div>
                     </div>
                     <div class="category-card-item">
                         <div class="cat-icon">
-                            <img src="{{ asset('images/icons/Group (1).svg') }}" alt="Postwar Abstract Painting">
+                            <img src="{{ asset('images/icons/Group (1).svg') }}" alt="{{ __('home.cat_4_alt') }}">
                         </div>
                         <div class="cat-text">
-                            <h5>Postwar</h5>
-                            <p>Abstract Painting</p>
+                            <h5>{{ __('home.cat_4_h5') }}</h5>
+                            <p>{{ __('home.cat_4_p') }}</p>
                         </div>
                     </div>
                 </div>
 
                 <ul class="wr-points">
-                    <li>Find the top course that fits you from a wide range of online topics available with new additions published frequently and expand your career opportunities.</li>
-                    <li>Explore our different categories to expand your creative skillset.</li>
+                    <li>{{ __('home.wr_point_1') }}</li>
+                    <li>{{ __('home.wr_point_2') }}</li>
                 </ul>
 
-                <a href="{{ route('register') }}" class="btn-get-started">Get Started</a>
+                <a href="{{ route('register') }}" class="btn-get-started">{{ __('home.get_started') }}</a>
             </div>
         </div>
     </section>
@@ -253,40 +306,38 @@
     <!-- CAREER PERSPECTIVE SECTION -->
     <section class="career-section">
         <div class="career-inner">
-            <h2 class="section-heading-center">Construct a stunning career perspective</h2>
-            <p class="section-sub-center">We just don't give our students only lecture but real life experience</p>
+            <h2 class="section-heading-center">{{ __('home.career_heading') }}</h2>
+            <p class="section-sub-center">{{ __('home.career_sub') }}</p>
             
             <div class="live-classes-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
                 @php
-                $live_courses = [
-                    ['title' => 'Veterinary Nursing Assistant Course', 'img' => '9. Animal care.jpg'],
-                    ['title' => 'Building a Sustainable Startup: Strategies for Success', 'img' => '10. Create a startup.jpg'],
-                    ['title' => 'Rajamangala Identity Course', 'img' => '1. Identity.png'],
-                ];
+                $live_course_imgs = ['9. Animal care.jpg', '10. Create a startup.jpg', '1. Identity.png'];
+                $live_course_titles = __('home.live_course_titles');
                 @endphp
-                @foreach($live_courses as $course)
+                @foreach($live_course_imgs as $idx => $img)
+                @php $course = ['img' => $img, 'title' => $live_course_titles[$idx] ?? '']; @endphp
                 <div class="free-session-card">
                     <div class="free-session-thumb">
-                        <img src="{{ asset('images/' . $course['img']) }}" alt="Live Class">
+                        <img src="{{ asset('images/' . $course['img']) }}" alt="{{ __('home.alt_live_class') }}">
                     </div>
                     <div class="free-session-info">
                         <div class="free-card-meta">
-                            <span class="teacher-tag">Teacher</span>
+                            <span class="teacher-tag">{{ __('home.teacher') }}</span>
                             <div class="live-badge-target">
                                 <div class="target-icon"></div>
-                                Live
+                                {{ __('home.live') }}
                             </div>
                         </div>
                         <h4>{{ \Illuminate\Support\Str::limit($course['title'], 35, '...') }}</h4>
-                        <p class="topic-text">Topic Description</p>
+                        <p class="topic-text">{{ __('home.topic_description') }}</p>
                         <div class="free-card-footer">
                             <div class="footer-item">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                29 June 2023
+                                {{ __('home.live_date') }}
                             </div>
                             <div class="footer-item">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                                02:00 PM
+                                {{ __('home.live_time') }}
                             </div>
                         </div>
                     </div>
@@ -301,11 +352,11 @@
     <section class="course-section">
         <div class="course-section-header">
             <div>
-                <h2 class="section-heading">Pick a free session course<br>to get started</h2>
-                <p class="section-sub">Once you done with your free videos, for continue you have to subscribe the course</p>
+                <h2 class="section-heading">{{ __('home.free_session_l1') }}<br>{{ __('home.free_session_l2') }}</h2>
+                <p class="section-sub">{{ __('home.free_session_sub') }}</p>
             </div>
             <div style="display: flex; align-items: center; gap: 20px;">
-                <a href="{{ route('free.courses') }}" style="font-size: 14px; font-weight: 700; color: #003a70; text-decoration: none;">View All</a>
+                <a href="{{ route('free.courses') }}" style="font-size: 14px; font-weight: 700; color: #003a70; text-decoration: none;">{{ __('home.view_all') }}</a>
                 <div class="carousel-arrows" style="display: flex; gap: 12px;">
                     <button class="arrow-btn" style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #dbeafe; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -318,26 +369,23 @@
         </div>
         <div class="course-cards-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px">
             @php
-            $free_courses = [
-                ['title' => 'Veterinary Nursing Assistant Course', 'img' => '9. Animal care.jpg'],
-                ['title' => 'Building a Sustainable Startup: Strategies for Success', 'img' => '10. Create a startup.jpg'],
-                ['title' => 'Rajamangala Identity Course', 'img' => '1. Identity.png'],
-                ['title' => 'Building Relationships to Create a Digital Business Foundation', 'img' => '2. Relationship building digital business base.png'],
-            ];
+            $free_course_imgs = ['9. Animal care.jpg', '10. Create a startup.jpg', '1. Identity.png', '2. Relationship building digital business base.png'];
+            $free_course_titles = __('home.free_course_titles');
             @endphp
-            @foreach($free_courses as $index => $course)
+            @foreach($free_course_imgs as $index => $img)
+            @php $course = ['img' => $img, 'title' => $free_course_titles[$index] ?? '']; @endphp
             @if($index == 0)
             <a href="{{ route('courses') }}" class="vertical-course-card" style="text-decoration:none; color:inherit; display:block;">
             @else
             <div class="vertical-course-card" style="color:inherit;">
             @endif
                 <div class="card-image-wrap">
-                    <img src="{{ asset('images/' . $course['img']) }}" alt="Course">
-                    <span class="badge-orange-free">Free</span>
+                    <img src="{{ asset('images/' . $course['img']) }}" alt="{{ __('home.alt_course') }}">
+                    <span class="badge-orange-free">{{ __('home.badge_free') }}</span>
                 </div>
                 <div class="vertical-card-body">
                     <h4 class="vertical-card-title">{{ \Illuminate\Support\Str::limit($course['title'], 35, '...') }}</h4>
-                    <p class="vertical-card-desc">Topic Description Lorem ipsum<br>dolor sit amet, consectetur adip..</p>
+                    <p class="vertical-card-desc">{!! __('home.vertical_card_desc') !!}</p>
                     <div class="vertical-card-footer">
                         <div class="footer-stats-wrap">
                             <img src="{{ asset('images/logo.png') }}" class="instructor-avatar-circle" style="object-fit: contain; background: #f1f5f9; padding: 3px; border: 1px solid #e2e8f0;">
@@ -356,7 +404,7 @@
                         </div>
                         <div class="heart-action-wrap" style="position: relative;">
                             @if($index == 2)
-                            <div class="tooltip-added">Added to Wishlist!</div>
+                            <div class="tooltip-added">{{ __('home.wishlist_added') }}</div>
                             <svg class="heart-action-btn active" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                             @else
                             <svg class="heart-action-btn" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -414,7 +462,7 @@
     <!-- POPULAR COURSES -->
     <section class="course-section" style=" border-top: none;">
         <div class="course-section-header">
-            <h2 class="section-heading" >Popular Courses</h2>
+            <h2 class="section-heading">{{ __('home.popular_courses') }}</h2>
             <div class="carousel-arrows" style="display: flex; gap: 12px;">
                 <button class="arrow-btn" style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #dbeafe; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -426,22 +474,19 @@
         </div>
         <div class="course-cards-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px">
             @php
-            $popular_courses = [
-                ['title' => 'Beverage Business: From Idea to Sustainable Success', 'img' => '3. drinks.jpg'],
-                ['title' => 'Anti-Aging Business with Bioproducts', 'img' => '4. Business.jpg'],
-                ['title' => 'Learn and Get Rich', 'img' => '5. Customer management and satisfaction.jpg'],
-                ['title' => 'Camping Tourism and Campsite Entrepreneurship', 'img' => '6. Camping tourism education and camping business.png'],
-            ];
+            $popular_imgs = ['3. drinks.jpg', '4. Business.jpg', '5. Customer management and satisfaction.jpg', '6. Camping tourism education and camping business.png'];
+            $popular_titles = __('home.popular_course_titles');
             @endphp
-            @foreach($popular_courses as $course)
+            @foreach($popular_imgs as $pidx => $img)
+            @php $course = ['img' => $img, 'title' => $popular_titles[$pidx] ?? '']; @endphp
             <div class="vertical-course-card" style="color:inherit;">
                 <div class="card-image-wrap">
-                    <img src="{{ asset('images/' . $course['img']) }}" alt="Course">
-                    <span class="badge-orange-free">Free</span>
+                    <img src="{{ asset('images/' . $course['img']) }}" alt="{{ __('home.alt_course') }}">
+                    <span class="badge-orange-free">{{ __('home.badge_free') }}</span>
                 </div>
                 <div class="vertical-card-body">
                     <h4 class="vertical-card-title">{{ \Illuminate\Support\Str::limit($course['title'], 35, '...') }}</h4>
-                    <p class="vertical-card-desc">Topic Description Lorem ipsum<br>dolor sit amet, consectetur adip..</p>
+                    <p class="vertical-card-desc">{!! __('home.vertical_card_desc') !!}</p>
                     <div class="vertical-card-footer">
                         <div class="footer-stats-wrap">
                             <img src="{{ asset('images/logo.png') }}" class="instructor-avatar-circle" style="object-fit: contain; background: #f1f5f9; padding: 3px; border: 1px solid #e2e8f0;">
@@ -510,32 +555,35 @@
                 <div class="footer-logo-circle">
                     <img src="{{ asset('images/icons/logo.svg') }}" alt="IL2 Logo">
                 </div>
-                <p>Learn anytime and anywhere from IL2 career skills</p>
+                <p>{{ __('home.footer_tagline') }}</p>
             </div>
             
             <div class="footer-links-column">
                 <ul>
-                    <li><a href="#">Teach on IL2</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Help and Support</a></li>
+                    <li><a href="#">{{ __('home.footer_teach') }}</a></li>
+                    <li><a href="#">{{ __('home.footer_about') }}</a></li>
+                    <li><a href="#">{{ __('home.footer_contact') }}</a></li>
+                    <li><a href="#">{{ __('home.footer_help') }}</a></li>
                 </ul>
             </div>
 
             <div class="footer-links-column">
                 <ul>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookies Policy</a></li>
-                    <li><a href="#">Career</a></li>
+                    <li><a href="#">{{ __('home.footer_terms') }}</a></li>
+                    <li><a href="#">{{ __('home.footer_privacy') }}</a></li>
+                    <li><a href="#">{{ __('home.footer_cookies') }}</a></li>
+                    <li><a href="#">{{ __('home.footer_career') }}</a></li>
                 </ul>
             </div>
 
             <div class="footer-right-section">
-                <select class="footer-lang-select">
-                    <option>English</option>
-                    <option>Thai</option>
-                </select>
+                <form method="POST" id="home-footer-lang-form" action="{{ route('locale.set', ['locale' => app()->getLocale()]) }}" class="footer-lang-form" style="display:inline;">
+                    @csrf
+                    <select class="footer-lang-select" onchange="document.getElementById('home-footer-lang-form').action='{{ url('/set-language') }}/'+this.value; document.getElementById('home-footer-lang-form').submit();">
+                        <option value="en" @selected(app()->getLocale() === 'en')>{{ __('home.lang_english') }}</option>
+                        <option value="th" @selected(app()->getLocale() === 'th')>{{ __('home.lang_thai') }}</option>
+                    </select>
+                </form>
                 
                 <div class="footer-socials">
                     <a href="#" class="social-icon facebook">

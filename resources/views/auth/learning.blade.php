@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning</title>
+    <title>{{ __('learning.page_title') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <style>
@@ -369,12 +369,12 @@
         @include('partials.sidebar', ['activePage' => 'learning'])
 
         <main class="content">
-            <h2 class="page-title">Learning</h2>
+            <h2 class="page-title">{{ __('learning.page_heading') }}</h2>
             
             <div class="main-card">
                 <div class="tabs">
-                    <div class="tab active">Ongoing courses</div>
-                    <div class="tab">Completed courses</div>
+                    <div class="tab active">{{ __('learning.tab_ongoing') }}</div>
+                    <div class="tab">{{ __('learning.tab_completed') }}</div>
                 </div>
 
                 <!-- <div class="grid">
@@ -400,82 +400,37 @@
                     @endfor
                 </div> -->
 
+                @php
+                    $learningCards = [
+                        ['img' => '9. Animal care.jpg', 'progress' => 90, 'href' => '#'],
+                        ['img' => '10. Create a startup.jpg', 'progress' => 90, 'href' => '#'],
+                        ['img' => '1. Identity.png', 'progress' => 90, 'href' => '#'],
+                        ['img' => '2. Relationship building digital business base.png', 'progress' => 90, 'href' => '#'],
+                    ];
+                    $learningItems = __('learning.items');
+                @endphp
                 <div class="grid">
-                    <a href="#" style="text-decoration: none; color: inherit;">
+                    @foreach ($learningCards as $index => $card)
+                    @php $item = $learningItems[$index] ?? ['date' => '', 'title' => '', 'description' => '']; @endphp
+                    <a href="{{ $card['href'] }}" style="text-decoration: none; color: inherit;">
                         <div class="course-wrap">
                             <div class="course-card">
                                 <div class="cc-header">
-                                    <span class="cc-date">01 June 2026</span>
+                                    <span class="cc-date">{{ $item['date'] }}</span>
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
                                 </div>
-                                <div class="cc-img" style="background-image: url('{{ asset('images/9. Animal care.jpg') }}');"></div>
-                                <div class="cc-badge">(New Feature) Task</div>
-                                <h3 class="cc-title">Veterinary Nursing Assistant Course</h3>
+                                <div class="cc-img" style="background-image: url('{{ asset('images/' . $card['img']) }}');"></div>
+                                <div class="cc-badge">{{ __('learning.task_badge') }}</div>
+                                <h3 class="cc-title">{{ $item['title'] }}</h3>
                                 <div class="progress-bar-wrap">
-                                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
-                                    <span class="progress-text">90%</span>
+                                    <div class="progress-bg"><div class="progress-fill" style="width: {{ $card['progress'] }}%;"></div></div>
+                                    <span class="progress-text">{{ $card['progress'] }}%</span>
                                 </div>
-                                <p class="cc-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p class="cc-desc">{{ $item['description'] }}</p>
                             </div>
                         </div>
                     </a>
-
-                    <a href="#" style="text-decoration: none; color: inherit;">
-                        <div class="course-wrap">
-                            <div class="course-card">
-                                <div class="cc-header">
-                                    <span class="cc-date">01 June 2026</span>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-                                </div>
-                                <div class="cc-img" style="background-image: url('{{ asset('images/10. Create a startup.jpg') }}');"></div>
-                                <div class="cc-badge">(New Feature) Task</div>
-                                <h3 class="cc-title">Building a Sustainable Startup: Strategies...</h3>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
-                                    <span class="progress-text">90%</span>
-                                </div>
-                                <p class="cc-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#" style="text-decoration: none; color: inherit;">
-                        <div class="course-wrap">
-                            <div class="course-card">
-                                <div class="cc-header">
-                                    <span class="cc-date">01 June 2026</span>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-                                </div>
-                                <div class="cc-img" style="background-image: url('{{ asset('images/1. Identity.png') }}');"></div>
-                                <div class="cc-badge">(New Feature) Task</div>
-                                <h3 class="cc-title">Rajamangala Identity Course</h3>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
-                                    <span class="progress-text">90%</span>
-                                </div>
-                                <p class="cc-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#" style="text-decoration: none; color: inherit;">
-                        <div class="course-wrap">
-                            <div class="course-card">
-                                <div class="cc-header">
-                                    <span class="cc-date">01 June 2026</span>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-                                </div>
-                                <div class="cc-img" style="background-image: url('{{ asset('images/2. Relationship building digital business base.png') }}');"></div>
-                                <div class="cc-badge">(New Feature) Task</div>
-                                <h3 class="cc-title">Building Relationships to Create a Digital Busi..</h3>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
-                                    <span class="progress-text">90%</span>
-                                </div>
-                                <p class="cc-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </a>
+                    @endforeach
                 </div>
             </div>
         </main>

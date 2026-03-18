@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'intro_title' => 'หลักสูตรนี้มี 17 โมดูล',
+    'intro_text' => 'หลักสูตรนี้ฝึกทักษะผู้ช่วยพยาบาลสัตวแพทย์อย่างครบวงจร ครอบคลุมการดูแลสัตว์ การจัดการสุขภาพ การดำเนินธุรกิจ และกฎหมายที่เกี่ยวข้อง คุณจะได้เรียนทั้งทฤษฎีและปฏิบัติเพื่อเตรียมสู่อาชีพด้านสุขภาพสัตว์และธุรกิจสัตว์เลี้ยง',
+    'hours_unit' => 'ชั่วโมง',
+    'clos_label' => 'CLO',
+    'row_teaching' => 'การสอนและการเรียนรู้:',
+    'row_media' => 'สื่อที่ใช้:',
+    'row_teacher' => 'อาจารย์:',
+    'modules' => [
+        ['title' => 'บทนำสู่สัตว์', 'desc' => 'แนะนำหลักสูตร ชนิดและประเภทของสัตว์', 'clos' => '2', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'รศ. สุพรรษา'],
+        ['title' => 'การจัดการดูแลสัตว์เลี้ยง', 'desc' => 'การจัดการดูแลสัตว์เลี้ยง', 'clos' => '2', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.ดร.'],
+        ['title' => 'โรคและการจัดการสุขภาพ', 'desc' => 'โรคและการจัดการ สุขภาพ', 'clos' => '2', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.ดร.'],
+        ['title' => 'ลักษณะและคุณสมบัติผู้ประกอบการ', 'desc' => 'ลักษณะและคุณสมบัติของผู้ประกอบการ', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.'],
+        ['title' => 'ธุรกิจขนาดเล็กและใหญ่', 'desc' => 'ธุรกิจขนาดเล็ก แนวคิดธุรกิจ โมเดลองค์กร', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.'],
+        ['title' => 'การบริหารการตลาด', 'desc' => 'การตลาด การเงิน การผลิต', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.'],
+        ['title' => 'กฎหมายและจรรยาบรรณ', 'desc' => 'กฎหมายที่เกี่ยวข้อง จรรยาบรรณผู้ประกอบการ', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.'],
+        ['title' => 'การประเมินผล', 'desc' => 'การประเมิน ระบบดำเนินธุรกิจ', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.'],
+        ['title' => 'สอบกลางภาค', 'desc' => 'การประเมินกลางภาค', 'clos' => '-', 'hours' => '-', 'activities' => 'สอบ', 'media' => 'กระดาษสอบ', 'teacher' => 'ผศ.'],
+        ['title' => 'การดำเนินธุรกิจ', 'desc' => 'การดำเนินงานทางธุรกิจ', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.'],
+        ['title' => 'ประเภทธุรกิจการเลี้ยงสัตว์', 'desc' => 'ประเภทธุรกิจฟาร์มและการเลี้ยง', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.ดร.'],
+        ['title' => 'ระบบสารสนเทศ', 'desc' => 'ระบบสารสนเทศ', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.'],
+        ['title' => 'เทคโนโลยีโรงพยาบาลสัตว์', 'desc' => 'อุปกรณ์และผลิตภัณฑ์สำหรับสัตว์', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.ดร.'],
+        ['title' => 'กฎหมายที่เกี่ยวกับปศุสัตว์', 'desc' => 'กฎหมายที่เกี่ยวข้อง ธุรกิจการเลี้ยง', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.ดร.'],
+        ['title' => 'สุขภาพพนักงานในคลินิกและโรงพยาบาล', 'desc' => 'สุขภาพพนักงาน สภาพแวดล้อมการทำงาน', 'clos' => '1', 'hours' => '3', 'activities' => 'บรรยายออนไลน์/ในสถานที่', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.ดร.'],
+        ['title' => 'นำเสนอแผนธุรกิจ', 'desc' => 'การนำเสนอแผนธุรกิจ การวางแผนธุรกิจยั่งยืน', 'clos' => '1, 2', 'hours' => '3', 'activities' => 'นำเสนอแผนธุรกิจ', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'ผศ.ดร.'],
+        ['title' => 'สอบปลายภาค', 'desc' => 'สอบปลายภาค', 'clos' => '-', 'hours' => '-', 'activities' => 'สอบ', 'media' => 'กระดาษสอบ', 'teacher' => 'ผศ.'],
+    ],
+];

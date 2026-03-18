@@ -1,0 +1,45 @@
+<?php
+
+return [
+    'title_detail' => 'รายละเอียดหลักสูตร | IL² RMUTTO',
+    'title_courses' => 'หลักสูตร | IL² RMUTTO',
+    'title_modules' => 'โมดูลหลักสูตร | IL² RMUTTO',
+    'title_recommendations' => 'หลักสูตรแนะนำ | IL² RMUTTO',
+    'title_testimonials' => 'คำรับรอง | IL² RMUTTO',
+
+    'tab_about' => 'เกี่ยวกับ',
+    'tab_outcomes' => 'ผลการเรียนรู้',
+    'tab_modules' => 'โมดูล',
+    'tab_recommendations' => 'แนะนำ',
+    'tab_testimonials' => 'คำรับรอง',
+    'tab_reviews' => 'รีวิว',
+
+    'created_by' => 'สร้างโดย :',
+    'teacher' => 'อาจารย์',
+    'ratings_zero' => '0 คะแนน',
+    'students_zero' => '0 คน',
+    'save' => 'บันทึก',
+    'share' => 'แชร์',
+    'course_title_vet' => 'หลักสูตรผู้ช่วยพยาบาลสัตวแพทย์',
+    'free' => 'ฟรี',
+    'updated_date' => 'อัปเดตล่าสุด : 26 มีนาคม 2569',
+    'updated_date_icon' => 'อัปเดตล่าสุด : 26 มีนาคม 2569',
+    'course_start' => 'วันเริ่มหลักสูตร :',
+    'course_end' => 'วันจบหลักสูตร :',
+    'date_march_26' => '26 มีนาคม 2569',
+    'date_june_26' => '26 มิถุนายน 2569',
+    'short_desc_default' => 'เพื่อให้เนื้อหาทันสมัยกับเทคโนโลยีและสอดคล้องผลการเรียนรู้',
+    'add_to_cart' => 'ใส่ตะกร้า',
+    'subscribe_now' => 'สมัครเรียนทันที',
+    'search_placeholder' => 'ค้นหาที่นี่',
+    'student' => 'ผู้เรียน',
+
+    'recom_heading' => 'สำรวจเพิ่มเติมจากการตลาด',
+    'recom_card_title' => 'วิทยาศาสตร์ครบวงจร..',
+    'recom_card_desc' => 'คำอธิบายหัวข้อตัวอย่างสำหรับแสดงบนการ์ด',
+
+    'testi_heading' => 'ทำไมผู้คนถึงเลือก IL² เพื่อพัฒนาอาชีพ',
+    'testi_name' => 'Felipe M.',
+    'testi_since' => 'เรียนมาตั้งแต่ 2018',
+    'testi_quote' => '"การเรียนตามจังหวะและเวลาของตัวเองทำให้ประสบการณ์การเรียนรู้ยอดเยี่ยม เรียนได้เมื่อสะดวกและเหมาะกับอารมณ์ของเรา"',
+];

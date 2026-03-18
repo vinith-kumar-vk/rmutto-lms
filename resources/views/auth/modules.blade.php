@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Modules | IL2 RMUTTO</title>
+    <title>{{ __('course_flow.title_modules') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -175,12 +175,12 @@
         <div class="header-pill">
             <div class="header-left">
                 <a href="{{ route('dashboard.1') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                <div class="search-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" placeholder="Search here"></div>
+                <div class="search-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" placeholder="{{ __('course_flow.search_placeholder') }}"></div>
             </div>
             <div class="header-right">
                 <div class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
                 <div class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
-                <a href="{{ route('account.new') }}" class="profile-pill"><div class="avatar-head"></div><span>Student</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg></a>
+                <a href="{{ route('account.new') }}" class="profile-pill"><div class="avatar-head"></div><span>{{ Auth::check() ? Auth::user()->name : __('course_flow.student') }}</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg></a>
             </div>
         </div>
     </header>
@@ -189,39 +189,39 @@
         <aside class="sidebar">
             <a href="{{ route('dashboard.1') }}" class="nav-link">
                 <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-                Dashboard
+                {{ __('navigation.dashboard') }}
             </a>
             <a href="{{ route('calendar') }}" class="nav-link">
                 <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-                Calendar
+                {{ __('navigation.calendar') }}
             </a>
             <a href="{{ route('learning') }}" class="nav-link">
                 <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-                Learning
+                {{ __('navigation.learning') }}
             </a>
             <a href="{{ route('courses') }}" class="nav-link active">
                 <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-                Exam
+                {{ __('navigation.courses') }}
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('quiz') }}" class="nav-link">
                 <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-                Quiz
+                {{ __('navigation.quiz') }}
             </a>
             <a href="{{ route('account.new') }}" class="nav-link">
                 <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-                Account
+                {{ __('navigation.account') }}
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('wallet.address') }}" class="nav-link">
                 <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-                Wallet Address
+                {{ __('navigation.wallet_address') }}
             </a>
             <a href="{{ route('transaction') }}" class="nav-link">
                 <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-                Transaction
+                {{ __('navigation.transaction') }}
             </a>
-            <a href="{{ route('shopping.cart') }}" class="nav-link">
+            <a href="{{ route('payment.method') }}" class="nav-link">
                 <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-                Payment
+                {{ __('navigation.payment') }}
             </a>
         </aside>
 
@@ -233,27 +233,27 @@
                             <div class="t-info">
                                 <div class="t-avatar"></div>
                                 <div class="t-content">
-                                    <p>Created by : <span>Teacher</span></p>
-                                    <div class="t-meta"><span>⭐ 0 Ratings</span><span>👥 0 Students</span></div>
+                                    <p>{{ __('course_flow.created_by') }} <span>{{ __('course_flow.teacher') }}</span></p>
+                                    <div class="t-meta"><span>{{ __('course_flow.ratings_zero') }}</span><span>{{ __('course_flow.students_zero') }}</span></div>
                                 </div>
                             </div>
                             <div class="hero-left-actions">
-                                <a href="#" class="btn-outline-sm">Save</a>
-                                <a href="#" class="btn-outline-sm">Share</a>
+                                <a href="#" class="btn-outline-sm">{{ __('course_flow.save') }}</a>
+                                <a href="#" class="btn-outline-sm">{{ __('course_flow.share') }}</a>
                             </div>
                         </div>
                         <div class="title-price-row">
-                            <h1>Veterinary Nursing Assistant Course</h1>
-                            <span class="price-text">Free</span>
+                            <h1>{{ __('course_flow.course_title_vet') }}</h1>
+                            <span class="price-text">{{ __('course_flow.free') }}</span>
                         </div>
-                        <div class="update-date">📅 Updated date : 26 march 2026</div>
-                        <p class="course-short-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</p>
+                        <div class="update-date">{{ __('course_flow.updated_date_icon') }}</div>
+                        <p class="course-short-desc">{{ __('course_flow.short_desc_default') }}</p>
                         <div class="date-info" style="font-size: 13px; color: #64748b; margin-top: 15px;">
-                            Course start date : <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">26 march 2026</span>
-                            Course end date : <span style="color: #2563eb; font-weight: 700;">26 June 2026</span>
+                            {{ __('course_flow.course_start') }} <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">{{ __('course_flow.date_march_26') }}</span>
+                            {{ __('course_flow.course_end') }} <span style="color: #2563eb; font-weight: 700;">{{ __('course_flow.date_june_26') }}</span>
                         </div>
                         <div class="hero-btns">
-                            <button class="btn-dark-blue" style="background: #002b55;">Add to Cart</button>
+                            <button type="button" class="btn-dark-blue" style="background: #002b55;">{{ __('course_flow.add_to_cart') }}</button>
                         </div>
                     </div>
                     <div class="hero-right">
@@ -264,49 +264,27 @@
                 </div>
 
                 <div class="tab-strip">
-                    <a href="{{ route('course.detail') }}" class="tab-item">About</a>
-                    <a href="{{ route('courses') }}" class="tab-item">Outcomes</a>
-                    <div class="tab-item active">Modules</div>
-                    <a href="{{ route('recommendations') }}" class="tab-item">Recommendations</a>
-                    <a href="{{ route('testimonials') }}" class="tab-item">Testimonials</a>
-                    <a href="{{ route('reviews') }}" class="tab-item">Reviews</a>
+                    <a href="{{ route('course.detail') }}" class="tab-item">{{ __('course_flow.tab_about') }}</a>
+                    <a href="{{ route('courses') }}" class="tab-item">{{ __('course_flow.tab_outcomes') }}</a>
+                    <div class="tab-item active">{{ __('course_flow.tab_modules') }}</div>
+                    <a href="{{ route('recommendations') }}" class="tab-item">{{ __('course_flow.tab_recommendations') }}</a>
+                    <a href="{{ route('testimonials') }}" class="tab-item">{{ __('course_flow.tab_testimonials') }}</a>
+                    <a href="{{ route('reviews') }}" class="tab-item">{{ __('course_flow.tab_reviews') }}</a>
                 </div>
 
                 <div class="modules-content">
                     <div class="modules-header-info">
-                        <h2>There are 17 modules in this course</h2>
-                        <p>This course provides comprehensive training for veterinary nursing assistants, covering animal care, health management, business operations, and relevant laws. You'll progress through theoretical concepts and practical applications to prepare for a professional career in animal healthcare and pet business management.</p>
+                        <h2>{{ __('modules_page.intro_title') }}</h2>
+                        <p>{{ __('modules_page.intro_text') }}</p>
                     </div>
 
                     <div class="modules-list-outer">
-                        @php
-                        $modules = [
-                            ['title' => 'Introduction to Animals', 'desc' => 'Introducing the course, Types and kinds of animals, Liang', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Associate Professor Suphansa'],
-                            ['title' => 'Pet Care Management', 'desc' => 'Pet care management', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Rainy Season Army)'],
-                            ['title' => 'Disease and Health Management', 'desc' => 'Disease and management, Health', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. Sri (Characteristics Suwan)'],
-                            ['title' => 'Characteristics and Properties of Entrepreneur', 'desc' => 'Characteristics and properties of entrepreneur', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
-                            ['title' => 'Small-Scale and Large-Scale Business', 'desc' => 'Small-scale business, Large and small business concepts, Organization models', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
-                            ['title' => 'Marketing Management', 'desc' => 'Marketing management, Finance, Production', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
-                            ['title' => 'Human Law and Ethics', 'desc' => 'Human law, Related ethics, Entrepreneurial ethics', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
-                            ['title' => 'Evaluation', 'desc' => 'Evaluation, Conducting business systems', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
-                            ['title' => 'Midterm test', 'desc' => 'Midterm Assessment', 'clos' => '-', 'hours' => '-', 'activities' => 'Examination', 'media' => 'Test Paper', 'teacher' => 'Asst. Professor'],
-                            ['title' => 'Business Operations', 'desc' => 'Business operations', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
-                            ['title' => 'Types of Livestock Farming Businesses', 'desc' => 'Types of livestock farming businesses', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Suwan)'],
-                            ['title' => 'Information Systems', 'desc' => 'Information systems', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Assistant Professor (Pramote Thawitdika)'],
-                            ['title' => 'Hospital Technology for Animals', 'desc' => 'Equipment and products for animals, Liang', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Suwan)'],
-                            ['title' => 'Laws Related to Livestock', 'desc' => 'Laws related to livestock, Business of raising livestock', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Army)'],
-                            ['title' => 'Health of Employees in Clinics and Hospitals', 'desc' => 'Health of employees, Work environment in clinics and hospitals, Body (basic health considerations)', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Suwan)'],
-                            ['title' => 'Business Plan Presentation', 'desc' => 'Presenting a business plan, Self-sustaining business planning, Liang', 'clos' => '1, 2', 'hours' => '3', 'activities' => 'Presenting a business plan', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr. (Tha)'],
-                            ['title' => 'Final Assessment', 'desc' => 'Final Exam', 'clos' => '-', 'hours' => '-', 'activities' => 'Examination', 'media' => 'Test Paper', 'teacher' => 'Asst. Professor'],
-                        ];
-                        @endphp
-
-                        @foreach($modules as $index => $mod)
+                        @foreach(__('modules_page.modules') as $index => $mod)
                         <div class="mod-item {{ $index === 0 ? 'expanded' : '' }}">
                             <div class="mod-header" onclick="this.parentElement.classList.toggle('expanded')">
                                 <div class="mh-left-col">
                                     <h3>{{ $mod['title'] }}</h3>
-                                    <p>{{ $mod['hours'] }} hours • CLOs: {{ $mod['clos'] }}</p>
+                                    <p>{{ $mod['hours'] }} {{ __('modules_page.hours_unit') }} • {{ __('modules_page.clos_label') }}: {{ $mod['clos'] }}</p>
                                 </div>
                                 <div class="mh-right-col">
                                     <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
@@ -315,9 +293,9 @@
                             <div class="mod-expanded-content" style="display: {{ $index === 0 ? 'block' : 'none' }};">
                                 <p class="mod-desc">{{ $mod['desc'] }}</p>
                                 <div class="lesson-list">
-                                    <div class="lesson-row"><strong>Teaching & Learning:</strong> <span>{{ $mod['activities'] }}</span></div>
-                                    <div class="lesson-row"><strong>Media Used:</strong> <span>{{ $mod['media'] }}</span></div>
-                                    <div class="lesson-row"><strong>Teacher:</strong> <span>{{ $mod['teacher'] }}</span></div>
+                                    <div class="lesson-row"><strong>{{ __('modules_page.row_teaching') }}</strong> <span>{{ $mod['activities'] }}</span></div>
+                                    <div class="lesson-row"><strong>{{ __('modules_page.row_media') }}</strong> <span>{{ $mod['media'] }}</span></div>
+                                    <div class="lesson-row"><strong>{{ __('modules_page.row_teacher') }}</strong> <span>{{ $mod['teacher'] }}</span></div>
                                 </div>
                             </div>
                         </div>
@@ -337,33 +315,37 @@
                 });
             });
         </script>
-    </div>
-</main>
 
         <footer>
             <div class="footer-inner">
                 <div class="f-brand">
-                    <div class="f-logo-circle"><img src="{{ asset('images/icons/logo.svg') }}"></div>
-                    <p>Learn anytime and anywhere from IL2 career skills</p>
+                    <div class="f-logo-circle"><img src="{{ asset('images/icons/logo.svg') }}" alt=""></div>
+                    <p>{{ __('home.footer_tagline') }}</p>
                 </div>
                 <div class="f-col">
                     <ul>
-                        <li><a href="#">Teach on IL2</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Help and Support</a></li>
+                        <li><a href="#">{{ __('home.footer_teach') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_about') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_contact') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_help') }}</a></li>
                     </ul>
                 </div>
                 <div class="f-col">
                     <ul>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookies Policy</a></li>
-                        <li><a href="#">Career</a></li>
+                        <li><a href="#">{{ __('home.footer_terms') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_privacy') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_cookies') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_career') }}</a></li>
                     </ul>
                 </div>
                 <div class="f-right-col">
-                    <select class="lang-picker"><option>English</option></select>
+                    <form method="POST" id="modules-footer-lang" action="{{ route('locale.set', ['locale' => app()->getLocale()]) }}" style="display:inline;">
+                        @csrf
+                        <select class="lang-picker" onchange="document.getElementById('modules-footer-lang').action='{{ url('/set-language') }}/'+this.value; document.getElementById('modules-footer-lang').submit();">
+                            <option value="en" @selected(app()->getLocale() === 'en')>{{ __('home.lang_english') }}</option>
+                            <option value="th" @selected(app()->getLocale() === 'th')>{{ __('home.lang_thai') }}</option>
+                        </select>
+                    </form>
                     <div class="social-row">
                         <div class="s-link"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></div>
                         <div class="s-link"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></div>

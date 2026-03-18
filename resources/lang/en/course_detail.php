@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'created_by' => 'Created by :',
+    'summary_short' => 'Types and categories of pet animals; pet care and management; diseases and health management;',
+    'about_long' => 'Types and categories of pet animals; pet care and management; diseases and health management; characteristics and qualifications of entrepreneurs; small, medium, and large-scale businesses - business organization structures; marketing management; finance; production - accounting; human resource management - relevant laws and entrepreneurial ethics; business performance evaluation; business operations; types of pet animal businesses; information systems; technology in pet animal hospitals; equipment and products for pet animals; laws related to pet animal businesses. Health of healthcare workers in clinics and hospitals.',
+    'skills_heading' => 'Skills you will gain:',
+    'skills' => [
+        'Pet animal classification and identification',
+        'Pet care and management skills',
+        'Disease prevention and health management',
+        'Entrepreneurial skills and mindset',
+        'Business types and organization structures',
+        'Marketing and sales management',
+        'Basic finance and accounting skills',
+        'Production and operations management',
+        'Human resource management',
+    ],
+    'about_course' => 'About this course',
+    'free_banner_title' => 'Get free sessions — sample course',
+    'free_banner_desc' => 'Watch your favorite instructor\'s free content',
+    'duration' => 'Duration',
+    'duration_val' => '23 Days',
+    'weekly_study' => 'Weekly Study',
+    'weekly_val' => '32 Hours',
+    'online_100' => '100% Online',
+    'online_val' => 'Learn at your own pace',
+    'quiz' => 'Quiz',
+    'quiz_val' => 'Total Quizzes: 3',
+];

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses | IL² RMUTTO</title>
+    <title>{{ __('category.page_title') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
@@ -57,6 +57,10 @@
             color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none;
         }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
+        .language-selector select {
+            padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 20px; cursor: pointer;
+            font-size: 12px; font-weight: 600; background: #f8fafc; color: #475569;
+        }
 
         /* ─── LAYOUT ─── */
         .shell {
@@ -168,14 +172,14 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </a>
                 <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none; display: flex; align-items: center; gap: 8px;">
-                    Courses
+                    {{ __('category.nav_courses') }}
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </a>
                 <div class="search-wrap">
                     <a href="{{ route('search') }}">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </a>
-                    <input type="text" placeholder="Search here" >
+                    <input type="text" placeholder="{{ __('category.search_placeholder') }}">
                 </div>
             </div>
             <div class="header-right">
@@ -189,9 +193,25 @@
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                     <span class="notif-badge">2</span>
                 </div>
+                <form method="POST" class="language-selector" style="display: inline;">
+                    @csrf
+                    <select name="locale" onchange="
+                        const form = this.closest('form');
+                        form.action = '{{ url('/set-language') }}/' + this.value;
+                        form.submit();
+                    ">
+                        @foreach(config('languages.languages', []) as $loc => $lang)
+                            @if(($lang['enabled'] ?? true))
+                                <option value="{{ $loc }}" @selected(app()->getLocale() === $loc)>
+                                    {{ $lang['native_name'] ?? $loc }}
+                                </option>
+                            @endif
+                        @endforeach
+                    </select>
+                </form>
                 <a href="{{ route('account.new') }}" class="profile-pill">
                     <div class="avatar-head"></div>
-                    <span>{{ $user->name ?? 'Student' }}</span>
+                    <span>{{ Auth::check() ? Auth::user()->name : __('category.student_default') }}</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
                 </a>
             </div>
@@ -199,33 +219,34 @@
     </header>
 
     @php
-    $courses = [
-        ['title' => 'Veterinary Nursing Assistant Course', 'img' => '9. Animal care.jpg'],
-        ['title' => 'Building a Sustainable Startup: Strategies for Success', 'img' => '10. Create a startup.jpg'],
-        ['title' => 'Rajamangala Identity Course', 'img' => '1. Identity.png'],
-        ['title' => 'Building Relationships to Create a Digital Business Foundation', 'img' => '2. Relationship building digital business base.png'],
-        ['title' => 'Beverage Business: From Idea to Sustainable Success', 'img' => '3. drinks.jpg'],
-        ['title' => 'Anti-Aging Business with Bioproducts', 'img' => '4. Business.jpg'],
-        ['title' => 'Learn and Get Rich', 'img' => '5. Customer management and satisfaction.jpg'],
-        ['title' => 'Camping Tourism and Campsite Entrepreneurship', 'img' => '6. Camping tourism education and camping business.png'],
-        ['title' => 'Pet Business', 'img' => '7. Pet business.jpg'],
-        ['title' => 'Creating a Business from Local Wisdom to Added Value', 'img' => '8. Building a business from knowledge to added value.jpg'],
-        ['title' => 'Dare to Dream: Becoming a Startup Business', 'img' => '18. Dare to dream of becoming a business startup.png'],
-        ['title' => 'Craft Tech: Turning Creativity into Income', 'img' => '19. Craft Tech is money.png'],
-        ['title' => 'Gem Trader / Gemstone Business', 'img' => '20. People walk.png'],
-        ['title' => 'Proactive Business Plan', 'img' => '21. Proactive business plan.png'],
-        ['title' => 'Customer-Centric Research', 'img' => '22. Research to please customers.png'],
-        ['title' => 'Smart Investment for Digital Entrepreneurs', 'img' => '23. Smart investment for digital entrepreneurs.png'],
-        ['title' => 'Safety Strategies for Professional Entrepreneurs', 'img' => '24. Security tips for professional entrepreneurs.png'],
-        ['title' => 'Secrets of Live Streaming in the Streaming World', 'img' => '25. The secret recipe of live streaming in the world.png'],
-        ['title' => 'Data Analysis and Presentation for Entrepreneurs', 'img' => '11. Analysis and presentation.jpg'],
-        ['title' => 'Smart Finance: Don’t Be Clueless About Money', 'img' => '12. Finance must not be stupid.jpg'],
-        ['title' => 'Building Digital Business Partnerships', 'img' => '13. Make thousands of business friends.jpg'],
-        ['title' => 'Artificial Intelligence Skills', 'img' => '14. skills in using artificial intelligence.png'],
-        ['title' => 'Advanced Techniques for Creating Powerful Media', 'img' => '15. Learn how to create powerful media.png'],
-        ['title' => 'Digital Business Plan Developer', 'img' => '16. Digital business developer.jpg'],
-        ['title' => 'Start Investing: Your First Step into the Financial World', 'img' => '17. Start investing first step in the financial world.png'],
-    ];
+        $courseImages = [
+            '9. Animal care.jpg',
+            '10. Create a startup.jpg',
+            '1. Identity.png',
+            '2. Relationship building digital business base.png',
+            '3. drinks.jpg',
+            '4. Business.jpg',
+            '5. Customer management and satisfaction.jpg',
+            '6. Camping tourism education and camping business.png',
+            '7. Pet business.jpg',
+            '8. Building a business from knowledge to added value.jpg',
+            '18. Dare to dream of becoming a business startup.png',
+            '19. Craft Tech is money.png',
+            '20. People walk.png',
+            '21. Proactive business plan.png',
+            '22. Research to please customers.png',
+            '23. Smart investment for digital entrepreneurs.png',
+            '24. Security tips for professional entrepreneurs.png',
+            '25. The secret recipe of live streaming in the world.png',
+            '11. Analysis and presentation.jpg',
+            '12. Finance must not be stupid.jpg',
+            '13. Make thousands of business friends.jpg',
+            '14. skills in using artificial intelligence.png',
+            '15. Learn how to create powerful media.png',
+            '16. Digital business developer.jpg',
+            '17. Start investing first step in the financial world.png',
+        ];
+        $courseTitles = __('category.courses');
     @endphp
 
     <!-- ── SHELL ─────────────────────── -->
@@ -233,29 +254,30 @@
         <!-- Main Courses Card -->
         <main class="main-card">
             <div class="main-header">
-                <h2>Courses</h2>
+                <h2>{{ __('category.heading_courses') }}</h2>
                 <div class="sort-wrap">
-                    <span class="sort-label">Sort by</span>
+                    <span class="sort-label">{{ __('category.sort_by') }}</span>
                     <select class="sort-select">
-                        <option>Default</option>
-                        <option>Most Popular</option>
-                        <option>Most Rated</option>
-                        <option>Date</option>
+                        <option>{{ __('category.sort_default') }}</option>
+                        <option>{{ __('category.sort_popular') }}</option>
+                        <option>{{ __('category.sort_rated') }}</option>
+                        <option>{{ __('category.sort_date') }}</option>
                     </select>
                 </div>
             </div>
 
             <div class="cat-grid">
-                @foreach ($courses as $index => $course)
+                @foreach ($courseImages as $index => $img)
+                @php $title = $courseTitles[$index] ?? ''; @endphp
                 @if($index == 0)
                 <a href="{{ route('courses') }}" class="cat-card" style="text-decoration:none;">
                 @else
                 <div class="cat-card">
                 @endif
-                    <img src="{{ asset('images/' . $course['img']) }}" alt="{{ $course['title'] }}">
+                    <img src="{{ asset('images/' . $img) }}" alt="{{ $title }}">
                     <div class="cat-overlay">
                         <div class="cat-blur">
-                            <span class="cat-name">{{ $course['title'] }}</span>
+                            <span class="cat-name">{{ $title }}</span>
                         </div>
                     </div>
                 @if($index == 0)

@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'intro_title' => 'There are 17 modules in this course',
+    'intro_text' => 'This course provides comprehensive training for veterinary nursing assistants, covering animal care, health management, business operations, and relevant laws. You will progress through theoretical concepts and practical applications to prepare for a professional career in animal healthcare and pet business management.',
+    'hours_unit' => 'hours',
+    'clos_label' => 'CLOs',
+    'row_teaching' => 'Teaching & Learning:',
+    'row_media' => 'Media Used:',
+    'row_teacher' => 'Teacher:',
+    'modules' => [
+        ['title' => 'Introduction to Animals', 'desc' => 'Introducing the course, Types and kinds of animals', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Associate Professor Suphansa'],
+        ['title' => 'Pet Care Management', 'desc' => 'Pet care management', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr.'],
+        ['title' => 'Disease and Health Management', 'desc' => 'Disease and management, Health', 'clos' => '2', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr.'],
+        ['title' => 'Characteristics and Properties of Entrepreneur', 'desc' => 'Characteristics and properties of entrepreneur', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+        ['title' => 'Small-Scale and Large-Scale Business', 'desc' => 'Small-scale business, Large and small business concepts, Organization models', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+        ['title' => 'Marketing Management', 'desc' => 'Marketing management, Finance, Production', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+        ['title' => 'Human Law and Ethics', 'desc' => 'Human law, Related ethics, Entrepreneurial ethics', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+        ['title' => 'Evaluation', 'desc' => 'Evaluation, Conducting business systems', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+        ['title' => 'Midterm test', 'desc' => 'Midterm Assessment', 'clos' => '-', 'hours' => '-', 'activities' => 'Examination', 'media' => 'Test Paper', 'teacher' => 'Asst. Professor'],
+        ['title' => 'Business Operations', 'desc' => 'Business operations', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Professor'],
+        ['title' => 'Types of Livestock Farming Businesses', 'desc' => 'Types of livestock farming businesses', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr.'],
+        ['title' => 'Information Systems', 'desc' => 'Information systems', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Assistant Professor'],
+        ['title' => 'Hospital Technology for Animals', 'desc' => 'Equipment and products for animals', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr.'],
+        ['title' => 'Laws Related to Livestock', 'desc' => 'Laws related to livestock, Business of raising livestock', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr.'],
+        ['title' => 'Health of Employees in Clinics and Hospitals', 'desc' => 'Health of employees, Work environment in clinics and hospitals', 'clos' => '1', 'hours' => '3', 'activities' => 'Online/Onsite presentation', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr.'],
+        ['title' => 'Business Plan Presentation', 'desc' => 'Presenting a business plan, Self-sustaining business planning', 'clos' => '1, 2', 'hours' => '3', 'activities' => 'Presenting a business plan', 'media' => 'PowerPoint, Canva, YouTube', 'teacher' => 'Asst. Prof. Dr.'],
+        ['title' => 'Final Assessment', 'desc' => 'Final Exam', 'clos' => '-', 'hours' => '-', 'activities' => 'Examination', 'media' => 'Test Paper', 'teacher' => 'Asst. Professor'],
+    ],
+];

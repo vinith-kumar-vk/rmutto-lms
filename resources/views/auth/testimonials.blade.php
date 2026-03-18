@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials | IL2 RMUTTO</title>
+    <title>{{ __('course_flow.title_testimonials') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
@@ -135,27 +135,27 @@
                         <div class="t-info">
                             <div class="t-avatar"></div>
                             <div class="t-content">
-                                <p>Created by : <span>Teacher</span></p>
-                                <div class="t-meta"><span>â­ 0 Ratings</span><span>ðŸ‘¥ 0 Students</span></div>
+                                <p>{{ __('course_flow.created_by') }} <span>{{ __('course_flow.teacher') }}</span></p>
+                                <div class="t-meta"><span>{{ __('course_flow.ratings_zero') }}</span><span>{{ __('course_flow.students_zero') }}</span></div>
                             </div>
                         </div>
                         <div class="hero-left-actions">
-                            <a href="#" class="btn-outline-sm">Save</a>
-                            <a href="#" class="btn-outline-sm">Share</a>
+                            <a href="#" class="btn-outline-sm">{{ __('course_flow.save') }}</a>
+                            <a href="#" class="btn-outline-sm">{{ __('course_flow.share') }}</a>
                         </div>
                     </div>
                     <div class="title-price-row">
-                        <h1>Veterinary Nursing Assistant Course</h1>
-                        <span class="price-text">Free</span>
+                        <h1>{{ __('course_flow.course_title_vet') }}</h1>
+                        <span class="price-text">{{ __('course_flow.free') }}</span>
                     </div>
-                    <div class="update-date">📅 Updated date : 26 march 2026</div>
-                    <p class="course-short-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</p>
+                    <div class="update-date">{{ __('course_flow.updated_date_icon') }}</div>
+                    <p class="course-short-desc">{{ __('course_flow.short_desc_default') }}</p>
                     <div class="date-info" style="font-size: 13px; color: #64748b; margin-top: 15px;">
-                        Course start date : <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">26 march 2026</span>
-                        Course end date : <span style="color: #2563eb; font-weight: 700;">26 June 2026</span>
+                        {{ __('course_flow.course_start') }} <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">{{ __('course_flow.date_march_26') }}</span>
+                        {{ __('course_flow.course_end') }} <span style="color: #2563eb; font-weight: 700;">{{ __('course_flow.date_june_26') }}</span>
                     </div>
                     <div class="hero-btns">
-                        <button class="btn-dark-blue" style="background: #002b55;">Add to Cart</button>
+                        <button type="button" class="btn-dark-blue" style="background: #002b55;">{{ __('course_flow.add_to_cart') }}</button>
                     </div>
                 </div>
                 <div class="hero-right">
@@ -166,16 +166,16 @@
             </div>
 
             <div class="tab-strip">
-                <a href="{{ route('course.detail') }}" class="tab-item">About</a>
-                <a href="{{ route('courses') }}" class="tab-item">Outcomes</a>
-                <a href="{{ route('modules') }}" class="tab-item">Modules</a>
-                <a href="{{ route('recommendations') }}" class="tab-item">Recommendations</a>
-                <div class="tab-item active">Testimonials</div>
-                <a href="{{ route('reviews') }}" class="tab-item">Reviews</a>
+                <a href="{{ route('course.detail') }}" class="tab-item">{{ __('course_flow.tab_about') }}</a>
+                <a href="{{ route('courses') }}" class="tab-item">{{ __('course_flow.tab_outcomes') }}</a>
+                <a href="{{ route('modules') }}" class="tab-item">{{ __('course_flow.tab_modules') }}</a>
+                <a href="{{ route('recommendations') }}" class="tab-item">{{ __('course_flow.tab_recommendations') }}</a>
+                <div class="tab-item active">{{ __('course_flow.tab_testimonials') }}</div>
+                <a href="{{ route('reviews') }}" class="tab-item">{{ __('course_flow.tab_reviews') }}</a>
             </div>
 
             <div class="testi-header">
-                <h2>Why people choose IL2 for their career</h2>
+                <h2>{{ __('course_flow.testi_heading') }}</h2>
             </div>
 
             <div class="testi-grid">
@@ -184,11 +184,11 @@
                     <div class="testi-user-row">
                         <div class="tu-avatar"></div>
                         <div class="tu-info">
-                            <h4>Felipe M.</h4>
-                            <p>Learner since 2018</p>
+                            <h4>{{ __('course_flow.testi_name') }}</h4>
+                            <p>{{ __('course_flow.testi_since') }}</p>
                         </div>
                     </div>
-                    <p class="testi-text">"To be able to take courses at my own pace and rhythm has been an amazing experience. I can learn whenever it fits my schedule and mood."</p>
+                    <p class="testi-text">{{ __('course_flow.testi_quote') }}</p>
                 </div>
                 @endfor
             </div>
@@ -198,26 +198,32 @@
             <div class="footer-inner">
                 <div class="f-brand">
                     <div class="f-logo-circle"><img src="{{ asset('images/icons/logo.svg') }}"></div>
-                    <p>Learn anytime and anywhere from IL2 career skills</p>
+                    <p>{{ __('home.footer_tagline') }}</p>
                 </div>
                 <div class="f-col">
                     <ul>
-                        <li><a href="#">Teach on IL2</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Help and Support</a></li>
+                        <li><a href="#">{{ __('home.footer_teach') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_about') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_contact') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_help') }}</a></li>
                     </ul>
                 </div>
                 <div class="f-col">
                     <ul>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookies Policy</a></li>
-                        <li><a href="#">Career</a></li>
+                        <li><a href="#">{{ __('home.footer_terms') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_privacy') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_cookies') }}</a></li>
+                        <li><a href="#">{{ __('home.footer_career') }}</a></li>
                     </ul>
                 </div>
                 <div class="f-right-col">
-                    <select class="lang-picker"><option>English</option></select>
+                    <form method="POST" id="testi-footer-lang" action="{{ route('locale.set', ['locale' => app()->getLocale()]) }}" style="display:inline;">
+                        @csrf
+                        <select class="lang-picker" onchange="document.getElementById('testi-footer-lang').action='{{ url('/set-language') }}/'+this.value; document.getElementById('testi-footer-lang').submit();">
+                            <option value="en" @selected(app()->getLocale() === 'en')>{{ __('home.lang_english') }}</option>
+                            <option value="th" @selected(app()->getLocale() === 'th')>{{ __('home.lang_thai') }}</option>
+                        </select>
+                    </form>
                     <div class="social-row">
                         <div class="s-link"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></div>
                         <div class="s-link"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></div>
