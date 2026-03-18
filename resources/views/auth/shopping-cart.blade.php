@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart | IL2 RMUTTO</title>
+    <title>{{ __('cart.page_title') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
@@ -292,8 +292,8 @@
         <!-- Main Content -->
         <main class="content">
             <div class="content-header">
-                <h2>Shopping Cart</h2>
-                <button class="btn-clear">Clear All</button>
+                <h2>{{ __('cart.heading') }}</h2>
+                <button type="button" class="btn-clear">{{ __('cart.clear_all') }}</button>
             </div>
 
             <div class="cart-grid">
@@ -308,18 +308,18 @@
                         <div class="cart-item">
                             <div class="item-thumb"></div>
                             <div class="item-info">
-                                <div class="item-title">Veterinary Nursing Assistant Course</div>
-                                <div class="item-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</div>
+                                <div class="item-title">{{ __('cart.course_title') }}</div>
+                                <div class="item-desc">{{ __('cart.course_desc') }}</div>
                                 <div class="teacher-info">
                                     <div class="teacher-avatar"></div>
-                                    <span class="teacher-name">Created by Teacher</span>
+                                    <span class="teacher-name">{{ __('cart.created_by_teacher') }}</span>
                                 </div>
                                 <div class="item-actions">
-                                    <button class="btn-save">Saved for later</button>
-                                    <button class="btn-delete">Delete</button>
+                                    <button type="button" class="btn-save">{{ __('cart.saved_later') }}</button>
+                                    <button type="button" class="btn-delete">{{ __('cart.delete') }}</button>
                                 </div>
                             </div>
-                            <div class="item-price">Free</div>
+                            <div class="item-price">{{ __('cart.free') }}</div>
                         </div>
                     </div>
 
@@ -351,23 +351,23 @@
                 <!-- Summary Panel -->
                 <div class="summary-panel">
                     <div class="summary-card">
-                        <div class="summary-header">Payment Summary</div>
+                        <div class="summary-header">{{ __('cart.payment_summary') }}</div>
                         <div class="summary-body">
                             <div class="summary-row">
-                                <span class="row-label">Subtotal</span>
+                                <span class="row-label">{{ __('cart.subtotal') }}</span>
                                 <span class="row-value">$0</span>
                             </div>
                             <div class="summary-row">
-                                <span class="row-label">Taxes</span>
+                                <span class="row-label">{{ __('cart.taxes') }}</span>
                                 <span class="row-value">$0</span>
                             </div>
                         </div>
                         <div class="summary-total">
-                            <span class="total-label">Total</span>
+                            <span class="total-label">{{ __('cart.total') }}</span>
                             <span class="total-value">$0</span>
                         </div>
                     </div>
-                    <button class="btn-checkout" onclick="window.location.href='{{ route('payment.method') }}'">Checkout</button>
+                    <button type="button" class="btn-checkout" onclick="window.location.href='{{ route('payment.method') }}'">{{ __('cart.checkout') }}</button>
                 </div>
             </div>
         </main>

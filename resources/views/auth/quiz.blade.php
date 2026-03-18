@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz | IL2 RMUTTO</title>
+    <title>{{ __('quiz.page_title') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
@@ -175,56 +175,56 @@
         @include('partials.sidebar', ['activePage' => 'quiz'])
 
         <main class="content">
-            <h1 class="page-title">Quiz</h1>
+            <h1 class="page-title">{{ __('quiz.heading') }}</h1>
 
             <div class="quiz-grid">
                 <section class="card">
-                    <h3>Upcoming Quizzes</h3>
-                    <p>Track your pending course quizzes and start each one before the deadline.</p>
+                    <h3>{{ __('quiz.upcoming_title') }}</h3>
+                    <p>{{ __('quiz.upcoming_desc') }}</p>
 
                     <div class="quiz-list">
                         <div class="quiz-item">
                             <div class="meta">
-                                <h4>Veterinary Nursing Assistant Course - Chapter 4</h4>
-                                <span>20 questions · 30 min</span>
+                                <h4>{{ __('quiz.quiz1_title') }}</h4>
+                                <span>{{ __('quiz.quiz1_meta') }}</span>
                             </div>
-                            <span class="badge">Due Today</span>
+                            <span class="badge">{{ __('quiz.due_today') }}</span>
                         </div>
                         <div class="quiz-item">
                             <div class="meta">
-                                <h4>Building a Sustainable Startup: Strategies for Success</h4>
-                                <span>15 questions · 20 min</span>
+                                <h4>{{ __('quiz.quiz2_title') }}</h4>
+                                <span>{{ __('quiz.quiz2_meta') }}</span>
                             </div>
-                            <span class="badge">Tomorrow</span>
+                            <span class="badge">{{ __('quiz.tomorrow') }}</span>
                         </div>
                         <div class="quiz-item">
                             <div class="meta">
-                                <h4>Rajamangala Identity Course</h4>
-                                <span>25 questions · 35 min</span>
+                                <h4>{{ __('quiz.quiz3_title') }}</h4>
+                                <span>{{ __('quiz.quiz3_meta') }}</span>
                             </div>
-                            <span class="badge">2 Days Left</span>
+                            <span class="badge">{{ __('quiz.two_days_left') }}</span>
                         </div>
                     </div>
                 </section>
 
                 <section class="card">
-                    <h3>Quick Actions</h3>
-                    <p>Resume your last attempt or practice with timed mode.</p>
+                    <h3>{{ __('quiz.quick_title') }}</h3>
+                    <p>{{ __('quiz.quick_desc') }}</p>
 
                     <div class="quiz-list">
                         <div class="quiz-item">
                             <div class="meta">
-                                <h4>Resume Last Quiz</h4>
-                                <span>Veterinary Nursing Assistant Course</span>
+                                <h4>{{ __('quiz.resume_title') }}</h4>
+                                <span>{{ __('quiz.resume_sub') }}</span>
                             </div>
-                            <button class="btn-primary">Continue</button>
+                            <button type="button" class="btn-primary">{{ __('quiz.continue') }}</button>
                         </div>
                         <div class="quiz-item">
                             <div class="meta">
-                                <h4>Practice Mode</h4>
-                                <span>Unlimited attempts</span>
+                                <h4>{{ __('quiz.practice_title') }}</h4>
+                                <span>{{ __('quiz.practice_sub') }}</span>
                             </div>
-                            <button class="btn-primary">Start</button>
+                            <button type="button" class="btn-primary">{{ __('quiz.start') }}</button>
                         </div>
                     </div>
                 </section>

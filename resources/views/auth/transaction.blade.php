@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() === 'th' ? 'th' : 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction | IL2 RMUTTO</title>
+    <title>{{ __('transactions_page.page_title') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
@@ -205,12 +205,12 @@
 
         <!-- Main Content -->
         <main class="content">
-            <h2 class="page-title">Transaction</h2>
+            <h2 class="page-title">{{ __('transactions_page.heading') }}</h2>
 
             <!-- Tabs -->
             <div class="tabs-wrap">
-                <button class="tab-btn active" onclick="switchTab(this, 'transactions')">Transactions</button>
-                <a href="{{ route('refund') }}" class="tab-btn" style="text-decoration:none; text-align:center;">Refunds</a>
+                <button type="button" class="tab-btn active" onclick="switchTab(this, 'transactions')">{{ __('transactions_page.tab_transactions') }}</button>
+                <a href="{{ route('refund') }}" class="tab-btn" style="text-decoration:none; text-align:center;">{{ __('transactions_page.tab_refunds') }}</a>
             </div>
 
             <!-- Table -->
@@ -218,12 +218,12 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Transaction ID</th>
-                            <th>Invoice Name</th>
-                            <th>Payment Method</th>
-                            <th>Details</th>
-                            <th>Amount</th>
-                            <th>Status</th>
+                            <th>{{ __('transactions_page.th_txn_id') }}</th>
+                            <th>{{ __('transactions_page.th_invoice') }}</th>
+                            <th>{{ __('transactions_page.th_payment_method') }}</th>
+                            <th>{{ __('transactions_page.th_details') }}</th>
+                            <th>{{ __('transactions_page.th_amount') }}</th>
+                            <th>{{ __('transactions_page.th_status') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -233,18 +233,18 @@
                                 <div class="invoice-cell">
                                     <div class="invoice-avatar"></div>
                                     <div>
-                                        <div class="invoice-name">Teacher 1</div>
-                                        <div class="invoice-sub">Veterinary Nursing Assistant Course</div>
+                                        <div class="invoice-name">{{ __('transactions_page.teacher_1') }}</div>
+                                        <div class="invoice-sub">{{ __('transactions_page.course_1') }}</div>
                                     </div>
                                 </div>
                             </td>
                             <td><a href="#" class="stripe-link">Stripe</a></td>
-                            <td><span class="date-cell">14 Jan 2026 | 10:00PM</span></td>
+                            <td><span class="date-cell">{{ __('transactions_page.date_1') }}</span></td>
                             <td><span class="amount-cell">$9.99</span></td>
                             <td>
                                 <div class="status-cell">
-                                    <span class="badge badge-paid">Paid</span>
-                                    <button class="btn-download active">Download</button>
+                                    <span class="badge badge-paid">{{ __('transactions_page.paid') }}</span>
+                                    <button type="button" class="btn-download active">{{ __('transactions_page.download') }}</button>
                                 </div>
                             </td>
                         </tr>
@@ -254,18 +254,18 @@
                                 <div class="invoice-cell">
                                     <div class="invoice-avatar"></div>
                                     <div>
-                                        <div class="invoice-name">Teacher 2</div>
-                                        <div class="invoice-sub">Rajamangala Identity Course</div>
+                                        <div class="invoice-name">{{ __('transactions_page.teacher_2') }}</div>
+                                        <div class="invoice-sub">{{ __('transactions_page.course_2') }}</div>
                                     </div>
                                 </div>
                             </td>
                             <td><a href="#" class="stripe-link">Stripe</a></td>
-                            <td><span class="date-cell">14 Feb 2026 | 10:00PM</span></td>
+                            <td><span class="date-cell">{{ __('transactions_page.date_2') }}</span></td>
                             <td><span class="amount-cell">$10.00</span></td>
                             <td>
                                 <div class="status-cell">
-                                    <span class="badge badge-unpaid">Unpaid</span>
-                                    <button class="btn-download inactive" disabled>Download</button>
+                                    <span class="badge badge-unpaid">{{ __('transactions_page.unpaid') }}</span>
+                                    <button type="button" class="btn-download inactive" disabled>{{ __('transactions_page.download') }}</button>
                                 </div>
                             </td>
                         </tr>
@@ -275,18 +275,18 @@
                                 <div class="invoice-cell">
                                     <div class="invoice-avatar"></div>
                                     <div>
-                                        <div class="invoice-name">Teacher 3</div>
-                                        <div class="invoice-sub">Building a Sustainable Startup</div>
+                                        <div class="invoice-name">{{ __('transactions_page.teacher_3') }}</div>
+                                        <div class="invoice-sub">{{ __('transactions_page.course_3') }}</div>
                                     </div>
                                 </div>
                             </td>
                             <td><a href="#" class="stripe-link">Stripe</a></td>
-                            <td><span class="date-cell">14 March 2026 | 10:00PM</span></td>
+                            <td><span class="date-cell">{{ __('transactions_page.date_3') }}</span></td>
                             <td><span class="amount-cell">$9.99</span></td>
                             <td>
                                 <div class="status-cell">
-                                    <span class="badge badge-paid">Paid</span>
-                                    <button class="btn-download active">Download</button>
+                                    <span class="badge badge-paid">{{ __('transactions_page.paid') }}</span>
+                                    <button type="button" class="btn-download active">{{ __('transactions_page.download') }}</button>
                                 </div>
                             </td>
                         </tr>
@@ -296,7 +296,7 @@
 
             <!-- Refunds tab content (hidden by default) -->
             <div class="table-card" id="refunds" style="display:none; padding: 40px; text-align: center; color: #94a3b8; font-size: 14px;">
-                No refunds found.
+                {{ __('transactions_page.no_refunds') }}
             </div>
         </main>
     </div>
