@@ -85,8 +85,8 @@
         .btn-outline-sm { padding: 6px 20px; border: 1px solid #e2e8f0; border-radius: 20px; font-size: 11px; font-weight: 700; color: #64748b; text-decoration: none; }
 
         .title-price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .title-price-row h1 { font-size: 32px; font-weight: 800; margin: 0; color: #1e293b; }
-        .price-text { font-size: 28px; font-weight: 800; color: #f97316; }
+        .title-price-row h1 { font-size: 32px; font-weight: 900; margin: 0; color: #0f172a; letter-spacing: -0.5px; }
+        .price-text { font-size: 28px; font-weight: 900; color: #f97316; }
 
         .update-date { font-size: 11px; color: #94a3b8; margin-bottom: 20px; }
         .course-short-desc { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 25px; }
@@ -191,10 +191,10 @@
                     </div>
 
                     <div class="title-price-row">
-                        <h1>Mathematic Class</h1>
-                        <span class="price-text">$10.99</span>
+                        <h1>Veterinary Nursing Assistant Course</h1>
+                        <span class="price-text">$0.00<</span>
                     </div>
-                    <div class="update-date">ðŸ“… Updated date : 26 June 2023</div>
+                    <div class="update-date">Updated date : 26 June 2023</div>
                     <p class="course-short-desc">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
                     
                     <div class="date-range">

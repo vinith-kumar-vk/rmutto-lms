@@ -6,7 +6,8 @@
     <title>Course Detail | Mathematic Class</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     <style>
         :root {
             --primary: #003a70;
@@ -22,7 +23,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg); color: var(--text-dark); overflow-x: hidden; }
 
-        /* â”€â”€â”€ HEADER â”€â”€â”€ */
+        /* ” HEADER ” */
         header { 
             background: transparent; padding: 25px 30px 10px; display: flex; justify-content: center; 
             position: relative; z-index: 1000;
@@ -56,12 +57,12 @@
             display: flex; align-items: center; gap: 12px; padding: 6px 18px 6px 6px; 
             border-radius: 40px; background: #f8fafc; border: 1.5px solid #e2e8f0; text-decoration: none; color: inherit; font-weight: 700; font-size: 14px;
         }
-        .avatar-circle { width: 36px; height: 36px; border-radius: 50%; background: #94a3b8; }
+        .avatar-circle { width: 36px; height: 36px; border-radius: 50%; background-image: url('{{ asset("images/logo.png") }}'); background-size: cover; background-position: center; }
 
-        /* â”€â”€â”€ LAYOUT â”€â”€â”€ */
+        /* ” LAYOUT ” */
         .wrapper { display: flex; max-width: 1600px; margin: 15px auto 40px; padding: 0 30px; gap: 30px; }
 
-        /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
+        /* ” SIDEBAR ” */
         .sidebar { 
             width: 200px; padding: 20px 0; height: fit-content; flex-shrink: 0;
         }
@@ -73,7 +74,7 @@
         .nav-link.active { background: #fff; color: #000; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         .nav-link img { width: 20px; height: 20px; }
 
-        /* â”€â”€â”€ MAIN CONTENT â”€â”€â”€ */
+        /* ” MAIN CONTENT ” */
         .content { 
             flex: 1; background: #fff; border-radius: 35px; overflow: hidden;
             box-shadow: 0 10px 40px rgba(0,0,0,0.02); display: flex; flex-direction: column; 
@@ -117,15 +118,29 @@
         .pause-btn:hover { transform: scale(1.08); }
         .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
 
-        /* TABS NAVIGATION */
-        .tabs-nav {
-            display: flex; background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 0 40px;
+        /* ” TAB NAVIGATION ” */
+        .tab-strip { 
+          display: flex; 
+          justify-content: center; 
+          gap: 60px; 
+          border-bottom: 1px solid #f1f5f9; 
+          margin-bottom: 50px; 
         }
-        .tab-item {
-            padding: 18px 25px; font-size: 13px; font-weight: 700; color: #64748b; cursor: pointer; border-bottom: 3px solid transparent; transition: 0.2s; text-decoration: none;
+        .tab-item { 
+          padding: 15px 0; 
+          font-size: 13px; 
+          font-weight: 500; 
+          color: #94a3b8; 
+          border-bottom: 3px solid transparent; 
+          cursor: pointer; 
+          transition: 0.2s; 
         }
-        .tab-item.active {
-            color: #000; border-bottom-color: #003a70; background: #fff; border-radius: 12px 12px 0 0; margin-top: 10px; border: 1px solid #e2e8f0; border-bottom: none;
+        .tab-item.active { 
+          color: #1e293b; 
+          border-bottom-color: #003a70; 
+          font-weight: 600; 
+          padding-left: 30px; 
+          padding-right: 30px; 
         }
 
         /* SECTION CONTENT AREA */
@@ -141,7 +156,7 @@
         .learn-list li { 
             position: relative; padding-left: 20px; margin-bottom: 12px; font-size: 14px; color: #475569; font-weight: 500; line-height: 1.6;
         }
-        .learn-list li::before { content: 'â€¢'; position: absolute; left: 0; color: #000; font-weight: 900; }
+        .learn-list li::before { content: '¢'; position: absolute; left: 0; color: #000; font-weight: 900; }
 
         /* PILL TAGS */
         .pill-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
@@ -176,14 +191,14 @@
 </head>
 <body>
 
-    <!-- â”€â”€ HEADER â”€â”€ -->
+    <!--  HEADER  -->
     @include('partials.header')
 
     <div class="shared-shell">
-        <!-- â”€â”€ SIDEBAR â”€â”€ -->
+        <!--  SIDEBAR  -->
         @include('partials.sidebar', ['activePage' => 'courses'])
 
-        <!-- â”€â”€ MAIN CONTENT â”€â”€ -->
+        <!--  MAIN CONTENT  -->
         <main class="content">
             <!-- HERO -->
             <div class="hero">
@@ -193,7 +208,7 @@
                             <div class="avatar-circle" style="width:44px; height:44px;"></div>
                             <div class="t-labels">
                                 <p>Created by : <span>Teacher</span></p>
-                                <div class="t-stats-row"><span>â­ 0 Ratings</span> <span>ðŸ‘¥ 0 Students</span></div>
+                                <div class="t-stats-row"><span>0 Ratings</span> <span>0 Students</span></div>
                             </div>
                         </div>
                         <div class="t-actions-wrap">
@@ -203,11 +218,11 @@
                     </div>
 
                     <div class="title-row">
-                        <h1>Mathematic Class</h1>
-                        <span class="price-text">$10.99</span>
+                        <h1>Veterinary Nursing Assistant Course</h1>
+                        <span class="price-text">$0.00</span>
                     </div>
-                    <div class="updated-date">ðŸ“… Updated date : 26 June 2023</div>
-                    <p class="course-summary">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
+                    <div class="updated-date">Updated date : 26 June 2023</div>
+                    <p class="course-summary">Types and categories of pet animals; pet care and management; diseases and health management; </p>
                     <div class="dates-flex">
                         <p>Course start date : <span>26 June 2023</span></p>
                         <p>Course end date : <span>26 June 2023</span></p>
@@ -226,14 +241,14 @@
             </div>
 
             <!-- TABS -->
-            <nav class="tabs-nav">
-                <a href="{{ route('course.detail') }}" class="tab-item active">About</a>
+            <div class="tab-strip">
+                <div class="tab-item active">About</div>
                 <a href="{{ route('courses') }}" class="tab-item">Outcomes</a>
                 <a href="{{ route('modules') }}" class="tab-item">Modules</a>
                 <a href="{{ route('recommendations') }}" class="tab-item">Recommendations</a>
                 <a href="{{ route('testimonials') }}" class="tab-item">Testimonials</a>
                 <a href="{{ route('reviews') }}" class="tab-item">Reviews</a>
-            </nav>
+            </div>
 
             <!-- SECTION CONTAINER -->
             <div class="section-container">
