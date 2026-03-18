@@ -185,21 +185,21 @@
                     <div class="quiz-list">
                         <div class="quiz-item">
                             <div class="meta">
-                                <h4>Mathematics Basics - Chapter 4</h4>
+                                <h4>Veterinary Nursing Assistant Course - Chapter 4</h4>
                                 <span>20 questions · 30 min</span>
                             </div>
                             <span class="badge">Due Today</span>
                         </div>
                         <div class="quiz-item">
                             <div class="meta">
-                                <h4>Physics Motion Fundamentals</h4>
+                                <h4>Building a Sustainable Startup: Strategies for Success</h4>
                                 <span>15 questions · 20 min</span>
                             </div>
                             <span class="badge">Tomorrow</span>
                         </div>
                         <div class="quiz-item">
                             <div class="meta">
-                                <h4>English Grammar Review</h4>
+                                <h4>Rajamangala Identity Course</h4>
                                 <span>25 questions · 35 min</span>
                             </div>
                             <span class="badge">2 Days Left</span>
@@ -215,7 +215,7 @@
                         <div class="quiz-item">
                             <div class="meta">
                                 <h4>Resume Last Quiz</h4>
-                                <span>Mathematics Basics</span>
+                                <span>Veterinary Nursing Assistant Course</span>
                             </div>
                             <button class="btn-primary">Continue</button>
                         </div>

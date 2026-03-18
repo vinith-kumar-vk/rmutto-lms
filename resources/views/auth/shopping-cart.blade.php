@@ -308,11 +308,11 @@
                         <div class="cart-item">
                             <div class="item-thumb"></div>
                             <div class="item-info">
-                                <div class="item-title">Guide 2 Maths</div>
+                                <div class="item-title">Veterinary Nursing Assistant Course</div>
                                 <div class="item-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</div>
                                 <div class="teacher-info">
                                     <div class="teacher-avatar"></div>
-                                    <span class="teacher-name">Created by Teacher 1</span>
+                                    <span class="teacher-name">Created by Teacher</span>
                                 </div>
                                 <div class="item-actions">
                                     <button class="btn-save">Saved for later</button>

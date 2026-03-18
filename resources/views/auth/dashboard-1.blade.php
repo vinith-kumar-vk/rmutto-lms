@@ -623,12 +623,12 @@
                     </div>
 
                     <div class="section-card">
-                        <div class="section-header">Enrolled Classes</div>
+                        <div class="section-header">Enrolled Courses</div>
                         <div class="enrolled-list">
                             <div class="enrolled-item">
                                 <div class="color-bar" style="background:#003a70;"></div>
                                 <div class="enrolled-info">
-                                    <h4>Maths</h4>
+                                    <h4>Veterinary Nursing Assistant Course</h4>
                                     <p>09:00 AM - 10:00 AM</p>
                                 </div>
                                 <div class="chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></div>
@@ -636,7 +636,7 @@
                             <div class="enrolled-item">
                                 <div class="color-bar" style="background:#22c55e;"></div>
                                 <div class="enrolled-info">
-                                    <h4>Science</h4>
+                                    <h4>Building a Sustainable Startup</h4>
                                     <p>11:00 AM - 01:00 PM</p>
                                 </div>
                                 <div class="chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></div>
@@ -644,7 +644,7 @@
                             <div class="enrolled-item">
                                 <div class="color-bar" style="background:#8b5cf6;"></div>
                                 <div class="enrolled-info">
-                                    <h4>Biology</h4>
+                                    <h4>Rajamangala Identity Course</h4>
                                     <p>01:00 PM - 01:30 PM</p>
                                 </div>
                                 <div class="chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></div>
@@ -652,7 +652,7 @@
                             <div class="enrolled-item">
                                 <div class="color-bar" style="background:#f97316;"></div>
                                 <div class="enrolled-info">
-                                    <h4>Art</h4>
+                                    <h4>Building Relationships</h4>
                                     <p>03:30 PM - 04:30 PM</p>
                                 </div>
                                 <div class="chevron"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></div>
@@ -661,13 +661,13 @@
                     </div>
                 </div>
 
-                <div class="side-col">
+                <!-- <div class="side-col">
                     <div class="section-card">
                         <div class="section-header">Courses</div>
                         <a href="{{ route('course.detail') }}" class="course-card" style="text-decoration:none; color:inherit;">
                             <div class="course-circ"></div>
                             <div class="course-body">
-                                <h4>Maths</h4>
+                                <h4>Veterinary Nursing Assistant Course</h4>
                                 <p>12 hours</p>
                                 <div class="progress-row">
                                     <div class="prog-bg"><div class="prog-fill" style="width: 50%;"></div></div>
@@ -678,7 +678,7 @@
                         <a href="{{ route('course.detail') }}" class="course-card" style="text-decoration:none; color:inherit;">
                             <div class="course-circ"></div>
                             <div class="course-body">
-                                <h4>Science</h4>
+                                <h4>Building a Sustainable Startup</h4>
                                 <p>32 hours</p>
                                 <div class="progress-row">
                                     <div class="prog-bg"><div class="prog-fill" style="width: 90%;"></div></div>
@@ -689,7 +689,7 @@
                         <a href="{{ route('course.detail') }}" class="course-card" style="text-decoration:none; color:inherit;">
                             <div class="course-circ"></div>
                             <div class="course-body">
-                                <h4>Science</h4>
+                                <h4>Rajamangala Identity Course</h4>
                                 <p>32 hours</p>
                                 <div class="progress-row">
                                     <div class="prog-bg"><div class="prog-fill" style="width: 100%;"></div></div>
@@ -698,7 +698,7 @@
                             </div>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Notes Section -->

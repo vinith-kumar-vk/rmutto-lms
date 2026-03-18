@@ -377,13 +377,13 @@
                     <div class="tab">Completed courses</div>
                 </div>
 
-                <div class="grid">
+                <!-- <div class="grid">
                     @for($i = 0; $i < 4; $i++)
                     <a href="{{ route('learning.p2') }}" style="text-decoration: none; color: inherit;">
                         <div class="course-wrap">
                             <div class="course-card">
                                 <div class="cc-header">
-                                    <span class="cc-date">01 June 2023</span>
+                                    <span class="cc-date">01 June 2026</span>
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
                                 </div>
                                 <div class="cc-img" style="background-image: url('{{ asset('images/math_bg.png') }}');"></div>
@@ -398,6 +398,84 @@
                         </div>
                     </a>
                     @endfor
+                </div> -->
+
+                <div class="grid">
+                    <a href="#" style="text-decoration: none; color: inherit;">
+                        <div class="course-wrap">
+                            <div class="course-card">
+                                <div class="cc-header">
+                                    <span class="cc-date">01 June 2026</span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                                </div>
+                                <div class="cc-img" style="background-image: url('{{ asset('images/9. Animal care.jpg') }}');"></div>
+                                <div class="cc-badge">(New Feature) Task</div>
+                                <h3 class="cc-title">Veterinary Nursing Assistant Course</h3>
+                                <div class="progress-bar-wrap">
+                                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
+                                    <span class="progress-text">90%</span>
+                                </div>
+                                <p class="cc-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" style="text-decoration: none; color: inherit;">
+                        <div class="course-wrap">
+                            <div class="course-card">
+                                <div class="cc-header">
+                                    <span class="cc-date">01 June 2026</span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                                </div>
+                                <div class="cc-img" style="background-image: url('{{ asset('images/10. Create a startup.jpg') }}');"></div>
+                                <div class="cc-badge">(New Feature) Task</div>
+                                <h3 class="cc-title">Building a Sustainable Startup: Strategies...</h3>
+                                <div class="progress-bar-wrap">
+                                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
+                                    <span class="progress-text">90%</span>
+                                </div>
+                                <p class="cc-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" style="text-decoration: none; color: inherit;">
+                        <div class="course-wrap">
+                            <div class="course-card">
+                                <div class="cc-header">
+                                    <span class="cc-date">01 June 2026</span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                                </div>
+                                <div class="cc-img" style="background-image: url('{{ asset('images/1. Identity.png') }}');"></div>
+                                <div class="cc-badge">(New Feature) Task</div>
+                                <h3 class="cc-title">Rajamangala Identity Course</h3>
+                                <div class="progress-bar-wrap">
+                                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
+                                    <span class="progress-text">90%</span>
+                                </div>
+                                <p class="cc-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" style="text-decoration: none; color: inherit;">
+                        <div class="course-wrap">
+                            <div class="course-card">
+                                <div class="cc-header">
+                                    <span class="cc-date">01 June 2026</span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                                </div>
+                                <div class="cc-img" style="background-image: url('{{ asset('images/2. Relationship building digital business base.png') }}');"></div>
+                                <div class="cc-badge">(New Feature) Task</div>
+                                <h3 class="cc-title">Building Relationships to Create a Digital Busi..</h3>
+                                <div class="progress-bar-wrap">
+                                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
+                                    <span class="progress-text">90%</span>
+                                </div>
+                                <p class="cc-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </main>

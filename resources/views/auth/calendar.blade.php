@@ -319,7 +319,7 @@
                     <div class="calendar-nav-bar">
                         <div class="month-selector">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="cursor:pointer; opacity: 0.4;"><path d="m15 18-6-6 6-6"/></svg>
-                            December 2023
+                            March 2026
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="cursor:pointer; opacity: 0.4;"><path d="m9 18 6-6-6-6"/></svg>
                         </div>
                         <div class="tab-group">
@@ -334,12 +334,16 @@
                         <div class="cal-cell inactive">30</div><div class="cal-cell">1</div><div class="cal-cell">2</div>
                         <div class="cal-cell">
                             <div class="date-num"><div class="circle-num">3</div></div>
-                            <div class="event-box"><h5>Maths Clas..</h5><p>Teacher 2</p></div>
+                            <div class="event-box"><h5>Veterinary Nursing Assistant Course..</h5><p>Teacher 1</p></div>
                         </div>
                         <div class="cal-cell">4</div><div class="cal-cell">5</div><div class="cal-cell">6</div>
                         <div class="cal-cell">7</div><div class="cal-cell">8</div><div class="cal-cell">9</div><div class="cal-cell">10</div><div class="cal-cell">11</div><div class="cal-cell">12</div><div class="cal-cell">13</div>
                         <div class="cal-cell">14</div><div class="cal-cell">15</div><div class="cal-cell">16</div><div class="cal-cell">17</div><div class="cal-cell">18</div><div class="cal-cell">19</div><div class="cal-cell today-cell">20</div>
-                        <div class="cal-cell">21</div><div class="cal-cell">22</div><div class="cal-cell">23</div><div class="cal-cell">24</div><div class="cal-cell">25</div><div class="cal-cell">26</div><div class="cal-cell">27</div>
+                        <div class="cal-cell">21</div><div class="cal-cell">22</div><div class="cal-cell">
+                            <div class="date-num"><div class="circle-num">23</div></div>
+                            <div class="event-box"><h5>Rajamangala Identity Course..</h5><p>Teacher 2</p></div>
+                        </div>
+                        <div class="cal-cell">24</div><div class="cal-cell">25</div><div class="cal-cell">26</div><div class="cal-cell">27</div>
                         <div class="cal-cell">28</div><div class="cal-cell">29</div><div class="cal-cell">30</div><div class="cal-cell">31</div><div class="cal-cell inactive">1</div><div class="cal-cell inactive">2</div><div class="cal-cell inactive">3</div>
                     </div>
                 </div>
@@ -349,19 +353,19 @@
                 <div class="section-title">Schedule</div>
 
                 <div class="card" style="padding-bottom: 20px;">
-                    <div class="sched-day-name">December 20, Sunday</div>
+                    <div class="sched-day-name">March 23, Wednesday</div>
                     
                     <div class="sched-card">
                         <div class="sched-time">09:00 am<span>to</span>10:00 am</div>
                         <div class="sched-v-bar" style="background:#f472b6;"></div>
-                        <div class="sched-info"><h4>Teacher 2</h4><h3>Maths Class</h3></div>
+                        <div class="sched-info"><h4>Teacher 1</h4><h3>Veterinary Nursing Assistant Course</h3></div>
                         <div class="dots-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></div>
                     </div>
 
                     <div class="sched-card">
-                        <div class="sched-time">09:00 am<span>to</span>10:00 am</div>
+                        <div class="sched-time">01:00 pm<span>to</span>1:30 pm</div>
                         <div class="sched-v-bar" style="background:#f97316;"></div>
-                        <div class="sched-info"><h4>Morning Coffee</h4><h3 style="font-size: 13px;">Breakfast with Mr. Cahyadee at Kopikitaktia</h3></div>
+                        <div class="sched-info"><h4>Teacher 2</h4><h3 style="font-size: 13px;">Rajamangala Identity Course</h3></div>
                         <div class="dots-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></div>
                     </div>
                 </div>

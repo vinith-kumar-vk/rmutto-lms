@@ -229,20 +229,20 @@
                             <div class="bs-item">
                                 <div class="bs-item-left">
                                     <div class="bs-thumb"></div>
-                                    <span class="bs-name">Guide 2 Maths</span>
+                                    <span class="bs-name">Veterinary Nursing Assistant Course</span>
                                 </div>
-                                <span class="bs-price">$5.99</span>
+                                <span class="bs-price">Free</span>
                             </div>
                             <div class="bs-item">
                                 <div class="bs-item-left">
                                     <div class="bs-thumb"></div>
-                                    <span class="bs-name">Guide 3 Maths</span>
+                                    <span class="bs-name">Rajamangala Identity Course</span>
                                 </div>
-                                <span class="bs-price">$5.99</span>
+                                <span class="bs-price">Free</span>
                             </div>
                             <div class="bs-total">
                                 <span>Total</span>
-                                <span>$11.98</span>
+                                <span>$0</span>
                             </div>
                         </div>
 
