@@ -69,14 +69,8 @@
             width: 320px; 
         }
         .search-wrap input {
-            width: 100%;
-            height: 44px;
-            background: #f1f5f9;
-            border: none;
-            border-radius: 40px;
-            padding: 0 20px 0 45px;
-            font-size: 14px;
-            outline: none;
+            width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px;
+            padding: 0 15px 0 50px; font-size: 13.5px; outline: none;
             color: #333;
         }
         .search-wrap svg {

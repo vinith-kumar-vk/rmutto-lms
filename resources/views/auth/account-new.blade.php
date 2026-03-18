@@ -55,7 +55,7 @@
         .search-wrap { position: relative; width: 280px; }
         .search-wrap input { 
             width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px; 
-            padding: 0 15px 0 40px; font-size: 13.5px; outline: none; 
+            padding: 0 15px 0 50px; font-size: 13.5px; outline: none; 
         }
         .search-wrap svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
 

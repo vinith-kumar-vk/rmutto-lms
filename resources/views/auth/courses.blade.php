@@ -49,7 +49,7 @@
         .header-left { display: flex; align-items: center; gap: 20px; }
         .logo img { height: 38px; }
         .search-wrap { position: relative; width: 280px; }
-        .search-wrap input { width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px; padding: 0 15px 0 40px; font-size: 13.5px; outline: none; }
+        .search-wrap input { width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px; padding: 0 15px 0 50px; font-size: 13.5px; outline: none; }
         .search-wrap svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
         .header-right { display: flex; align-items: center; gap: 15px; }
         .h-icon-btn { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; color: #64748b; text-decoration: none; position: relative; }
