@@ -15,8 +15,8 @@
         }
 
         .vertical-course-card:hover, .free-session-card:hover, .category-card-custom:hover {
-            transform: translateY(-8px) scale(1.02) !important;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important;
+            transform: translateY(-4px) scale(1.01) !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
             z-index: 10;
         }
 

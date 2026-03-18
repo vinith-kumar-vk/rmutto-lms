@@ -257,7 +257,7 @@
                     </div>
 
                     <div class="title-row">
-                        <h1>Mathematic Class</h1>
+                        <h1>Veterinary Nursing Assistant Course</h1>
                         <span class="price-text">$10.99</span>
                     </div>
                     <div class="updated-date">📅 Updated date : 26 June 2023</div>

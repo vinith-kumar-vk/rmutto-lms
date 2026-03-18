@@ -101,12 +101,14 @@
             aspect-ratio: 16/10;
             border-radius: 12px;
             overflow: hidden;
-            cursor: pointer;
             transition: 0.3s;
             background: #f8fafc;
             border: 1px solid #f1f5f9;
         }
-        .cat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        a.cat-card { cursor: pointer; }
+        div.cat-card { cursor: default; }
+
+        a.cat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .cat-card img { width: 100%; height: 100%; object-fit: cover; }
         
         .cat-overlay {
@@ -244,15 +246,23 @@
             </div>
 
             <div class="cat-grid">
-                @foreach ($courses as $course)
+                @foreach ($courses as $index => $course)
+                @if($index == 0)
                 <a href="{{ route('courses') }}" class="cat-card" style="text-decoration:none;">
+                @else
+                <div class="cat-card">
+                @endif
                     <img src="{{ asset('images/' . $course['img']) }}" alt="{{ $course['title'] }}">
                     <div class="cat-overlay">
                         <div class="cat-blur">
                             <span class="cat-name">{{ $course['title'] }}</span>
                         </div>
                     </div>
+                @if($index == 0)
                 </a>
+                @else
+                </div>
+                @endif
                 @endforeach
             </div>
         </main>
