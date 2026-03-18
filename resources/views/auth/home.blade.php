@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | IL² RMUTTO</title>
+    <title>Home | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
@@ -380,8 +380,8 @@
         <div class="course-section-header">
             <h2 class="section-heading" >Ongoing Courses</h2>
             <div class="carousel-arrows">
-                <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">‹</button>
-                <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">›</button>
+                <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">â€¹</button>
+                <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">â€º</button>
             </div>
         </div>
         <div class="course-cards-row">
@@ -398,10 +398,10 @@
                         <div class="course-card-footer">
                             <div class="course-card-avatar" style="background: #EDF2F7;"></div>
                             <div class="course-card-stats">
-                                <span>👁 4k</span>
-                                <span>⭐ 4.5</span>
+                                <span>ðŸ‘ 4k</span>
+                                <span>â­ 4.5</span>
                             </div>
-                            <button class="heart-btn">♡</button>
+                            <button class="heart-btn">â™¡</button>
                         </div>
                     </div>
                 </div>
@@ -472,8 +472,8 @@
         <div class="course-section-header">
             <h2 class="section-heading" >Completed Courses</h2>
             <div class="carousel-arrows">
-                <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">‹</button>
-                <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">›</button>
+                <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">â€¹</button>
+                <button class="arrow-btn" style="border-color: #bfdbfe; color: #3b82f6; background: #eff6ff;">â€º</button>
             </div>
         </div>
         <div class="course-cards-row">
@@ -490,10 +490,10 @@
                         <div class="course-card-footer">
                             <div class="course-card-avatar" style="background: #EDF2F7;"></div>
                             <div class="course-card-stats">
-                                <span>👁 4k</span>
-                                <span>⭐ 4.5</span>
+                                <span>ðŸ‘ 4k</span>
+                                <span>â­ 4.5</span>
                             </div>
-                            <button class="heart-btn">♡</button>
+                            <button class="heart-btn">â™¡</button>
                         </div>
                     </div>
                 </div>

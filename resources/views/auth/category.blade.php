@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses | IL² RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,7 +18,7 @@
             flex-direction: column;
         }
 
-        /* ─── HEADER ─── */
+        /* â”€â”€â”€ HEADER â”€â”€â”€ */
         header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             background: #fff; padding: 10px 30px;
@@ -58,7 +59,7 @@
         }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        /* ─── LAYOUT ─── */
+        /* â”€â”€â”€ LAYOUT â”€â”€â”€ */
         .shell {
             max-width: 1450px;
             margin: 0 auto;
@@ -67,7 +68,42 @@
             width: 100%;
         }
 
-        /* ─── MAIN CONTENT ─── */
+        /* ─── SIDEBAR FILTERS ─── */
+        .filter-sidebar {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky; top: 80px; align-self: start;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        .filter-sidebar::-webkit-scrollbar { width: 5px; }
+        .filter-sidebar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+
+        .sidebar-header { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+        
+        .filter-group { margin-bottom: 24px; }
+        .filter-title {
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 12px; cursor: pointer;
+        }
+        .filter-content { display: flex; flex-direction: column; gap: 10px; }
+        .filter-item {
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer;
+        }
+        .filter-item label {
+            display: flex; align-items: center; gap: 10px; font-size: 13px; color: #64748b; font-weight: 500; cursor: pointer;
+        }
+        .filter-item input {
+            width: 18px; height: 18px; border-radius: 4px; border: 2px solid #e2e8f0; 
+            appearance: none; cursor: pointer; background: #fff; transition: 0.2s;
+        }
+        .filter-item input:checked { background: #003a70; border-color: #003a70; }
+        .filter-count { font-size: 12px; color: #94a3b8; font-weight: 500; }
+
+        /* â”€â”€â”€ MAIN CONTENT â”€â”€â”€ */
         .main-card {
             background: #fff;
             border-radius: 24px;
@@ -167,12 +203,12 @@
                 <a href="{{ route('home') }}" class="logo">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo">
                 </a>
-                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none; display: flex; align-items: center; gap: 8px;">
-                    Courses
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
+                    Categories
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
                 </a>
                 <div class="search-wrap">
-                    <a href="{{ route('search') }}">
+                    <a href="{{ route('search') }}" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8;z-index:1;">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </a>
                     <input type="text" placeholder="Search here" onfocus="window.location.href='{{ route('search') }}'">
@@ -198,39 +234,73 @@
         </div>
     </header>
 
-    @php
-    $courses = [
-        ['title' => 'Veterinary Nursing Assistant Course', 'img' => '9. Animal care.jpg'],
-        ['title' => 'Building a Sustainable Startup: Strategies for Success', 'img' => '10. Create a startup.jpg'],
-        ['title' => 'Rajamangala Identity Course', 'img' => '1. Identity.png'],
-        ['title' => 'Building Relationships to Create a Digital Business Foundation', 'img' => '2. Relationship building digital business base.png'],
-        ['title' => 'Beverage Business: From Idea to Sustainable Success', 'img' => '3. drinks.jpg'],
-        ['title' => 'Anti-Aging Business with Bioproducts', 'img' => '4. Business.jpg'],
-        ['title' => 'Learn and Get Rich', 'img' => '5. Customer management and satisfaction.jpg'],
-        ['title' => 'Camping Tourism and Campsite Entrepreneurship', 'img' => '6. Camping tourism education and camping business.png'],
-        ['title' => 'Pet Business', 'img' => '7. Pet business.jpg'],
-        ['title' => 'Creating a Business from Local Wisdom to Added Value', 'img' => '8. Building a business from knowledge to added value.jpg'],
-        ['title' => 'Dare to Dream: Becoming a Startup Business', 'img' => '18. Dare to dream of becoming a business startup.png'],
-        ['title' => 'Craft Tech: Turning Creativity into Income', 'img' => '19. Craft Tech is money.png'],
-        ['title' => 'Gem Trader / Gemstone Business', 'img' => '20. People walk.png'],
-        ['title' => 'Proactive Business Plan', 'img' => '21. Proactive business plan.png'],
-        ['title' => 'Customer-Centric Research', 'img' => '22. Research to please customers.png'],
-        ['title' => 'Smart Investment for Digital Entrepreneurs', 'img' => '23. Smart investment for digital entrepreneurs.png'],
-        ['title' => 'Safety Strategies for Professional Entrepreneurs', 'img' => '24. Security tips for professional entrepreneurs.png'],
-        ['title' => 'Secrets of Live Streaming in the Streaming World', 'img' => '25. The secret recipe of live streaming in the world.png'],
-        ['title' => 'Data Analysis and Presentation for Entrepreneurs', 'img' => '11. Analysis and presentation.jpg'],
-        ['title' => 'Smart Finance: Don’t Be Clueless About Money', 'img' => '12. Finance must not be stupid.jpg'],
-        ['title' => 'Building Digital Business Partnerships', 'img' => '13. Make thousands of business friends.jpg'],
-        ['title' => 'Artificial Intelligence Skills', 'img' => '14. skills in using artificial intelligence.png'],
-        ['title' => 'Advanced Techniques for Creating Powerful Media', 'img' => '15. Learn how to create powerful media.png'],
-        ['title' => 'Digital Business Plan Developer', 'img' => '16. Digital business developer.jpg'],
-        ['title' => 'Start Investing: Your First Step into the Financial World', 'img' => '17. Start investing first step in the financial world.png'],
-    ];
-    @endphp
-
     <!-- ── SHELL ─────────────────────── -->
     <div class="shell">
-        <!-- Main Courses Card -->
+
+        <!-- Filters Sidebar -->
+        <aside class="filter-sidebar">
+            <div class="sidebar-header">Filters:</div>
+
+            <div class="filter-group">
+                <div class="filter-title">Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
+                <div class="filter-content">
+                    <div class="filter-item">
+                        <label><input type="checkbox"> Category 1</label>
+                        <span class="filter-count">0</span>
+                    </div>
+                    <div class="filter-item">
+                        <label><input type="checkbox"> Category 1</label>
+                        <span class="filter-count">4</span>
+                    </div>
+                    <div class="filter-item">
+                        <label><input type="checkbox"> Category 1</label>
+                        <span class="filter-count">4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Sub-Category <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
+                <div class="filter-content">
+                    <div class="filter-item"><label><input type="checkbox"> Lorem Ipsum</label></div>
+                    <div class="filter-item"><label><input type="checkbox"> Lorem Ipsum</label></div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Subject <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title">Class <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Tutor <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
+                <div class="filter-content">
+                    <div class="filter-item"><label><input type="checkbox"> Verified</label></div>
+                    <div class="filter-item"><label><input type="checkbox"> Experienced</label></div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Course Price <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Ratings <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Duration <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+
+            <div class="filter-group" style="margin-bottom:0">
+                <div class="filter-title">Language <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform: rotate(-90deg)"><path d="m6 9 6 6 6-6"/></svg></div>
+            </div>
+        </aside>
+
+        <!-- Main Categories -->
         <main class="main-card">
             <div class="main-header">
                 <h2>Courses</h2>

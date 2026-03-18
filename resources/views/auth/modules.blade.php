@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Modules | IL² RMUTTO</title>
+    <title>Course Modules | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <style>
         :root {
             --primary: #003a70;
@@ -25,7 +26,7 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* ─── HEADER ─── */
+        /* ”€”€”€ HEADER ”€”€”€ */
         header { 
             background: #fff; 
             height: 74px; 
@@ -55,7 +56,7 @@
         .profile-pill { display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px; border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none; }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        /* ─── SHELL ─── */
+        /* ”€”€”€ SHELL ”€”€”€ */
         .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 30px; max-width: 1450px; margin: 0 auto; padding: 100px 30px 40px; }
         
         .sidebar { background: #fff; border-radius: 24px; padding: 25px 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); position: sticky; top: 100px; height: fit-content; grid-row: 1/span 2; }
@@ -65,7 +66,7 @@
         .nav-link img { width: 22px; height: 22px; opacity: 0.7; }
         .nav-link.active img { opacity: 1; }
 
-        /* ─── MAIN CONTENT ─── */
+        /* ”€”€”€ MAIN CONTENT ”€”€”€ */
         .main-card { background: #white; border-radius: 30px; padding: 0; box-shadow: 0 4px 25px rgba(0,0,0,0.02); overflow: hidden; }
         .card-inner { padding: 40px; background: #fff; }
 
@@ -83,8 +84,8 @@
         .btn-outline-sm { padding: 6px 20px; border: 1px solid #e2e8f0; border-radius: 20px; font-size: 11px; font-weight: 700; color: #64748b; text-decoration: none; }
 
         .title-price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .title-price-row h1 { font-size: 32px; font-weight: 800; margin: 0; color: #1e293b; }
-        .price-text { font-size: 28px; font-weight: 800; color: #f97316; }
+        .title-price-row h1 { font-size: 32px; font-weight: 900; margin: 0; color: #0f172a; letter-spacing: -0.5px; }
+        .price-text { font-size: 28px; font-weight: 900; color: #f97316; }
 
         .update-date { font-size: 11px; color: #94a3b8; margin-bottom: 20px; }
         .course-short-desc { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 25px; }
@@ -100,11 +101,30 @@
         .pause-btn:hover { transform: scale(1.08); }
         .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
 
-        /* ─── TAB NAVIGATION ─── */
-        .tab-strip { display: flex; justify-content: center; gap: 60px; border-bottom: 1px solid #f1f5f9; margin-bottom: 50px; }
-        .tab-item { padding: 15px 0; font-size: 13px; font-weight: 500; color: #94a3b8; border-bottom: 3px solid transparent; cursor: pointer; transition: 0.2s; text-decoration: none; }
-        .tab-item:hover { color: #1e293b; }
-        .tab-item.active { color: #1e293b; border-bottom-color: var(--primary); font-weight: 600; background: #fff; border-radius: 10px 10px 0 0; box-shadow: 0 -4px 10px rgba(0,0,0,0.02); padding-left: 30px; padding-right: 30px; position: relative; bottom: -1px; }
+        /* ”€”€”€ TAB NAVIGATION ”€”€”€ */
+        .tab-strip { 
+            display: flex; 
+            justify-content: center; 
+            gap: 60px; 
+            border-bottom: 1px solid #f1f5f9; 
+            margin-bottom: 50px; 
+        }
+        .tab-item { 
+            padding: 15px 0; 
+            font-size: 13px; 
+            font-weight: 500; 
+            color: #94a3b8; 
+            border-bottom: 3px solid transparent; 
+            cursor: pointer; 
+            transition: 0.2s; 
+        }
+        .tab-item.active { 
+            color: #1e293b; 
+            border-bottom-color: #003a70; 
+            font-weight: 600; 
+            padding-left: 30px; 
+            padding-right: 30px; 
+        }
 
         /* MODULES LIST DESIGN */
         .modules-content { max-width: 1100px; padding-bottom: 60px; }
@@ -133,7 +153,7 @@
         .whats-included h4 { font-size: 13.5px; font-weight: 800; color: #1e293b; margin-bottom: 12px; }
         .incl-row { display: flex; flex-wrap: wrap; gap: 20px; }
         .incl-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: #1e293b; }
-        .incl-item::before { content: '•'; color: #000; font-weight: 900; }
+        .incl-item::before { content: '€¢'; color: #000; font-weight: 900; }
 
         .hide-info-btn { font-size: 13.5px; font-weight: 800; color: #1e293b; text-decoration: none; display: block; margin-bottom: 25px; }
 
@@ -142,7 +162,7 @@
         .lesson-left { display: flex; align-items: center; gap: 10px; }
         .lesson-duration { font-size: 12.5px; color: #94a3b8; }
 
-        /* ─── FOOTER ─── */
+        /* ”€”€”€ FOOTER ”€”€”€ */
         footer { grid-column: 2; border-radius: 26px; background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9; display: flex; justify-content: center; width: 100%; margin-top: 10px; box-sizing: border-box; }
         .footer-inner { max-width: 1400px; width: 100%; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 60px; }
         
@@ -169,60 +189,10 @@
     </style>
 </head>
 <body>
+    @include('partials.header')
 
-    <header>
-        <div class="header-pill">
-            <div class="header-left">
-                <a href="{{ route('dashboard.1') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                <div class="search-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" placeholder="Search here"></div>
-            </div>
-            <div class="header-right">
-                <div class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-                <div class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
-                <a href="{{ route('account.new') }}" class="profile-pill"><div class="avatar-head"></div><span>Student</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg></a>
-            </div>
-        </div>
-    </header>
-
-    <div class="wrapper">
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="nav-link">
-                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-                Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link">
-                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-                Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-                Learning
-            </a>
-            <a href="{{ route('courses') }}" class="nav-link active">
-                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-                Exam
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-                Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link">
-                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-                Account
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-                Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-                Transaction
-            </a>
-            <a href="{{ route('shopping.cart') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-                Payment
-            </a>
-        </aside>
+    <div class="shared-shell">
+        @include('partials.sidebar', ['activePage' => 'courses'])
 
         <main class="main-card">
             <div class="card-inner">
@@ -233,7 +203,7 @@
                                 <div class="t-avatar"></div>
                                 <div class="t-content">
                                     <p>Created by : <span>Teacher</span></p>
-                                    <div class="t-meta"><span>⭐ 0 Ratings</span><span>👥 0 Students</span></div>
+                                    <div class="t-meta"><span>­ 0 Ratings</span><span>ðŸ‘¥ 0 Students</span></div>
                                 </div>
                             </div>
                             <div class="hero-left-actions">
@@ -245,7 +215,7 @@
                             <h1>Mathematic Class</h1>
                             <span class="price-text">$10.99</span>
                         </div>
-                        <div class="update-date">📅 Updated date : 26 June 2023</div>
+                        <div class="update-date">ðŸ“… Updated date : 26 June 2023</div>
                         <p class="course-short-desc">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
                         <div class="date-info">
                             Course start date : <span>26 June 2023</span>
@@ -285,7 +255,7 @@
                             <div class="mod-header">
                                 <div class="mh-left-col">
                                     <h3>Introduction to make the sale: build, launch, and manage e-commerce s...</h3>
-                                    <p>Module 1 • 5 hours to complete</p>
+                                    <p>Module 1 €¢ 5 hours to complete</p>
                                 </div>
                                 <div class="mh-right-col">
                                     <span>Module details</span>
@@ -293,7 +263,7 @@
                                 </div>
                             </div>
                             <div class="mod-expanded-content">
-                                <p class="mod-desc">You will explore the field of e-commerce and learn about the benefits of selling products online. You’ll study the common terms, tools, roles, and strategies that are used in e-commerce. Then, you’ll learn how to begin an e-commerce project using market research, competitive analysis, target audience identification, product research, product sourcing, and brand strategy.</p>
+                                <p class="mod-desc">You will explore the field of e-commerce and learn about the benefits of selling products online. You€™ll study the common terms, tools, roles, and strategies that are used in e-commerce. Then, you€™ll learn how to begin an e-commerce project using market research, competitive analysis, target audience identification, product research, product sourcing, and brand strategy.</p>
                                 
                                 <div class="whats-included">
                                     <h4>What's included</h4>
@@ -335,7 +305,7 @@
                             <div class="mod-header">
                                 <div class="mh-left-col">
                                     <h3>Introduction to make the sale: build, launch, and manage e-commerce s...</h3>
-                                    <p>Module 1 • 5 hours to complete</p>
+                                    <p>Module 1 €¢ 5 hours to complete</p>
                                 </div>
                                 <div class="mh-right-col">
                                     <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>

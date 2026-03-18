@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | IL² RMUTTO</title>
+    <title>Dashboard | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <style>
         :root {
             --primary: #003a70;
@@ -31,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* ─── HEADER (Pill Shape) ─── */
+        /* â”€â”€â”€ HEADER (Pill Shape) â”€â”€â”€ */
         header { padding: 15px 30px; display: flex; justify-content: center; position: sticky; top: 0; z-index: 1000; }
         .header-pill {
             background: #fff; width: 100%; max-width: 1440px; height: 68px; border-radius: 40px; 
@@ -39,10 +40,10 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
         
-        /* ─── MAIN LAYOUT ─── */
+        /* â”€â”€â”€ MAIN LAYOUT â”€â”€â”€ */
         .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 25px; max-width: 1440px; margin: 0 auto; padding: 10px 30px 50px; }
 
-        /* ─── FOOTER ─── */
+        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
         footer { margin-top: 60px; background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9; display: flex; justify-content: flex-start; gap: 100px; flex-wrap: wrap; }
         .footer-brand .f-logo-circle { width: 70px; height: 70px; border-radius: 50%; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
         .footer-brand p { font-size: 13px; color: #64748b; line-height: 1.6; max-width: 250px; }
@@ -75,6 +76,10 @@
     </style>
 </head>
 <body>
+    @include('partials.header')
+
+    <div class="shared-shell">
+        @include('partials.sidebar', ['activePage' => 'dashboard'])
 
     <header>
         <div class="header-pill">

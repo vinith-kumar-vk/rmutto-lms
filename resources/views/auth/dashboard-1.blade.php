@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | IL² RMUTTO</title>
+    <title>Dashboard | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <!-- Responsive Enhancements -->
+    <link rel="stylesheet" href="{{ asset('css/dashboard-1-responsive.css') }}?v={{ time() }}">
     <style>
         :root {
             --primary: #003a70;
@@ -31,53 +35,138 @@
             overflow-x: hidden;
         }
 
-        /* ─── HEADER ─── */
-        header { 
-            padding: 15px 30px; 
-            display: flex; 
-            justify-content: center; 
-            position: absolute; 
-            top: 0; left: 0; right: 0; 
-            z-index: 1000; 
+        /* ═══════════════════════════════════════════════════════════════
+        HEADER RESPONSIVENESS
+        ═══════════════════════════════════════════════════════════════ */
+
+        header {
+            padding: 15px 30px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
 
         .header-pill {
-            background: #fff; width: 100%; max-width: 1440px; height: 68px; border-radius: 40px; 
-            display: flex; align-items: center; justify-content: space-between; padding: 0 25px; 
+            background: #fff;
+            width: 100%;
+            max-width: 1440px;
+            height: 68px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        .header-left { display: flex; align-items: center; gap: 20px; }
-        .logo img { height: 38px; }
-        .cat-dropdown { 
-            display: flex; align-items: center; gap: 8px; background: #f1f5f9; padding: 10px 18px; 
-            border-radius: 25px; font-size: 13.5px; font-weight: 500; color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
-        .search-wrap { position: relative; width: 280px; }
-        .search-wrap input { 
-            width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px; 
-            padding: 0 15px 0 40px; font-size: 13.5px; outline: none; 
-        }
-        .search-wrap svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
 
-        .header-right { display: flex; align-items: center; gap: 15px; }
-        .h-icon-btn { 
-            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; 
-            color: #64748b; text-decoration: none; position: relative; 
+        .logo img {
+            height: 38px;
         }
-        .notif-badge { 
-            position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff; 
-            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; border: 2px solid #fff; 
-        }
-        .profile-pill { 
-            display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px; 
-            border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; 
-            font-weight: 600; font-size: 13.5px; text-decoration: none; 
-        }
-        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        /* ─── MAIN LAYOUT ─── */
+        .cat-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f1f5f9;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+
+        .search-wrap {
+            position: relative;
+            width: 280px;
+        }
+
+        .search-wrap input {
+            width: 100%;
+            height: 42px;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 25px;
+            padding: 0 15px 0 40px;
+            font-size: 13.5px;
+            outline: none;
+        }
+
+        .search-wrap svg {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .h-icon-btn {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .notif-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: #f97316;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 800;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff;
+        }
+
+        .profile-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 15px 5px 5px;
+            border-radius: 35px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 13.5px;
+            text-decoration: none;
+        }
+
+        .avatar-head {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #94a3b8;
+        }
+
+        /* â”€â”€â”€ MAIN LAYOUT â”€â”€â”€ */
         .wrapper {
             display: grid;
             grid-template-columns: 240px 1fr;
@@ -88,7 +177,7 @@
             flex: 1;
         }
 
-        /* ─── SIDEBAR ─── */
+        /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
         .sidebar {
             background: #fff;
             border-radius: 20px;
@@ -132,7 +221,7 @@
             opacity: 1;
         }
 
-        /* ─── CONTENT AREA ─── */
+        /* â”€â”€â”€ CONTENT AREA â”€â”€â”€ */
         .content {
             display: flex;
             flex-direction: column;
@@ -142,6 +231,7 @@
         .flex-container {
             display: flex;
             gap: 25px;
+            padding-top: 30px;
         }
 
         .main-col { flex: 2; display: flex; flex-direction: column; gap: 25px; }
@@ -165,7 +255,7 @@
             align-items: center;
         }
 
-        /* ─── CHART ─── */
+        /* â”€â”€â”€ CHART â”€â”€â”€ */
         .chart-box {
             position: relative;
             height: 300px;
@@ -241,7 +331,7 @@
             font-weight: 500;
         }
 
-        /* ─── ENROLLED CLASSES ─── */
+        /* â”€â”€â”€ ENROLLED CLASSES â”€â”€â”€ */
         .enrolled-item {
             display: flex;
             justify-content: space-between;
@@ -268,7 +358,7 @@
 
         .chevron svg { color: #cbd5e0; }
 
-        /* ─── COURSES ─── */
+        /* â”€â”€â”€ COURSES â”€â”€â”€ */
         .course-card {
             display: flex;
             align-items: center;
@@ -314,7 +404,7 @@
 
         .prog-val { font-size: 11px; font-weight: 800; color: #4a5568; }
 
-        /* ─── NOTES ─── */
+        /* â”€â”€â”€ NOTES â”€â”€â”€ */
         .notes-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -494,87 +584,12 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-pill">
-            <div class="header-left">
-                <a href="{{ route('home') }}" class="logo">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
-                </a>
-                
-                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none; display: flex; align-items: center; gap: 8px;">
-                    Courses
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </a>
+    @include('partials.header')
 
-                <div class="search-wrap">
-                    <a href="{{ route('search') }}" style="position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#94a3b8;z-index:1;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    </a>
-                    <input type="text" placeholder="Search here" onfocus="window.location.href='{{ route('search') }}'">
-                </div>
-            </div>
+    <div class="shared-shell">
+        @include('partials.sidebar', ['activePage' => 'dashboard'])
 
-            <div class="header-right">
-                <a href="#" class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                </a>
-                <a href="{{ route('shopping.cart') }}" class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                </a>
-                <div class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    <span class="notif-badge">2</span>
-                </div>
-                <a href="{{ route('account.new') }}" class="profile-pill">
-                    <div class="avatar-head"></div>
-                    <span>{{ $user->name ?? 'Student' }}</span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <div class="wrapper">
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="nav-link active">
-                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-                Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link">
-                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-                Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-                Learning
-            </a>
-            <a href="{{ route('category') }}" class="nav-link">
-                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-                Exam
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-                Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link">
-                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-                Account
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-                Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-                Transaction
-            </a>
-            <a href="{{ route('payment.method') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-                Payment
-            </a>
-        </aside>
-
-        <main class="content">
+        <main class="shared-content">
             <div class="flex-container">
                 <div class="main-col">
                     <div class="section-card">

@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar | IL² RMUTTO</title>
+    <title>Calendar | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
         :root {
             --primary: #003a70;
@@ -34,66 +36,9 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* ─── HEADER ─── */
-        header { 
-            padding: 15px 30px; 
-            display: flex; 
-            justify-content: center; 
-            position: absolute; 
-            top: 0; left: 0; right: 0; 
-            z-index: 1000; 
-        }
-
-        .header-pill {
-            background: #fff; width: 100%; max-width: 1440px; height: 68px; border-radius: 40px; 
-            display: flex; align-items: center; justify-content: space-between; padding: 0 25px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .header-left { display: flex; align-items: center; gap: 20px; }
-        .logo img { height: 38px; }
-        .cat-dropdown { 
-            display: flex; align-items: center; gap: 8px; background: #f1f5f9; padding: 10px 18px; 
-            border-radius: 25px; font-size: 13.5px; font-weight: 500; color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
-        }
-        .search-wrap { position: relative; width: 280px; }
-        .search-wrap input { 
-            width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px; 
-            padding: 0 15px 0 40px; font-size: 13.5px; outline: none; 
-        }
-        .search-wrap svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-
-        .header-right { display: flex; align-items: center; gap: 15px; }
-        .h-icon-btn { 
-            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; 
-            color: #64748b; text-decoration: none; position: relative; 
-        }
-        .notif-badge { 
-            position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff; 
-            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; border: 2px solid #fff; 
-        }
-        .profile-pill { 
-            display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px; 
-            border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; 
-            font-weight: 600; font-size: 13.5px; text-decoration: none; 
-        }
-        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
-
-        /* ─── MAIN WRAPPER ─── */
-        .wrapper { 
-            display: grid; 
-            grid-template-columns: 240px 1fr; 
-            gap: 25px; 
-            max-width: 1440px; 
-            margin: 0 auto; 
-            padding: 90px 30px 50px; 
-            flex: 1; 
-        }
-
-        /* ─── SIDEBAR ─── */
         .sidebar { 
             grid-row: 1 / span 2;
             background: #fff; 
@@ -112,18 +57,45 @@
         .nav-link img { width: 22px; height: 22px; opacity: 0.7; }
         .nav-link.active img { opacity: 1; }
 
-        /* ─── CONTENT AREA ─── */
-        .main-content { display: flex; gap: 25px; }
-        .calendar-section { flex: 2.5; display: flex; flex-direction: column; gap: 20px; }
-        .schedule-section { flex: 1; display: flex; flex-direction: column; gap: 20px; }
-
-        .card { 
-            background: #fff; border-radius: var(--radius-lg); padding: 30px; 
-            border: 1px solid #D7D7D7; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        /* â”€â”€â”€ CONTENT AREA â”€â”€â”€ */
+        .main-content { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 30px; 
+            min-width: 0;
+            width: 100%;
+        }
+        .calendar-section, .schedule-section { 
+            width: 100%;
         }
 
-        .cal-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .cal-title { font-size: 18px; font-weight: 500; color: var(--text-main); }
+        .card { 
+            background: #fff; 
+            border-radius: var(--radius-lg); 
+            padding: 30px; 
+            border: 1px solid #D7D7D7; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            width: 100%;
+        }
+
+        .content-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .cal-title { font-size: 24px; font-weight: 700; color: var(--text-main); }
+        .section-title { font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 15px; }
 
         .btn-download {
             background: #003a70; color: #fff; border: none; padding: 10px 20px; border-radius: 12px; 
@@ -132,10 +104,12 @@
 
         .calendar-nav-bar {
             display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .month-selector { display: flex; align-items: center; gap: 15px; font-size: 17px; font-weight: 800; }
-        .tab-group { display: flex; background: #f1f5f9; padding: 4px; border-radius: 10px; gap: 2px; }
+        .tab-group { display: flex; background: #f1f5f9; padding: 4px; border-radius: 10px; gap: 2px; overflow-x: auto; max-width: 100%; }
         .tab-btn { border: none; background: none; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 400; color: var(--text-muted); cursor: pointer; }
         .tab-btn.active { background: #fff; color: var(--text-main); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 
@@ -169,10 +143,10 @@
         .event-box p { font-size: 8px; color: var(--text-light); }
 
         /* SCHEDULE SIDEBAR */
-        .sched-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .sched-search-wrap { position: relative; width: 140px; }
-        .sched-search-wrap input { width: 100%; padding: 8px 12px 8px 30px; border-radius: 30px; border: 1px solid #e2e8f0; font-size: 12px; outline: none; font-weight: 400; }
-        .sched-search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-light); }
+        .sched-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .sched-search-wrap { position: relative; width: 240px; }
+        .sched-search-wrap input { width: 100%; padding: 10px 15px 10px 35px; border-radius: 30px; border: 1px solid #e2e8f0; font-size: 13px; outline: none; font-weight: 400; background: #fff; }
+        .sched-search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-light); }
 
         .sched-day-name { font-size: 13px; font-weight: 500; color: var(--text-light); margin-bottom: 20px; }
         .sched-card { 
@@ -186,7 +160,7 @@
         .sched-info h3 { font-size: 14px; font-weight: 500; color: var(--text-main); }
         .dots-btn { position: absolute; top: 20px; right: 20px; color: #cbd5e1; cursor: pointer; }
 
-        /* ─── FOOTER ─── */
+        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
         footer {
             grid-column: 1 / -1;
             border-radius: 26px;
@@ -262,29 +236,51 @@
             width: 100%; background: #003a70; color: #fff; border: none; padding: 14px; 
             border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 15px; 
         }
+        @media (max-width: 1200px) {
+            .content-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
         @media (max-width: 1024px) {
-            .wrapper { grid-template-columns: 1fr; }
-            .header-pill { max-width: 95%; }
-            .footer { flex-direction: column; gap: 40px; }
+            .f-brand { margin-bottom: 20px; }
+            footer { flex-direction: column; gap: 40px; }
             .f-right { align-items: flex-start; border-top: 1px solid #e2e8f0; padding-top: 30px; }
         }
 
         @media (max-width: 768px) {
-            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
-            .header-pill { height: auto; padding: 15px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
-            .search-wrap { width: 100%; }
-            .logo img { height: 32px; }
-            .header-right { width: 100%; justify-content: center; }
+            .header-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .sched-search-wrap, .btn-download {
+                width: 100%;
+            }
+            .btn-download {
+                justify-content: center;
+            }
             
-            .wrapper { padding: 140px 24px 40px; }
-            .main-content { flex-direction: column; }
+            .calendar-nav-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            .tab-group { width: 100%; }
+            .btn-new-schedule { width: 100%; justify-content: center; }
+
             .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 10px; }
             .cal-cell { padding: 4px; font-size: 11px; }
             .date-num { margin-bottom: 2px; }
             .circle-num { width: 18px; height: 18px; font-size: 10px; }
             .event-box h5 { font-size: 8px; }
             
-            .btn-download, .btn-new-schedule { padding: 8px 12px; font-size: 11px; }
             footer { padding: 40px 24px; }
         }
 
@@ -297,76 +293,27 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-pill">
-            <div class="header-left">
-                <a href="{{ route('dashboard.1') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                
-                <div class="cat-dropdown">
-                    Categories 
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                </div>
+    @include('partials.header')
 
-                <div class="search-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" placeholder="Search here"></div>
-            </div>
-            <div class="header-right">
-                <a href="#" class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
-                <a href="{{ route('shopping.cart') }}" class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a>
-                <div class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notif-badge">2</span></div>
-                <a href="{{ route('account.new') }}" class="profile-pill"><div class="avatar-head"></div><span>Student</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg></a>
-            </div>
-        </div>
-    </header>
-
-    <div class="wrapper">
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="nav-link">
-                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-                Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link active">
-                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-                Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-                Learning
-            </a>
-            <a href="{{ route('courses') }}" class="nav-link">
-                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-                Exam
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-                Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link">
-                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-                Account
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-                Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-                Transaction
-            </a>
-            <a href="{{ route('payment.method') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-                Payment
-            </a>
-        </aside>
+    <div class="shared-shell">
+        @include('partials.sidebar', ['activePage' => 'calendar'])
 
         <main class="main-content">
-            <div class="calendar-section">
-                <div class="cal-header-row">
-                    <div class="cal-title">Calendar</div>
+            <div class="content-header-row">
+                <div class="cal-title">Calendar</div>
+                <div class="header-actions">
                     <button class="btn-download" onclick="openDownloadModal()">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         Download <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg>
                     </button>
+                    <div class="sched-search-wrap">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" placeholder="Search here">
+                    </div>
                 </div>
+            </div>
+
+            <div class="calendar-section">
 
                 <div class="card">
                     <div class="calendar-nav-bar">
@@ -399,13 +346,7 @@
             </div>
 
             <div class="schedule-section">
-                <div class="sched-title-row">
-                    <div class="cal-title" style="font-size: 16px;">Schedule</div>
-                    <div class="sched-search-wrap">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                        <input type="text" placeholder="Search here">
-                    </div>
-                </div>
+                <div class="section-title">Schedule</div>
 
                 <div class="card" style="padding-bottom: 20px;">
                     <div class="sched-day-name">December 20, Sunday</div>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <style>
         :root {
             --primary-blue: #003a70;
@@ -29,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* ─── HEADER ─── */
+        /* â”€â”€â”€ HEADER â”€â”€â”€ */
         header { 
             padding: 15px 30px; 
             display: flex; 
@@ -75,7 +76,7 @@
         }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        /* ─── MAIN LAYOUT ─── */
+        /* â”€â”€â”€ MAIN LAYOUT â”€â”€â”€ */
         .wrapper {
             display: grid;
             grid-template-columns: 240px 1fr;
@@ -86,7 +87,7 @@
             flex: 1;
         }
 
-        /* ─── SIDEBAR ─── */
+        /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
         .sidebar {
             grid-row: 1 / span 2;
             background: #fff;
@@ -131,7 +132,7 @@
             opacity: 1;
         }
 
-        /* ─── CONTENT AREA ─── */
+        /* â”€â”€â”€ CONTENT AREA â”€â”€â”€ */
         .content-header {
             margin-bottom: 24px;
         }
@@ -150,7 +151,7 @@
             min-height: 700px;
         }
 
-        /* ─── AVATAR ─── */
+        /* â”€â”€â”€ AVATAR â”€â”€â”€ */
         .avatar-section {
             position: relative;
             width: 100px;
@@ -184,7 +185,7 @@
             white-space: nowrap;
         }
 
-        /* ─── FORM ─── */
+        /* â”€â”€â”€ FORM â”€â”€â”€ */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -260,7 +261,7 @@
             opacity: 0.9;
         }
 
-        /* ─── FOOTER ─── */
+        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
         footer {
             grid-column: 2; border-radius: 26px; box-sizing: border-box;
             background: #fff; padding: 60px 30px; border-top: 1px solid #f1f5f9;
@@ -314,69 +315,10 @@
             {{ session('success') }}
         </div>
     @endif
+    @include('partials.header')
 
-    <!-- Header -->
-    <header>
-        <div class="header-pill">
-            <div class="header-left">
-                <a href="{{ route('dashboard.1') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                
-                <div class="cat-dropdown">
-                    Categories 
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                </div>
-
-                <div class="search-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" placeholder="Search here"></div>
-            </div>
-            <div class="header-right">
-                <a href="#" class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
-                <a href="{{ route('shopping.cart') }}" class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></a>
-                <div class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notif-badge">2</span></div>
-                <a href="{{ route('account.new') }}" class="profile-pill"><div class="avatar-head"></div><span>Student</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg></a>
-            </div>
-        </div>
-    </header>
-
-    <div class="wrapper">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="nav-link">
-                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-                Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link">
-                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-                Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-                Learning
-            </a>
-            <a href="{{ route('courses') }}" class="nav-link">
-                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-                Exam
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-                Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link active">
-                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-                Account
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-                Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-                Transaction
-            </a>
-            <a href="{{ route('payment.method') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-                Payment
-            </a>
-        </aside>
+    <div class="shared-shell">
+        @include('partials.sidebar', ['activePage' => 'account'])
 
         <!-- Main Content -->
         <main class="content">
@@ -409,7 +351,7 @@
 
                         <div class="form-group">
                             <label>Current Password<span>*</span></label>
-                            <input type="password" name="current_password" value="••••••••">
+                            <input type="password" name="current_password" value="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
                         </div>
                         <div class="form-group">
                             <a href="{{ route('password.change') }}" class="btn-navy">Change</a>

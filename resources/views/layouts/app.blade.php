@@ -15,6 +15,12 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
 
+    @if (request()->is('dashboard-1'))
+        <style>
+            {!! file_get_contents(public_path('css/style.css')) !!}
+        </style>
+    @endif
+
     @stack('styles')
 </head>
 <body>
@@ -27,6 +33,7 @@
     </main>
 
     <!-- JavaScript -->
+    @include('partials.translations')
     <script src="{{ asset('js/script.js') }}?v={{ time() }}"></script>
     @stack('scripts')
 </body>

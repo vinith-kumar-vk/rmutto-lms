@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews | IL² RMUTTO</title>
+    <title>Reviews | IL2 RMUTTO</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <style>
         :root {
             --primary: #003a70;
@@ -69,8 +70,8 @@
         .btn-outline-sm { padding: 6px 20px; border: 1px solid #e2e8f0; border-radius: 20px; font-size: 11px; font-weight: 700; color: #64748b; text-decoration: none; }
 
         .title-price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .title-price-row h1 { font-size: 32px; font-weight: 800; margin: 0; color: #1e293b; }
-        .price-text { font-size: 28px; font-weight: 800; color: #f97316; }
+        .title-price-row h1 { font-size: 32px; font-weight: 900; margin: 0; color: #0f172a; letter-spacing: -0.5px; }
+        .price-text { font-size: 28px; font-weight: 900; color: #f97316; }
 
         .update-date { font-size: 11px; color: #94a3b8; margin-bottom: 20px; }
         .course-short-desc { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 25px; }
@@ -110,10 +111,29 @@
             border-radius: 2px;
         }
 
-        .tab-strip { display: flex; justify-content: center; gap: 60px; border-bottom: 1px solid #f1f5f9; margin-bottom: 50px; }
-        .tab-item { padding: 15px 0; font-size: 13px; font-weight: 500; color: #94a3b8; border-bottom: 3px solid transparent; cursor: pointer; transition: 0.2s; text-decoration: none; }
-        .tab-item:hover { color: #1e293b; }
-        .tab-item.active { color: #1e293b; border-bottom-color: var(--primary); font-weight: 600; background: #fff; border-radius: 10px 10px 0 0; box-shadow: 0 -4px 10px rgba(0,0,0,0.02); padding-left: 30px; padding-right: 30px; position: relative; bottom: -1px; }
+        .tab-strip { 
+            display: flex; 
+            justify-content: center; 
+            gap: 60px; 
+            border-bottom: 1px solid #f1f5f9; 
+            margin-bottom: 50px; 
+        }
+        .tab-item { 
+            padding: 15px 0; 
+            font-size: 13px; 
+            font-weight: 500; 
+            color: #94a3b8; 
+            border-bottom: 3px solid transparent; 
+            cursor: pointer; 
+            transition: 0.2s; 
+        }
+        .tab-item.active { 
+            color: #1e293b; 
+            border-bottom-color: #003a70; 
+            font-weight: 600; 
+            padding-left: 30px; 
+            padding-right: 30px; 
+        }
 
         /* REVIEWS CONTENT */
         .reviews-container { display: grid; grid-template-columns: 350px 1fr; gap: 50px; }
@@ -194,60 +214,10 @@
     </style>
 </head>
 <body>
+    @include('partials.header')
 
-    <header>
-        <div class="header-pill">
-            <div class="header-left">
-                <a href="{{ route('dashboard.1') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-                <div class="search-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" placeholder="Search here"></div>
-            </div>
-            <div class="header-right">
-                <div class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-                <div class="h-icon-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
-                <a href="{{ route('account.new') }}" class="profile-pill"><div class="avatar-head"></div><span>Student</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg></a>
-            </div>
-        </div>
-    </header>
-
-    <div class="wrapper">
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="nav-link">
-                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-                Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link">
-                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-                Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-                Learning
-            </a>
-            <a href="{{ route('courses') }}" class="nav-link active">
-                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-                Exam
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-                Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link">
-                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-                Account
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-                Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-                Transaction
-            </a>
-            <a href="{{ route('shopping.cart') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-                Payment
-            </a>
-        </aside>
+    <div class="shared-shell">
+        @include('partials.sidebar', ['activePage' => 'courses'])
 
         <main class="main-card">
             <div class="course-hero">
@@ -257,7 +227,7 @@
                             <div class="t-avatar"></div>
                             <div class="t-content">
                                 <p>Created by : <span>Teacher</span></p>
-                                <div class="t-meta"><span>⭐ 0 Ratings</span><span>👥 0 Students</span></div>
+                                <div class="t-meta"><span>­ 0 Ratings</span><span>ðŸ‘¥ 0 Students</span></div>
                             </div>
                         </div>
                         <div class="hero-left-actions">
@@ -269,7 +239,7 @@
                         <h1>Mathematic Class</h1>
                         <span class="price-text">$10.99</span>
                     </div>
-                    <div class="update-date">📅 Updated date : 26 June 2023</div>
+                    <div class="update-date">ðŸ“… Updated date : 26 June 2023</div>
                     <p class="course-short-desc">Tutor simulates a physical learning environment with interactive learning that allows instructors and students to engage with one another.</p>
                     <div class="date-info">
                         Course start date : <span>26 June 2023</span>
@@ -303,7 +273,7 @@
                 <div class="rev-left">
                     <h2>Learner reviews</h2>
                     <div class="rating-summary">
-                        <div class="rating-big"><span>⭐</span> 4.0</div>
+                        <div class="rating-big"><span>­</span> 4.0</div>
                         <div class="rating-count">1,993 reviews</div>
                     </div>
 
@@ -346,7 +316,7 @@
                             <div class="rev-avatar"></div>
                             <div class="rev-card-content">
                                 <div class="rev-header-row">
-                                    <span>⭐ 5</span>
+                                    <span>­ 5</span>
                                     <p>Reviewed on Jul 9, 2022</p>
                                 </div>
                                 <p class="rev-body-text">I really enjoyed the videos, course work and practical applications. It definitely build my confidence with building, launching and managing an E-commerce store.</p>

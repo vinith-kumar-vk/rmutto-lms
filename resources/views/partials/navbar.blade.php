@@ -1,4 +1,1 @@
-<!-- Placeholder for Navbar -->
-<nav class="navbar">
-    <!-- Links and menus will be injected here in later phases -->
-</nav>
+{{-- This file is deprecated. Use partials/header.blade.php instead. --}}
