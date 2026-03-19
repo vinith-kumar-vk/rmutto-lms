@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ __('category.page_title') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,45 +18,6 @@
             flex-direction: column;
         }
 
-        /* ─── HEADER ─── */
-        header {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: #fff; padding: 10px 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-        }
-        .header-pill {
-            display: flex; align-items: center; justify-content: space-between;
-            max-width: 1450px; margin: 0 auto;
-        }
-        .header-left { display: flex; align-items: center; gap: 16px; }
-        .logo img { height: 38px; }
-        .cat-dropdown {
-            display: flex; align-items: center; gap: 8px; background: #f1f5f9;
-            padding: 9px 16px; border-radius: 25px; font-size: 13.5px; font-weight: 500;
-            color: #475569; border: 1px solid #e2e8f0; cursor: pointer;
-            text-decoration: none;
-        }
-        .search-wrap { position: relative; width: 260px; }
-        .search-wrap input {
-            width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px;
-            padding: 0 15px 0 50px; font-size: 13.5px; outline: none;
-        }
-        .search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-        .header-right { display: flex; align-items: center; gap: 14px; }
-        .h-icon-btn {
-            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
-            color: #64748b; text-decoration: none; position: relative;
-        }
-        .notif-badge {
-            position: absolute; top: 4px; right: 4px; background: #f97316; color: #fff;
-            font-size: 9px; font-weight: 800; width: 15px; height: 15px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
-        }
-        .profile-pill {
-            display: flex; align-items: center; gap: 10px; padding: 5px 14px 5px 5px;
-            border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0;
-            color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none;
-        }
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
         .language-selector select {
             padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 20px; cursor: pointer;
@@ -164,59 +126,7 @@
 </head>
 <body>
 
-    <!-- ── HEADER ─────────────────────── -->
-    <header>
-        <div class="header-pill">
-            <div class="header-left">
-                <a href="{{ route('home') }}" class="logo">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
-                </a>
-                <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none; display: flex; align-items: center; gap: 8px;">
-                    {{ __('category.nav_courses') }}
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </a>
-                <div class="search-wrap">
-                    <a href="{{ route('search') }}">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    </a>
-                    <input type="text" placeholder="{{ __('category.search_placeholder') }}">
-                </div>
-            </div>
-            <div class="header-right">
-                <a href="#" class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                </a>
-                <a href="{{ route('shopping.cart') }}" class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                </a>
-                <div class="h-icon-btn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    <span class="notif-badge">2</span>
-                </div>
-                <form method="POST" class="language-selector" style="display: inline;">
-                    @csrf
-                    <select name="locale" onchange="
-                        const form = this.closest('form');
-                        form.action = '{{ url('/set-language') }}/' + this.value;
-                        form.submit();
-                    ">
-                        @foreach(config('languages.languages', []) as $loc => $lang)
-                            @if(($lang['enabled'] ?? true))
-                                <option value="{{ $loc }}" @selected(app()->getLocale() === $loc)>
-                                    {{ $lang['native_name'] ?? $loc }}
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
-                </form>
-                <a href="{{ route('account.new') }}" class="profile-pill">
-                    <div class="avatar-head"></div>
-                    <span>{{ Auth::check() ? Auth::user()->name : __('category.student_default') }}</span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" opacity="0.6"><path d="m6 9 6 6 6-6"/></svg>
-                </a>
-            </div>
-        </div>
-    </header>
+    @include('partials.header')
 
     @php
         $courseImages = [
@@ -250,7 +160,8 @@
     @endphp
 
     <!-- ── SHELL ─────────────────────── -->
-    <div class="shell">
+    <div class="shared-shell">
+        @include('partials.sidebar', ['activePage' => 'courses'])
         <!-- Main Courses Card -->
         <main class="main-card">
             <div class="main-header">

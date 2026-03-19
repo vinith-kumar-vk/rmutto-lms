@@ -96,9 +96,8 @@
         .btn-dark-blue { padding: 12px 30px; border-radius: 10px; font-size: 14px; font-weight: 700; color: #fff; background: #003a70; text-decoration: none; border: none; cursor: pointer; }
 
         .hero-right .video-preview {     border: 1px solid #94a3b8;width: 100%; aspect-ratio: 1.6; background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat; border-radius: 20px; position: relative; display: flex; align-items: center; justify-content: center; }
-        .pause-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
-        .pause-btn:hover { transform: scale(1.08); }
-        .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
+        .play-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
+        .play-btn:hover { transform: scale(1.08); }
 
         /* ”€”€”€ TAB NAVIGATION ”€”€”€ */
         .tab-strip { 
@@ -194,8 +193,15 @@
                         <div class="t-info">
                             <div class="t-avatar"></div>
                             <div class="t-content">
-                                <p>{{ __('course_flow.created_by') }} <span>{{ __('course_flow.teacher') }}</span></p>
-                                <div class="t-meta"><span>{{ __('course_flow.ratings_zero') }}</span><span>{{ __('course_flow.students_zero') }}</span></div>
+                                <p>Created by : <span>Teacher</span></p>
+                                <div class="t-meta" style="display: flex; gap: 15px; align-items: center; margin-top: 4px;">
+                                    <span style="display: inline-flex; align-items: center; font-size: 11px; color: #94a3b8;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" style="margin-right: 4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 0 Ratings
+                                    </span>
+                                    <span style="display: inline-flex; align-items: center; font-size: 11px; color: #94a3b8;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="margin-right: 4px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 0 Students
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="hero-left-actions">
@@ -204,11 +210,14 @@
                         </div>
                     </div>
                     <div class="title-price-row">
-                        <h1>{{ __('course_flow.course_title_vet') }}</h1>
-                        <span class="price-text">{{ __('course_flow.free') }}</span>
+                        <h1>Veterinary Nursing Assistant Course</h1>
+                        <span class="price-text">Free</span>
                     </div>
-                    <div class="update-date">{{ __('course_flow.updated_date_icon') }}</div>
-                    <p class="course-short-desc">{{ __('course_flow.short_desc_default') }}</p>
+                    <div class="update-date" style="display: flex; align-items: center; gap: 8px; font-size: 11px; color: #94a3b8; margin-bottom: 20px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Updated date : 26 march 2026
+                    </div>
+                    <p class="course-short-desc">To ensure the content is up-to-date with technology or aligns with learning outcomes.</p>
                     <div class="date-info" style="font-size: 13px; color: #64748b; margin-top: 15px;">
                         {{ __('course_flow.course_start') }} <span style="color: #2563eb; font-weight: 700; margin-right: 25px;">{{ __('course_flow.date_march_26') }}</span>
                         {{ __('course_flow.course_end') }} <span style="color: #2563eb; font-weight: 700;">{{ __('course_flow.date_june_26') }}</span>
@@ -219,7 +228,9 @@
                 </div>
                 <div class="hero-right">
                     <div class="video-preview">
-                        <div class="pause-btn"><div class="pause-bar"></div><div class="pause-bar"></div></div>
+                        <div class="play-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -234,7 +245,7 @@
             </div>
 
             <div class="recom-header">
-                <h2>{{ __('course_flow.recom_heading') }}</h2>
+                <h2>Explore more from Courses</h2>
                 <div class="arrow-btns">
                     <button class="arrow-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg></button>
                     <button class="arrow-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></button>
@@ -242,29 +253,93 @@
             </div>
 
             <div class="course-grid">
-                @for($i=0; $i<4; $i++)
+                <!-- Course 1 -->
                 <div class="c-card">
                     <div class="c-img-wrap">
-                        <span class="badge-free">{{ __('course_flow.free') }}</span>
-                        <img src="{{ asset('images/learning.png') }}" alt="">
+                        <span class="badge-free">Free</span>
+                        <img src="{{ asset('images/9. Animal care.jpg') }}">
                     </div>
                     <div class="c-body">
-                        <h3>{{ __('course_flow.recom_card_title') }}</h3>
-                        <p>{{ __('course_flow.recom_card_desc') }}</p>
+                        <h3>Veterinary Nursing Assistant Course</h3>
+                        <p>Learn essential skills for pet care and management in this comprehensive course.</p>
                         <div class="c-footer">
                             <div class="cf-left">
                                 <div class="cf-avatar"></div>
                                 <div class="cf-meta">
-                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> 4k</span>
-                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 200</span>
-                                    <span>­ 4.5</span>
+                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> 4.2k</span>
+                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 250</span>
                                 </div>
                             </div>
                             <svg class="heart-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                         </div>
                     </div>
                 </div>
-                @endfor
+
+                <!-- Course 2 -->
+                <div class="c-card">
+                    <div class="c-img-wrap">
+                        <span class="badge-free">Free</span>
+                        <img src="{{ asset('images/10. Create a startup.jpg') }}">
+                    </div>
+                    <div class="c-body">
+                        <h3>Building a Sustainable Startup: Strategies for Success</h3>
+                        <p>Master the strategies needed to build and scale your successful startup business.</p>
+                        <div class="c-footer">
+                            <div class="cf-left">
+                                <div class="cf-avatar"></div>
+                                <div class="cf-meta">
+                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> 3.8k</span>
+                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 180</span>
+                                </div>
+                            </div>
+                            <svg class="heart-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="c-card">
+                    <div class="c-img-wrap">
+                        <span class="badge-free">Free</span>
+                        <img src="{{ asset('images/1. Identity.png') }}">
+                    </div>
+                    <div class="c-body">
+                        <h3>Rajamangala Identity Course</h3>
+                        <p>Explore the cultural identity and values of Rajamangala University.</p>
+                        <div class="c-footer">
+                            <div class="cf-left">
+                                <div class="cf-avatar"></div>
+                                <div class="cf-meta">
+                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> 5.1k</span>
+                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 420</span>
+                                </div>
+                            </div>
+                            <svg class="heart-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="c-card">
+                    <div class="c-img-wrap">
+                        <span class="badge-free">Free</span>
+                        <img src="{{ asset('images/2. Relationship building digital business base.png') }}">
+                    </div>
+                    <div class="c-body">
+                        <h3>Building Relationships to Create a Digital Business Foundation</h3>
+                        <p>Learn how to forge strong professional relationships in the digital business era.</p>
+                        <div class="c-footer">
+                            <div class="cf-left">
+                                <div class="cf-avatar"></div>
+                                <div class="cf-meta">
+                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> 2.9k</span>
+                                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 150</span>
+                                </div>
+                            </div>
+                            <svg class="heart-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 

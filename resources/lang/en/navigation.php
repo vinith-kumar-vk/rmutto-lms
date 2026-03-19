@@ -14,7 +14,7 @@ return [
     'wishlist' => 'Wishlist',
     'cart' => 'Cart',
     'notifications' => 'Notifications',
-    'categories' => 'Categories',
+    'categories' => 'Courses',
     'profile' => 'Profile',
     'logout' => 'Logout',
     'language' => 'Language',

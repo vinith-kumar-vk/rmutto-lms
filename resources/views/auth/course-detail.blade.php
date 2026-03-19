@@ -114,9 +114,8 @@
             width: 100%; aspect-ratio: 16/10; border-radius: 25px; background: url('{{ asset('images/9. Animal care.jpg') }}') center/cover no-repeat;
             position: relative; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
-        .pause-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
-        .pause-btn:hover { transform: scale(1.08); }
-        .pause-bar { width: 4px; height: 14px; background: #ffffff; border-radius: 2px; }
+        .play-btn { background: #e11d1d; border-radius: 50px; width: 72px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(225,29,29,0.4); transition: transform 0.2s ease; }
+        .play-btn:hover { transform: scale(1.08); }
 
         /* ” TAB NAVIGATION ” */
         .tab-strip { 
@@ -234,7 +233,9 @@
 
                 <div class="hero-right">
                     <div class="video-box">
-                        <div class="pause-btn"><div class="pause-bar"></div><div class="pause-bar"></div></div>
+                        <div class="play-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
             </div>

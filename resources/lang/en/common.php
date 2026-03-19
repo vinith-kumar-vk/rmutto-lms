@@ -17,7 +17,7 @@ return [
     'success' => 'Success',
     'warning' => 'Warning',
     'info' => 'Information',
-    'search_placeholder' => 'Search...',
+    'search_placeholder' => 'Search here',
     'no_results' => 'No results found',
     'page_not_found' => 'Page Not Found',
     'unauthorized' => 'Unauthorized',

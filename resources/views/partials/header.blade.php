@@ -10,9 +10,9 @@
             <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
-            <a href="{{ route('category') }}" class="cat-dropdown" style="text-decoration:none;">
+            <a href="{{ route('category') }}" class="cat-dropdown">
                 {{ __('navigation.categories') }}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
             <div class="search-wrap">
                 <a href="{{ route('search') }}" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8;z-index:1;">
