@@ -7,6 +7,9 @@
 <header class="shared-header">
     <div class="header-pill">
         <div class="header-left">
+            <button class="mobile-toggle" id="mobileSidebarToggle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
             <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
@@ -60,4 +63,24 @@
             </a>
         </div>
     </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 </header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('mobileSidebarToggle');
+        const sidebar = document.querySelector('.shared-sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+
+        if (toggle && sidebar && overlay) {
+            toggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
+    });
+</script>

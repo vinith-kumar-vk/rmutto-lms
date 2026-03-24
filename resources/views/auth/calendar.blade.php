@@ -39,25 +39,7 @@
             overflow-x: hidden;
         }
 
-        .sidebar { 
-            grid-row: 1 / span 2;
-            background: #fff; 
-            border-radius: 20px; 
-            padding: 20px 10px 40px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02); 
-            min-height: 850px; /* Made long as requested */
-        }
-        .nav-link { 
-            display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 12px; 
-            text-decoration: none; color: #64748b; font-size: 14px; font-weight: 400; /* Removed bold */
-            margin-bottom: 2px; transition: 0.2s; 
-        }
-        .nav-link:hover { background: #f1f5f9; color: #0f172a; }
-        .nav-link.active { background: #f1f5f9; color: var(--primary); font-weight: 800; }
-        .nav-link img { width: 22px; height: 22px; opacity: 0.7; }
-        .nav-link.active img { opacity: 1; }
-
-        /* â”€â”€â”€ CONTENT AREA â”€â”€â”€ */
+        /* --- CONTENT AREA --- */
         .main-content { 
             display: flex; 
             flex-direction: column; 
@@ -120,7 +102,7 @@
 
         /* GRID */
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
-        .day-label { text-align: center; font-size: 12px; font-weight: 500; color: var(--text-light); padding: 10px 0; }
+        .day-label { text-align: center; font-size: 12px; font-weight: 500; color: var(--text-light); padding: 10px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .cal-cell {
             aspect-ratio: 1; border-radius: 12px; border: 1px solid #e2e8f0; padding: 8px; 
             font-size: 13px; font-weight: 400; color: var(--text-muted); display: flex; flex-direction: column;
@@ -160,12 +142,12 @@
         .sched-info h3 { font-size: 14px; font-weight: 500; color: var(--text-main); }
         .dots-btn { position: absolute; top: 20px; right: 20px; color: #cbd5e1; cursor: pointer; }
 
-        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
+        /* --- FOOTER --- */
         footer {
             grid-column: 1 / -1;
             border-radius: 26px;
-            background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9;
-            display: flex; justify-content: flex-start; gap: 100px; flex-wrap: wrap; margin-top: 40px;
+            background: #fff; padding: 60px 30px; border-top: 1px solid #f1f5f9;
+            display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-top: 20px;
         }
         .f-brand { flex: 1; min-width: 250px; }
         .f-logo-circle { width: 60px; height: 60px; border-radius: 50%; background: #f8fafc; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
@@ -194,11 +176,19 @@
         /* MODALS */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
-            background: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center; z-index: 2000;
+            background: rgba(0,0,0,0.5); 
+            display: none; align-items: center; justify-content: center; 
+            z-index: 2000;
+            padding: 20px;
         }
         .modal-box { 
-            background: #fff; width: 340px; border-radius: 20px; padding: 25px; 
+            background: #fff; width: 100%; max-width: 380px; border-radius: 20px; padding: 25px; 
             box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #e2e8f0; position: relative;
+            animation: modalPop 0.3s ease-out;
+        }
+        @keyframes modalPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         .modal-title { font-size: 16px; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
         .modal-label { font-size: 12px; color: var(--text-light); font-weight: 600; margin-bottom: 10px; display: block; }
@@ -209,12 +199,12 @@
             background-size: 14px; outline: none;
         }
 
-        .dl-list { display: flex; flex-direction: column; gap: 10px; }
+        .dl-list { display: flex; flex-direction: column; gap: 8px; }
         .dl-item { 
-            display: flex; align-items: flex-start; gap: 15px; padding: 15px; 
-            border-radius: 12px; cursor: pointer; transition: 0.2s; 
+            display: flex; align-items: center; gap: 15px; padding: 12px; 
+            border-radius: 12px; cursor: pointer; transition: 0.2s; border: 1px solid transparent;
         }
-        .dl-item:hover, .dl-item.active { background: #f8fafc; }
+        .dl-item:hover, .dl-item.active { background: #f8fafc; border-color: #e2e8f0; }
         .dl-icon { 
             width: 36px; height: 36px; background: #f1f5f9; border-radius: 10px; 
             display: flex; align-items: center; justify-content: center; color: var(--text-muted); flex-shrink: 0; 
@@ -222,42 +212,43 @@
         .dl-info h4 { font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
         .dl-info p { font-size: 11px; color: var(--text-light); line-height: 1.3; }
 
-        .page-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; border-radius: 12px; margin-bottom: 5px; cursor: pointer; }
-        .p-info { display: flex; align-items: center; gap: 15px; }
-        .p-box { width: 34px; height: 34px; background: #e2e8f0; border-radius: 8px; }
-        .p-name { font-size: 14px; font-weight: 600; color: var(--text-muted); }
-        .p-radio { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #e2e8f0; }
+        .page-list { display: flex; flex-direction: column; gap: 8px; background: #f8fafc; padding: 10px; border-radius: 15px; }
+        .page-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .p-info { display: flex; align-items: center; gap: 12px; }
+        .p-box { width: 32px; height: 32px; background: #e2e8f0; border-radius: 8px; }
+        .p-name { font-size: 13.5px; font-weight: 600; color: var(--text-muted); }
+        .p-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #e2e8f0; position: relative; }
         
+        .page-item.selected { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .page-item.selected .p-box { background: #cbd5e0; }
         .page-item.selected .p-name { color: var(--text-main); }
-        .page-item.selected .p-radio { background: #f97316; border-color: #f97316; }
+        .page-item.selected .p-radio { border-color: #f97316; }
+        .page-item.selected .p-radio::after { content: ''; position: absolute; width: 10px; height: 10px; background: #f97316; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
         .btn-done { 
             width: 100%; background: #003a70; color: #fff; border: none; padding: 14px; 
-            border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 15px; 
+            border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: 0.2s;
         }
-        @media (max-width: 1200px) {
-            .content-header-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .header-actions {
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
+        .btn-done:hover { background: #002a55; }
 
         @media (max-width: 1024px) {
             .f-brand { margin-bottom: 20px; }
             footer { flex-direction: column; gap: 40px; }
-            .f-right { align-items: flex-start; border-top: 1px solid #e2e8f0; padding-top: 30px; }
+            .f-right { align-items: flex-start; padding-top: 30px; border-top: 1px solid #e2e8f0; width: 100%; }
         }
 
         @media (max-width: 768px) {
+            .shared-shell {
+                padding: 80px 15px 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .main-content {
+                width: 100%;
+            }
             .header-actions {
                 flex-direction: column;
-                align-items: flex-start;
                 gap: 12px;
             }
             .sched-search-wrap, .btn-download {
@@ -266,7 +257,6 @@
             .btn-download {
                 justify-content: center;
             }
-            
             .calendar-nav-bar {
                 flex-direction: column;
                 align-items: stretch;
@@ -275,19 +265,49 @@
             .tab-group { width: 100%; }
             .btn-new-schedule { width: 100%; justify-content: center; }
 
-            .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 10px; }
-            .cal-cell { padding: 4px; font-size: 11px; }
-            .date-num { margin-bottom: 2px; }
-            .circle-num { width: 18px; height: 18px; font-size: 10px; }
-            .event-box h5 { font-size: 8px; }
+            .calendar-grid { 
+                grid-template-columns: repeat(7, 1fr); 
+                gap: 2px; 
+                width: 100%;
+                overflow: hidden;
+            }
+            .day-label {
+                font-size: 8px;
+                padding: 5px 0;
+                text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            .cal-cell { 
+                padding: 2px; 
+                font-size: 9px; 
+                min-height: 40px;
+                border-radius: 6px;
+                aspect-ratio: auto;
+            }
+            .circle-num { width: 16px; height: 16px; font-size: 8px; }
+            .event-box {
+                padding: 1px 2px;
+                margin-top: 2px;
+            }
+            .event-box h5 { display: none; }
+            .event-box p { font-size: 6px; }
             
-            footer { padding: 40px 24px; }
-        }
-
-        @media (max-width: 480px) {
-            .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 3px; }
-            .cal-cell { min-height: 40px; }
-            .tab-group { overflow-x: auto; width: 100%; white-space: nowrap; padding-bottom: 5px; }
+            footer { 
+                padding: 40px 20px;
+                margin-top: 30px;
+                border-radius: 20px;
+                flex-direction: column;
+                gap: 30px;
+            }
+            .f-right {
+                align-items: flex-start;
+                width: 100%;
+            }
+            .f-col {
+                width: 100%;
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -445,7 +465,7 @@
             <select class="modal-select">
                 <option>Page 4</option>
             </select>
-            <div class="page-list" style="background:#f1f5f9; border-radius: 15px; padding: 10px;">
+            <div class="page-list">
                 <div class="page-item"><div class="p-info"><div class="p-box"></div><div class="p-name">Page 1</div></div><div class="p-radio"></div></div>
                 <div class="page-item"><div class="p-info"><div class="p-box"></div><div class="p-name">Page 2</div></div><div class="p-radio"></div></div>
                 <div class="page-item"><div class="p-info"><div class="p-box"></div><div class="p-name">Page 3</div></div><div class="p-radio"></div></div>
@@ -473,4 +493,3 @@
     </script>
 </body>
 </html>
-

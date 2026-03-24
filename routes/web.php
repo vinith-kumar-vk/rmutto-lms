@@ -106,6 +106,11 @@ Route::get('/reset-password', function () {
     return view('auth.reset-password');
 })->name('password.reset');
 
+// Wishlist route
+Route::get('/wishlist', function () {
+    return view('auth.wishlist');
+})->name('wishlist');
+
 Route::get('/verify', function () {
     return view('auth.verify');
 })->name('verification.notice');

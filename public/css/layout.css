@@ -234,32 +234,92 @@ body {
     min-width: 0;
 }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 1024px) {
-    .shared-shell {
-        grid-template-columns: 1fr;
-    }
-
-    .shared-sidebar {
-        position: static;
-    }
+/* ─── NEW MOBILE RESPONSIVE STUFF ─── */
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #475569;
 }
 
 @media (max-width: 768px) {
     .shared-header {
-        padding: 10px 16px;
+        padding: 5px 12px;
     }
-
+    .mobile-toggle {
+        display: block;
+        padding: 5px;
+    }
+    .search-wrap, .cat-dropdown {
+        display: none !important;
+    }
     .header-pill {
-        flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
         gap: 10px;
     }
-
-    .search-wrap {
-        width: 100%;
+    .header-left {
+        gap: 12px;
+        flex-shrink: 0;
     }
-
+    .header-right {
+        gap: 8px;
+        flex-shrink: 0;
+    }
+    .profile-pill {
+        padding: 4px;
+        background: none;
+        border: none;
+        width: 34px;
+        height: 34px;
+        justify-content: center;
+    }
+    .profile-pill span, .profile-pill svg:last-child {
+        display: none !important;
+    }
+    .avatar-head {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    .h-icon-btn {
+        width: 32px;
+        height: 32px;
+    }
+    .h-icon-btn svg {
+        width: 20px;
+        height: 20px;
+    }
     .shared-shell {
-        padding: 90px 16px 24px;
+        grid-template-columns: 1fr;
+        padding: 70px 15px 30px;
+    }
+    .shared-sidebar {
+        display: none; /* Hide desktop sidebar on mobile */
+    }
+    .shared-sidebar.active {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        z-index: 2000;
+        border-radius: 0;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+        padding-top: 60px;
+    }
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 1999;
+    }
+    .sidebar-overlay.active {
+        display: block;
     }
 }

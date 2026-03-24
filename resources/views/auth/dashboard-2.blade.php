@@ -32,10 +32,141 @@
             overflow-x: hidden;
         }
 
-        /* â”€â”€â”€ MAIN LAYOUT â”€â”€â”€ */
-        .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 25px; max-width: 1440px; margin: 0 auto; padding: 10px 30px 50px; }
+        /* --- CONTENT AREA --- */
+        .content { display: flex; flex-direction: column; gap: 20px; }
+        
+        .flex-container { display: flex; gap: 20px; }
 
-        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
+        .section-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .section-header {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 25px;
+        }
+
+        .empty-row {
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .empty-icon {
+            width: 48px;
+            height: 48px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .empty-body h4 { font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+        .empty-body p { font-size: 12px; color: #64748b; }
+
+        .btn-enrol {
+            margin-left: auto;
+            background: #003a70;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* NOTES */
+        .btn-add {
+            background: #003a70;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .note-column {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .note-col-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        .add-task-form {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 15px;
+        }
+
+        .add-task-form input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .prio-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .prio-tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 0.6;
+        }
+
+        .prio-tag.low { background: #dcfce7; color: #16a34a; }
+        .prio-tag.med { background: #fef9c3; color: #ca8a04; }
+        .prio-tag.high { background: #fee2e2; color: #dc2626; }
+
+        .form-btns { display: flex; gap: 8px; }
+
+        .btn-cancel {
+            background: #f1f5f9;
+            color: #475569;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* --- FOOTER --- */
         footer { margin-top: 60px; background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9; display: flex; justify-content: flex-start; gap: 100px; flex-wrap: wrap; }
         .footer-brand .f-logo-circle { width: 70px; height: 70px; border-radius: 50%; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
         .footer-brand p { font-size: 13px; color: #64748b; line-height: 1.6; max-width: 250px; }
@@ -49,21 +180,42 @@
         .app-row img { height: 35px; }
 
         @media (max-width: 1024px) {
-            .wrapper { grid-template-columns: 1fr; }
             .flex-container { flex-direction: column; }
             .notes-grid { grid-template-columns: 1fr; }
-            .footer { flex-direction: column; gap: 40px; }
-            .footer-right { align-items: flex-start; margin-left: 0; border-top: 1px solid #e2e8f0; padding-top: 30px; width: 100%; }
         }
 
         @media (max-width: 768px) {
-            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
-            .header-pill { height: auto; padding: 15px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
-            .search-wrap { width: 100%; }
-            .logo img { height: 32px; }
-            .header-right { width: 100%; justify-content: center; }
-            .wrapper { padding: 140px 24px 40px; }
-            .section-card { padding: 40px 24px; }
+            .shared-shell {
+                padding: 80px 15px 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .content {
+                width: 100%;
+            }
+            .section-card { padding: 25px 15px; }
+            .empty-row { flex-direction: column; text-align: center; gap: 15px; }
+            .empty-icon { margin: 0 auto; }
+            .btn-enrol { width: 100%; margin: 0; }
+            
+            footer { 
+                padding: 40px 20px;
+                margin-top: 30px;
+                border-radius: 20px;
+                flex-direction: column;
+                gap: 30px;
+            }
+            .footer-right { 
+                align-items: flex-start; 
+                margin-left: 0; 
+                padding-top: 20px;
+                border-top: 1px solid #eee;
+                width: 100%; 
+            }
+            .footer-col {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -72,48 +224,6 @@
 
     <div class="shared-shell">
         @include('partials.sidebar', ['activePage' => 'dashboard'])
-
-
-
-    <div class="wrapper">
-        <aside class="sidebar">
-            <a href="{{ route('dashboard.1') }}" class="nav-link active">
-                <img src="{{ asset('images/icons/1.png') }}" style="width: 22px; height: 22px;">
-                Dashboard
-            </a>
-            <a href="{{ route('calendar') }}" class="nav-link">
-                <img src="{{ asset('images/icons/2.png') }}" style="width: 22px; height: 22px;">
-                Calendar
-            </a>
-            <a href="{{ route('learning') }}" class="nav-link">
-                <img src="{{ asset('images/icons/3.png') }}" style="width: 22px; height: 22px;">
-                Learning
-            </a>
-            <a href="{{ route('category') }}" class="nav-link">
-                <img src="{{ asset('images/icons/4.png') }}" style="width: 22px; height: 22px;">
-                Exam
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/5.png') }}" style="width: 22px; height: 22px;">
-                Quiz
-            </a>
-            <a href="{{ route('account.new') }}" class="nav-link">
-                <img src="{{ asset('images/icons/6.png') }}" style="width: 22px; height: 22px;">
-                Account
-            </a>
-            <a href="#" class="nav-link">
-                <img src="{{ asset('images/icons/7.png') }}" style="width: 22px; height: 22px;">
-                Wallet Address
-            </a>
-            <a href="{{ route('transaction') }}" class="nav-link">
-                <img src="{{ asset('images/icons/8.png') }}" style="width: 22px; height: 22px;">
-                Transaction
-            </a>
-            <a href="{{ route('payment.method') }}" class="nav-link">
-                <img src="{{ asset('images/icons/9.png') }}" style="width: 22px; height: 22px;">
-                Payment
-            </a>
-        </aside>
 
         <main class="content">
             <div class="flex-container">
@@ -193,7 +303,7 @@
 
     <footer>
         <div class="footer-brand">
-            <img src="{{ asset('images/icons/logo.svg') }}" alt="Logo">
+            <div class="f-logo-circle"><img src="{{ asset('images/icons/logo.svg') }}" alt="Logo"></div>
             <p>Learn anytime and anywhere<br>from IL2 career skills</p>
         </div>
         <div class="footer-col">
@@ -218,4 +328,3 @@
 
 </body>
 </html>
-

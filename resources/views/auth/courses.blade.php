@@ -26,45 +26,7 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* --- HEADER --- */
-        header { 
-            background: #fff; 
-            height: 74px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            position: fixed; 
-            top: 0; left: 0; right: 0; 
-            z-index: 1000; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
-            padding: 0 30px;
-        }
-        .header-pill { 
-            width: 100%; 
-            max-width: 1400px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-        }
-        .header-left { display: flex; align-items: center; gap: 20px; }
-        .logo img { height: 38px; }
-        .search-wrap { position: relative; width: 280px; }
-        .search-wrap input { width: 100%; height: 42px; background: #f1f5f9; border: none; border-radius: 25px; padding: 0 15px 0 50px; font-size: 13.5px; outline: none; }
-        .search-wrap svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
-        .header-right { display: flex; align-items: center; gap: 15px; }
-        .h-icon-btn { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; color: #64748b; text-decoration: none; position: relative; }
-        .profile-pill { display: flex; align-items: center; gap: 10px; padding: 5px 15px 5px 5px; border-radius: 35px; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; font-weight: 600; font-size: 13.5px; text-decoration: none; }
-        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
-
-        /* --- SHELL --- */
-        .wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 30px; max-width: 1450px; margin: 0 auto; padding: 100px 30px 40px; }
-        
-        .sidebar { background: #fff; border-radius: 24px; padding: 25px 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); position: sticky; top: 100px; height: fit-content; grid-row: 1 / span 2; }
-        .nav-link { display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 14px; text-decoration: none; color: #64748b; font-size: 14px; font-weight: 500; margin-bottom: 4px; transition: 0.2s; }
-        .nav-link:hover { background: #f8fafc; color: #0f172a; }
-        .nav-link.active { background: #f8fafc; color: var(--primary); font-weight: 700; }
-        .nav-link img { width: 22px; height: 22px; opacity: 0.7; }
-        .nav-link.active img { opacity: 1; }
+        /* Sidebar & Header are handled by layout.css */
 
         /* --- MAIN CONTENT --- */
         .main-card { background: #fff; border-radius: 30px; padding: 40px; box-shadow: 0 4px 25px rgba(0,0,0,0.02); }
@@ -141,25 +103,53 @@
         .apps img { height: 32px; }
 
         @media (max-width: 1024px) {
-            .wrapper { grid-template-columns: 1fr; }
             .course-hero { grid-template-columns: 1fr; gap: 30px; }
-            .footer-inner { flex-direction: column; gap: 40px; }
-            .f-right-col { align-items: flex-start; margin-left: 0; border-top: 1px solid #e2e8f0; padding-top: 30px; width: 100%; }
+            .hero-right { order: -1; } /* Video first on mobile */
         }
 
         @media (max-width: 768px) {
-            header { padding: 10px; height: auto; }
-            .header-pill { flex-direction: column; gap: 10px; }
-            .logo img { height: 32px; }
-            .wrapper { padding: 120px 15px 40px; }
-            .main-card { padding: 25px 15px; }
+            .shared-shell {
+                padding: 80px 15px 30px;
+                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: column;
+            }
+            .main-card { padding: 20px 15px; border-radius: 20px; width: 100%; box-sizing: border-box; }
+            .title-price-row { flex-direction: column; align-items: flex-start; gap: 10px; }
             .title-price-row h1 { font-size: 24px; }
-            .tab-strip { gap: 15px; overflow-x: auto; justify-content: flex-start; padding: 0 5px; }
-        }
-
-        @media (max-width: 480px) {
-            .hero-btns { flex-direction: column; }
-            .btn-dark-blue { width: 100%; text-align: center; }
+            .price-text { font-size: 22px; }
+            
+            .teacher-row { flex-direction: column; gap: 15px; }
+            .hero-left-actions { width: 100%; justify-content: space-between; }
+            
+            .tab-strip { 
+                gap: 20px; 
+                overflow-x: auto; 
+                justify-content: flex-start; 
+                padding-bottom: 5px;
+                margin-bottom: 30px;
+            }
+            .tab-item { white-space: nowrap; font-size: 12px; }
+            .hero-btns .btn-dark-blue { width: 100%; text-align: center; }
+            
+            footer { 
+                padding: 40px 20px;
+                margin-top: 20px;
+                border-radius: 20px;
+            }
+            .footer-inner { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            }
+            .f-col {
+                text-align: left;
+            }
+            .f-right-col { 
+                text-align: left; 
+                padding-top: 20px;
+                border-top: 1px solid #eee;
+            }
+            .socials, .apps { justify-content: flex-start; }
         }
     </style>
 </head>

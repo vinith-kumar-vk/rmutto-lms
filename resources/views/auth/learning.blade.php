@@ -26,124 +26,7 @@
         }
 
         /* HEADER */
-        header {
-            padding: 24px 30px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .header-pill {
-            background: var(--white);
-            width: 100%;
-            max-width: 1500px;
-            height: 72px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo-img { height: 35px; }
-
-        .cat-btn {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 500;
-            color: #475569;
-            cursor: pointer;
-        }
-
-        .search-box {
-            position: relative;
-            width: 320px;
-        }
-
-        .search-box input {
-            width: 100%;
-            height: 44px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 25px;
-            padding: 0 20px 0 45px;
-            font-size: 14px;
-            outline: none;
-            color: #333;
-        }
-
-        .search-box svg {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .h-icon {
-            color: #64748b;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: #f97316;
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #fff;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #94a3b8;
-        }
-
-        .user-profile span {
-            font-size: 14px;
-            font-weight: 500;
-            color: #1e293b;
-        }
-
+        /* Sidebar & Header are handled by layout.css */
         /* MAIN LAYOUT */
         .wrapper {
             display: flex;
@@ -153,48 +36,11 @@
             gap: 30px;
         }
 
-        /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
-        .sidebar {
-            background: #fff;
-            border-radius: 20px;
-            padding: 20px 10px 40px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            min-height: 850px;
-        }
-
-        .nav-link {
+        .shared-content {
             display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 18px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #64748b;
-            font-size: 14px;
-            font-weight: 400;
-            margin-bottom: 2px;
-            transition: 0.2s;
-        }
-
-        .nav-link:hover {
-            background: #f1f5f9;
-            color: #0f172a;
-        }
-
-        .nav-link.active {
-            background: #f1f5f9;
-            color: var(--primary);
-            font-weight: 800;
-        }
-
-        .nav-link img {
-            width: 22px;
-            height: 22px;
-            opacity: 0.7;
-        }
-
-        .nav-link.active img {
-            opacity: 1;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
         }
         /* CONTENT */
         .content {
@@ -344,21 +190,79 @@
         }
 
         @media (max-width: 1024px) {
-            .wrapper { grid-template-columns: 1fr; }
             .grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
-            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
-            .header-pill { height: auto; padding: 12px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
-            .search-box { width: 100%; }
-            .header-left { flex-direction: column; width: 100%; }
-            .header-right { width: 100%; justify-content: center; }
-            
-            .wrapper { padding: 140px 24px 40px; flex-direction: column; }
-            .sidebar { width: 100%; margin-bottom: 20px; }
-            .main-card { padding: 40px 24px; }
-            .grid { grid-template-columns: 1fr; }
+            .shared-shell {
+                padding: 80px 15px 30px;
+                display: flex;
+                flex-direction: column;
+            }
+            .page-title {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+            .main-card {
+                padding: 20px 15px;
+                border-radius: 20px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .tabs {
+                margin-bottom: 25px;
+            }
+            .tab {
+                padding: 10px;
+                font-size: 12px;
+            }
+            .grid { 
+                grid-template-columns: 1fr; 
+                gap: 15px;
+            }
+            .course-wrap {
+                padding: 8px;
+            }
+            .course-card {
+                padding: 15px;
+            }
+            .cc-title {
+                font-size: 15px;
+            }
+            .progress-bar-wrap {
+                margin-bottom: 15px;
+            }
+            .cc-desc {
+                padding-top: 15px;
+            }
+        }
+
+        /* Footer styling for consistency */
+        footer {
+            grid-column: 1 / -1;
+            border-radius: 26px;
+            background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9;
+            display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-top: 20px;
+        }
+        .f-brand { flex: 1; min-width: 250px; }
+        .f-logo-circle { width: 60px; height: 60px; border-radius: 50%; background: #f8fafc; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .f-logo-circle img { height: 35px; }
+        .f-brand p { color: #64748b; font-size: 14.5px; line-height: 1.6; }
+        .f-right { flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+        .f-socials { display: flex; gap: 12px; }
+        .f-socials a { width: 38px; height: 38px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; }
+        .f-socials a img { height: 18px; width: 18px; }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 40px 20px;
+                flex-direction: column;
+                gap: 30px;
+            }
+            .f-right {
+                align-items: flex-start;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -433,7 +337,20 @@
                     @endforeach
                 </div>
             </div>
-        </main>
+        <!-- Footer -->
+        <footer>
+            <div class="f-brand">
+                <div class="f-logo-circle"><img src="{{ asset('images/icons/logo.svg') }}" alt="Logo"></div>
+                <p>Learn anytime and anywhere from IL2 career skills</p>
+            </div>
+            <div class="f-right">
+                <div class="f-socials">
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></a>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
+                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitter_Logo.png"></a>
+                </div>
+            </div>
+        </footer>
     </div>
 
 </body>

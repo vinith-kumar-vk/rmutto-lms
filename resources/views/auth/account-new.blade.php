@@ -247,19 +247,43 @@
         .f-apps { display: flex; gap: 10px; }
         .f-apps a img { height: 38px; }
 
-        @media (max-width: 1024px) {
-            footer {
-                grid-template-columns: 1fr 1fr;
-                padding: 40px 20px;
+        @media (max-width: 768px) {
+            .shared-shell {
+                padding: 80px 15px 30px;
+                display: flex;
+                flex-direction: column;
             }
-            .footer-right {
-                align-items: flex-start;
-            }
-            .wrapper {
-                grid-template-columns: 1fr;
+            .account-card {
+                padding: 30px 20px;
+                border-radius: 16px;
+                width: 100%;
+                box-sizing: border-box;
             }
             .form-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .avatar-section {
+                margin-bottom: 30px;
+            }
+            .btn-update {
+                width: 100%;
+            }
+            footer {
+                padding: 40px 20px;
+                margin-top: 20px;
+                border-radius: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+            .f-right {
+                align-items: flex-start;
+                width: 100%;
+            }
+            .f-col {
+                width: 100%;
+                text-align: left;
             }
         }
     </style>

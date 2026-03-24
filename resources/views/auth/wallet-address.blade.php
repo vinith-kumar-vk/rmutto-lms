@@ -10,6 +10,8 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+        /* Sidebar & Header are handled by layout.css */
+
         body {
             font-family: 'Inter', sans-serif;
             background: #f1f4f6;
@@ -17,38 +19,6 @@
             display: flex;
             flex-direction: column;
         }
-
-        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
-
-        .shell {
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 30px;
-            max-width: 1450px;
-            margin: 0 auto;
-            padding: 100px 30px 40px;
-            width: 100%;
-        }
-
-        .sidebar {
-            background: #fff;
-            border-radius: 24px;
-            padding: 25px 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-        }
-
-        .nav-item {
-            display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 14px;
-            text-decoration: none; color: #64748b; font-size: 14px; font-weight: 500; margin-bottom: 4px; transition: 0.2s;
-        }
-
-        .nav-item:hover { background: #f1f5f9; color: #0f172a; }
-        .nav-item.active { background: #f1f5f9; color: #003a70; font-weight: 700; }
-        .nav-item img { width: 22px; height: 22px; opacity: 0.7; }
-        .nav-item.active img { opacity: 1; }
 
         .content { display: flex; flex-direction: column; gap: 20px; }
         .page-title { font-size: 24px; font-weight: 800; color: #1e293b; }
@@ -118,15 +88,28 @@
         .wallet-item p { font-size: 12px; color: #94a3b8; word-break: break-all; }
 
         @media (max-width: 1100px) {
-            .shell { grid-template-columns: 1fr; }
             .wallet-grid { grid-template-columns: 1fr; }
-            .sidebar { position: static; }
         }
 
         @media (max-width: 768px) {
-            .shell { padding: 90px 16px 24px; }
-            .header-pill { gap: 10px; flex-wrap: wrap; }
-            .search-wrap { width: 100%; }
+            .shared-shell {
+                padding: 80px 15px 30px;
+            }
+            .page-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .card {
+                padding: 20px 15px;
+                border-radius: 16px;
+            }
+            .btn-row {
+                flex-direction: column;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>

@@ -410,7 +410,6 @@
             display: flex;
             gap: 10px;
         }
-
         .btn-add {
             background: #003a70;
             color: #fff;
@@ -435,44 +434,62 @@
             cursor: pointer;
         }
 
-
-
-        @media (max-width: 1024px) {
-            .wrapper { display: flex; flex-direction: column; }
-            .sidebar { order: 2; min-height: auto; margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-            .content { order: 1; width: 100%; }
-            .flex-container { flex-direction: column; }
-            .notes-grid { grid-template-columns: 1fr; }
-        }
-
         @media (max-width: 768px) {
-            header { padding: 15px; position: fixed; height: auto; outline: none; border: none; background: none; box-shadow: none; z-index: 1000;}
-            .header-pill { height: auto; padding: 15px; border-radius: 20px; flex-direction: column; gap: 15px; width: 100%; max-width: 100%; }
-            .header-left { width: 100%; flex-wrap: wrap; justify-content: space-between; }
-            .search-wrap { width: 100%; order: 3; margin-top: 5px; }
-            .logo img { height: 32px; }
-            .header-right { width: 100%; flex-wrap: wrap; justify-content: center; }
-            
-            .wrapper { padding: 180px 15px 30px; }
-            .section-card { padding: 25px 15px; }
-
-            .section-header { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .notes-header-actions { width: 100%; flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
-            .notes-header-actions .search-wrap { width: 100% !important; margin-top: 0; order: auto; }
-            .notes-header-actions .btn-add { width: 100%; justify-content: center; margin-top: 10px; }
-
-            .sidebar { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 20px 15px;}
-        }
-
-        @media (max-width: 480px) {
-            .nav-link { font-size: 13px; padding: 10px; border-radius: 8px; justify-content: center; flex-direction: column; gap: 5px; text-align: center;}
-            .chart-box { padding-left: 20px; }
-            .bar-container { width: 25px; }
-            .bar-actual { width: 25px; }
-            .x-label { font-size: 10px; }
-            .y-labels { font-size: 10px; }
-            .sidebar { grid-template-columns: repeat(2, 1fr); }
-            .course-card { flex-direction: column; text-align: center; }
+            .shared-shell {
+                padding: 80px 15px 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .wrapper {
+                padding: 0;
+            }
+            .flex-container {
+                flex-direction: column;
+                padding-top: 10px;
+                gap: 20px;
+            }
+            .main-col, .side-col {
+                width: 100%;
+            }
+            .section-card {
+                padding: 20px 15px;
+                border-radius: 16px;
+            }
+            .chart-box {
+                padding-left: 40px;
+                height: 250px;
+                margin-top: 20px;
+            }
+            .bar-container {
+                width: 28px;
+            }
+            .bar-actual {
+                width: 28px;
+            }
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .notes-header-actions {
+                width: 100%;
+                flex-direction: column !important;
+                align-items: stretch !important;
+            }
+            .notes-header-actions .search-wrap {
+                width: 100% !important;
+            }
+            .notes-header-actions .btn-add {
+                width: 100%;
+            }
+            .course-card { 
+                flex-direction: column; 
+                text-align: center; 
+            }
         }
     </style>
 </head>
@@ -482,7 +499,6 @@
 
     <div class="shared-shell">
         @include('partials.sidebar', ['activePage' => 'dashboard'])
-
         <main class="shared-content">
             <div class="flex-container">
                 <div class="main-col">
