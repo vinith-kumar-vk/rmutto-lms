@@ -3,6 +3,12 @@
 return [
     'dashboard' => 'Dashboard',
     'calendar' => 'Calendar',
+    'create_courses' => 'Create Courses',
+    'all_course' => 'All Course',
+    'classes' => 'Classes',
+    'exam' => 'Exam',
+    'billing' => 'Billing',
+    'attendance' => 'Attendance',
     'learning' => 'Learning',
     'courses' => 'Courses',
     'quiz' => 'Quiz',
