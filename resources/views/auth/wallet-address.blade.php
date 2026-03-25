@@ -125,10 +125,13 @@
             .sidebar { display: block !important; }
             .content {
                 margin-top: 75px !important;
-                gap: 0 !important;
+                gap: 20px !important; /* Added space below title */
                 width: 100%;
             }
-            .wallet-grid { grid-template-columns: 1fr; gap: 0 !important; }
+            .wallet-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px !important; /* Added space between cards */
+            }
             .card { margin-bottom: 0 !important; }
             footer { flex-direction: column !important; padding: 40px 20px !important; }
         }

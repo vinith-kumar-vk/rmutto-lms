@@ -116,10 +116,10 @@
             .sidebar { display: block !important; }
             .content { 
                 margin-top: 75px !important; 
-                gap: 0 !important; 
+                gap: 20px !important; 
                 width: 100%;
             }
-            .quiz-grid { grid-template-columns: 1fr; gap: 0 !important; }
+            .quiz-grid { grid-template-columns: 1fr; gap: 20px !important; }
             .card { margin-bottom: 0 !important; }
             footer { flex-direction: column !important; padding: 40px 20px !important; }
         }

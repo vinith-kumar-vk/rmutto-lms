@@ -8,55 +8,9 @@
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}?v={{ time() }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f1f4f6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
-
-        /* â”€â”€â”€ LAYOUT â”€â”€â”€ */
-        .shell {
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 25px;
-            max-width: 1450px;
-            margin: 0 auto;
-            padding: 90px 30px 50px;
-            flex: 1;
-            width: 100%;
-        }
-
-        /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
-        .sidebar {
-            background: #fff;
-            border-radius: 20px;
-            padding: 20px 10px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            position: sticky;
-            top: 80px;
-            align-self: start;
-        }
-        .nav-item {
-            display: flex; align-items: center; gap: 14px; padding: 12px 18px;
-            border-radius: 12px; text-decoration: none; color: #64748b;
-            font-size: 14px; font-weight: 500; margin-bottom: 2px; transition: 0.2s;
-        }
-        .nav-item:hover { background: #f1f5f9; color: #0f172a; }
-        .nav-item.active { background: #f1f5f9; color: #003a70; font-weight: 700; }
-        .nav-item img { width: 22px; height: 22px; opacity: 0.7; }
-        .nav-item.active img { opacity: 1; }
-
-        /* â”€â”€â”€ MAIN CONTENT â”€â”€â”€ */
-        .content { display: flex; flex-direction: column; gap: 20px; }
-
+        /* --- PAGE-SPECIFIC COMPONENTS --- */
         .page-title {
-            font-size: 18px; font-weight: 700; color: #1a202c;
+            font-size: 20px; font-weight: 800; color: #1a202c; margin-bottom: 24px;
         }
 
         /* â”€â”€â”€ TABS â”€â”€â”€ */
@@ -67,6 +21,7 @@
             display: flex;
             gap: 6px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px; /* Added 2% space here */
         }
         .tab-btn {
             flex: 1; padding: 10px 20px; border: none; border-radius: 12px;
@@ -217,16 +172,32 @@
         .btn-refund:hover {
             background: #002a55;
         }
+
+        /* --- RESPONSIVE ENHANCEMENTS --- */
+        .table-wrap { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+        table { min-width: 600px; } /* Ensure table doesn't get too squished */
+
+        @media (max-width: 768px) {
+            .page-title { margin-bottom: 15px; }
+            .tabs-wrap { overflow-x: auto; white-space: nowrap; padding-bottom: 2px; }
+            .tab-btn { flex: 0 0 auto; padding: 10px 20px; }
+            .table-card { border-radius: 16px; overflow: hidden; padding: 0; box-shadow: none; border: 1px solid #e2e8f0; }
+            tbody td { padding: 15px; }
+
+            .refund-row { flex-direction: column; align-items: flex-start; gap: 8px; padding: 15px 20px; }
+            .refund-action { padding: 0 20px 20px; }
+            .refund-card { margin-bottom: 15px; }
+        }
     </style>
 </head>
 <body>
     @include('partials.header')
 
     <div class="shared-shell">
-        @include('partials.sidebar', ['activePage' => 'transaction'])
+        @include('partials.sidebar', ['activePage' => 'transaction', 'type' => 'billing'])
 
         <!-- Main Content -->
-        <main class="content">
+        <main class="shared-content">
             <h2 class="page-title">Refund</h2>
 
             <!-- Tabs -->
@@ -237,6 +208,7 @@
 
             <!-- Table -->
             <div class="table-card" id="transactions" style="display:none;">
+                <div class="table-wrap">
                 <table>
                     <thead>
                         <tr>
@@ -314,6 +286,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
 
             <!-- Refunds tab content -->
@@ -343,6 +316,7 @@
                 </div>
             </div>
         </main>
+        @include('partials.footer-dashboard')
     </div>
 
     <script>

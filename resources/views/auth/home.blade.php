@@ -20,16 +20,8 @@
             z-index: 10;
         }
 
-        /* Top Bar glass interaction */
-        .glass-header {
-            transition: all 0.3s ease;
-        }
-        .glass-header.scrolled {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            padding: 8px 30px;
-        }
+        /* Top Bar glass interaction - Now Pinned and Fixed */
+        /* Header Pinning already handled in home.css */
         .home-lang-switch {
             display: flex;
             align-items: center;
@@ -66,58 +58,60 @@
 </head>
 <body class="home-page">
     <!-- Header / Navigation -->
-        <header class="glass-header">
-        <div class="header-left">
-            <a href="{{ route('home') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
-            </a>
-            
-            <a href="{{ route('category') }}" class="category-btn" style="display: flex; align-items: center; gap: 6px;">
-                {{ __('home.nav_courses') }}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </a>
-            
-            <div class="search-box">
-                <a href="{{ route('search') }}" style="position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#a0aec0; display: flex; align-items: center;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <header class="home-header">
+        <div class="home-header-inner">
+            <div class="header-left">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
                 </a>
-                <input type="text" placeholder="{{ __('home.search_placeholder') }}">
+                
+                <a href="{{ route('category') }}" class="category-btn" style="display: flex; align-items: center; gap: 6px;">
+                    {{ __('home.nav_courses') }}
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+                
+                <div class="search-box">
+                    <a href="{{ route('search') }}" style="position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#a0aec0; display: flex; align-items: center;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </a>
+                    <input type="text" placeholder="{{ __('home.search_placeholder') }}">
+                </div>
             </div>
-        </div>
 
-        <div class="header-right">
-            <button class="icon-btn" title="{{ __('home.title_wishlist') }}">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            </button>
-            <a href="{{ route('shopping.cart') }}" class="icon-btn" title="{{ __('home.title_cart') }}">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-            </a>
-            <button class="icon-btn" title="{{ __('home.title_notifications') }}" style="position:relative;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                <span style="position:absolute;top:-5px;right:-5px;background:#f97316;color:white;font-size:10px;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;">2</span>
-            </button>
+            <div class="header-right">
+                <button class="icon-btn" title="{{ __('home.title_wishlist') }}">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <a href="{{ route('shopping.cart') }}" class="icon-btn" title="{{ __('home.title_cart') }}">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                </a>
+                <button class="icon-btn" title="{{ __('home.title_notifications') }}" style="position:relative;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span style="position:absolute;top:-5px;right:-5px;background:#f97316;color:white;font-size:10px;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;">2</span>
+                </button>
 
-            <div class="home-lang-switch" aria-label="Language">
-                <form method="POST" action="{{ route('locale.set', ['locale' => 'en']) }}">
-                    @csrf
-                    <button type="submit" class="home-lang-btn {{ app()->getLocale() === 'en' ? 'active' : '' }}">{{ __('home.lang_english') }}</button>
-                </form>
-                <form method="POST" action="{{ route('locale.set', ['locale' => 'th']) }}">
-                    @csrf
-                    <button type="submit" class="home-lang-btn {{ app()->getLocale() === 'th' ? 'active' : '' }}">{{ __('home.lang_thai') }}</button>
-                </form>
+                <div class="home-lang-switch" aria-label="Language">
+                    <form method="POST" action="{{ route('locale.set', ['locale' => 'en']) }}">
+                        @csrf
+                        <button type="submit" class="home-lang-btn {{ app()->getLocale() === 'en' ? 'active' : '' }}">{{ __('home.lang_english') }}</button>
+                    </form>
+                    <form method="POST" action="{{ route('locale.set', ['locale' => 'th']) }}">
+                        @csrf
+                        <button type="submit" class="home-lang-btn {{ app()->getLocale() === 'th' ? 'active' : '' }}">{{ __('home.lang_thai') }}</button>
+                    </form>
+                </div>
+                
+                <a href="{{ route('account.new') }}" class="user-profile">
+                    <div class="avatar-circle"></div>
+                    <span>{{ Auth::check() ? Auth::user()->name : __('home.student') }}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
             </div>
-            
-            <a href="{{ route('account.new') }}" class="user-profile">
-                <div class="avatar-circle"></div>
-                <span>{{ Auth::check() ? Auth::user()->name : __('home.student') }}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-            </a>
-
-            <!-- Mobile Menu Toggle -->
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-            </button>
         </div>
     </header>
 

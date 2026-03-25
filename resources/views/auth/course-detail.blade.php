@@ -206,8 +206,8 @@
                         <div class="t-profile">
                             <div class="avatar-circle" style="width:44px; height:44px;"></div>
                             <div class="t-labels">
-                                <p>{{ __('course_flow.created_by') }} <span>{{ __('course_flow.teacher') }}</span></p>
-                                <div class="t-stats-row"><span>{{ __('course_flow.ratings_zero') }}</span> <span>{{ __('course_flow.students_zero') }}</span></div>
+                                <p style="font-size:11px; color:#94a3b8; font-weight:700; margin-bottom:2px;">Teacher</p>
+                                <span style="font-size:16px; font-weight:800; color:#2563eb; line-height:1.2; display:block;">Vinith<br>Kumar</span>
                             </div>
                         </div>
                         <div class="t-actions-wrap">
@@ -216,9 +216,9 @@
                         </div>
                     </div>
 
-                    <div class="title-row">
-                        <h1>{{ __('course_flow.course_title_vet') }}</h1>
-                        <span class="price-text">{{ __('course_flow.free') }}</span>
+                    <div class="title-row" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <h1 style="line-height: 1.15; max-width: 90%;">{{ __('course_flow.course_title_vet') }}</h1>
+                        <span class="price-text">$599.99</span>
                     </div>
                     <div class="updated-date">{{ __('course_flow.updated_date') }}</div>
                     <p class="course-summary">{{ __('course_detail.summary_short') }}</p>

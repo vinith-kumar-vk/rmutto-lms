@@ -29,7 +29,7 @@
             {{ __('navigation.exam') }}
         </a>
         <a href="{{ route('wishlist') }}" class="nav-link {{ (($activePage ?? '') === 'billing' || ($activePage ?? '') === 'wishlist') ? 'active' : '' }}">
-            <img src="{{ asset('images/icons/77.png') }}" style="width: 22px; height: 22px;">
+            <img src="{{ asset('images/icons/billing.jpeg') }}" style="width: 22px; height: 22px;">
             {{ __('navigation.billing') }}
         </a>
         <a href="#" class="nav-link {{ ($activePage ?? '') === 'attendance' ? 'active' : '' }}">
@@ -75,7 +75,7 @@
             {{ __('navigation.payment') }}
         </a>
         <a href="{{ route('wishlist') }}" class="nav-link {{ (($activePage ?? '') === 'billing' || ($activePage ?? '') === 'wishlist') ? 'active' : '' }}">
-            <img src="{{ asset('images/icons/77.png') }}" style="width: 22px; height: 22px;">
+            <img src="{{ asset('images/icons/billing.jpeg') }}" style="width: 22px; height: 22px;">
             {{ __('navigation.billing') }}
         </a>
     @endif

@@ -146,6 +146,36 @@
             .txn-table { min-width: 600px; }
         }
 
+        .detail-row {
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            gap: 20px;
+        }
+        .detail-label {
+            width: 180px;
+            flex-shrink: 0;
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .detail-value {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #1e293b;
+            word-break: break-all;
+        }
+
+        @media (max-width: 640px) {
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .detail-label {
+                width: 100%;
+            }
+        }
+
         @media (max-width: 480px) {
             .other-plan-card { flex-direction: column; align-items: stretch !important; text-align: center; gap: 15px !important; }
             .other-plan-card > div:first-child { margin: 0 auto; }
@@ -297,42 +327,41 @@
                     </div>
 
                     <div class="detail-rows" style="display: flex; flex-direction: column; gap: 20px; padding-left: 10px;">
-                        <!-- ... rows ... -->
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">Name</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">Jhonny</span>
+                        <div class="detail-row">
+                            <span class="detail-label">Name</span>
+                            <span class="detail-value">Jhonny</span>
                         </div>
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">Email</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">jhon@gmail.com</span>
+                        <div class="detail-row">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value">jhon@gmail.com</span>
                         </div>
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">Recovery Email</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">Jhon34@gmail.com</span>
+                        <div class="detail-row">
+                            <span class="detail-label">Recovery Email</span>
+                            <span class="detail-value">Jhon34@gmail.com</span>
                         </div>
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">Phone Number</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">012 3456 7890</span>
+                        <div class="detail-row">
+                            <span class="detail-label">Phone Number</span>
+                            <span class="detail-value">012 3456 7890</span>
                         </div>
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">Address</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">21, Jalan Old Klang Road</span>
+                        <div class="detail-row">
+                            <span class="detail-label">Address</span>
+                            <span class="detail-value">21, Jalan Old Klang Road</span>
                         </div>
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">City</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">Cheras</span>
+                        <div class="detail-row">
+                            <span class="detail-label">City</span>
+                            <span class="detail-value">Cheras</span>
                         </div>
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">State</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">Kuala Lumpur</span>
+                        <div class="detail-row">
+                            <span class="detail-label">State</span>
+                            <span class="detail-value">Kuala Lumpur</span>
                         </div>
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">Zip Code</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">55100</span>
+                        <div class="detail-row">
+                            <span class="detail-label">Zip Code</span>
+                            <span class="detail-value">55100</span>
                         </div>
-                        <div class="detail-row" style="display: flex; width: 100%; max-width: 500px;">
-                            <span style="width: 180px; font-size: 13px; color: #64748b; font-weight: 500;">Country</span>
-                            <span style="font-size: 13.5px; font-weight: 800; color: #1e293b;">Malaysia</span>
+                        <div class="detail-row">
+                            <span class="detail-label">Country</span>
+                            <span class="detail-value">Malaysia</span>
                         </div>
                     </div>
                 </div>

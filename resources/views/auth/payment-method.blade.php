@@ -14,8 +14,8 @@
 
         /* --- CARDS & TYPOGRAPHY --- */
         .page-title {
-            font-size: 20px; font-weight: 800; color: #1a202c; 
-            margin: 10px 0 24px 10px;
+            font-size: 24px; font-weight: 800; color: #1e293b; 
+            margin-bottom: 24px;
         }
 
         .section-title {
@@ -225,7 +225,7 @@
 
         <!-- Main Content -->
         <main class="shared-content">
-            <h1 class="page-title">Payment Detail</h1>
+            <h1 class="page-title">Payment </h1>
             <div class="content-row">
                 <!-- Left: Payment Methods -->
                 <div>

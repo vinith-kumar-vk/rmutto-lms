@@ -214,8 +214,8 @@
             }
             .shared-sidebar { display: block !important; }
             .main-content { 
-                margin-top: 75px !important; /* Fixed clearance only */
-                gap: 0 !important; /* Removed extra gap below calendar */
+                margin-top: 75px !important; 
+                gap: 20px !important; 
                 width: 100%;
             }
             .calendar-section { margin-bottom: 0 !important; }

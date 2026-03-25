@@ -1526,10 +1526,28 @@ img {
 @media (max-width: 768px) {
 
     /* Header Responsive */
-    .glass-header {
-        padding: 12px 24px !important;
+    .home-header {
+        padding: 0 15px !important;
         justify-content: space-between !important;
-        width: 90% !important;
+        align-items: center !important;
+        width: 100% !important;
+        height: 60px !important;
+        position: sticky !important;
+        top: 0 !important;
+        background: #fff !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .home-header-inner {
+        width: 100% !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        height: 100% !important;
     }
 
     .wide-range-section {
@@ -1544,9 +1562,10 @@ img {
     .category-btn,
     .search-box,
     .header-right .icon-btn:not([title="Notifications"]),
-    .user-profile {
+    .user-profile,
+    .header-right .home-lang-switch {
         display: none !important;
-        /* Hide bulky items on mobile */
+        /* Hide bulky items on mobile header */
     }
 
     .mobile-menu-toggle {
@@ -1561,18 +1580,23 @@ img {
     .header-right {
         gap: 10px !important;
         flex: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
     }
 
     /* Hero Section Responsive */
     .hero-step-1-wrapper {
-        padding: 120px 24px 40px !important;
+        padding: 0 !important; /* Remove all padding to kill the grey gap */
+        background-color: #ffffff !important; /* Match the body/hero card color */
     }
 
     .hero-step-1-container {
         grid-template-columns: 1fr !important;
-        padding: 40px 24px !important;
+        padding: 40px 20px 0 !important; /* Zero bottom padding inside card */
         text-align: center;
-        gap: 30px !important;
+        gap: 35px !important;
         height: auto !important;
         width: 100% !important;
         border-radius: 20px;
@@ -1607,7 +1631,7 @@ img {
 
     .hero-action-btns {
         justify-content: center !important;
-        gap: 15px !important;
+        gap: 12px !important;
     }
 
     /* Features Section */
@@ -1615,11 +1639,12 @@ img {
         display: grid !important;
         grid-template-columns: 1fr !important;
         gap: 20px !important;
-        padding: 40px 24px !important;
+        padding: 0 20px 30px !important; /* Zero top padding to remove gap */
     }
 
     .feature-card {
         width: 100% !important;
+        padding: 24px !important;
     }
 
     /* Wide Range Section */
@@ -1667,30 +1692,57 @@ img {
         gap: 15px !important;
     }
 
-    /* Generic Course Grids */
+    /* Generic Course Grids - Make them horizontally scrollable on mobile */
     .live-classes-grid {
-        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
         gap: 20px !important;
-        display: grid !important;
+        padding: 0 20px 15px !important;
+        margin-left: -20px !important;
+        width: calc(100% + 40px) !important;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    .live-classes-grid > div {
+        flex: 0 0 280px !important;
+        max-width: 280px;
+        scroll-snap-align: start;
     }
 
     .course-cards-row {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
         gap: 20px !important;
-        overflow-x: hidden !important;
+        padding: 0 20px 15px !important;
+        margin-left: -20px !important;
+        width: calc(100% + 40px) !important;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    .course-cards-row > div, .course-cards-row > a {
+        flex: 0 0 280px !important;
+        max-width: 280px;
+        scroll-snap-align: start;
     }
 
     .course-section-header {
         flex-direction: column !important;
         gap: 15px !important;
-        text-align: center;
-        align-items: center !important;
+        text-align: left;
+        align-items: flex-start !important;
     }
 
     .career-section,
     .course-section {
-        padding: 40px 24px !important;
+        padding: 20px !important; /* Minimized vertical gaps */
+        margin: 0 !important;
+    }
+
+    .wide-range-section {
+        padding: 20px !important;
+        margin: 0 !important;
     }
 
     /* Footer Responsive */
@@ -1749,7 +1801,7 @@ img {
 
     .section-sub-center {
         font-size: 13px !important;
-        margin-bottom: 30px !important;
+        margin-bottom: 15px !important;
     }
 
     .feature-card {

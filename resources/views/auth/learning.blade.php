@@ -215,19 +215,31 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             width: 100%;
+            align-items: stretch; /* Force all grid cells to same height */
+        }
+
+        .grid > a {
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Ensures anchor fills the full grid cell height */
+            text-decoration: none;
+            color: inherit;
         }
 
         .course-wrap {
             background: #e2e8f0;
             border-radius: 24px;
             padding: 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .course-card {
             background: var(--white);
             border-radius: 20px;
             padding: 18px;
-            height: 100%;
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
@@ -262,11 +274,18 @@
             text-transform: uppercase;
         }
 
+        .cc-top-content {
+            flex: 1; /* Absorbs extra space in shorter-title cards */
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 14px; /* Consistent gap before progress bar */
+        }
+
         .cc-title {
             font-size: 16px;
             font-weight: 800;
             color: #1e293b;
-            margin: 0 0 15px 0;
+            margin: 0;
         }
 
         .progress-bar-wrap {
@@ -300,9 +319,9 @@
             font-size: 12px;
             line-height: 1.6;
             color: #475569;
-            margin: 0;
+            margin-top: auto; /* Pushes description to bottom of card */
             border-top: 1px solid #f1f5f9;
-            padding-top: 20px;
+            padding-top: 16px;
         }
 
         @media (max-width: 1024px) {
@@ -377,7 +396,7 @@
                 <div class="grid">
                     @foreach ($learningCards as $index => $card)
                     @php $item = $learningItems[$index] ?? ['date' => '', 'title' => '', 'description' => '']; @endphp
-                    <a href="{{ $card['href'] }}" style="text-decoration: none; color: inherit;">
+                    <a href="{{ $card['href'] }}">
                         <div class="course-wrap">
                             <div class="course-card">
                                 <div class="cc-header">
@@ -385,8 +404,10 @@
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
                                 </div>
                                 <div class="cc-img" style="background-image: url('{{ asset('images/' . $card['img']) }}');"></div>
-                                <div class="cc-badge">{{ __('learning.task_badge') }}</div>
-                                <h3 class="cc-title">{{ $item['title'] }}</h3>
+                                <div class="cc-top-content">
+                                    <div class="cc-badge">{{ __('learning.task_badge') }}</div>
+                                    <h3 class="cc-title">{{ $item['title'] }}</h3>
+                                </div>
                                 <div class="progress-bar-wrap">
                                     <div class="progress-bg"><div class="progress-fill" style="width: {{ $card['progress'] }}%;"></div></div>
                                     <span class="progress-text">{{ $card['progress'] }}%</span>

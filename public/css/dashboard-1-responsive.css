@@ -555,7 +555,10 @@ input, select, textarea {
 
     .shared-content {
         margin-top: 75px !important; /* Fixed clearance */
-        gap: 0 !important; /* Calder down dont need gap */
+        gap: 20px !important; /* Restored space between sections */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     /* Header compact */
