@@ -160,36 +160,7 @@
         .sched-info h3 { font-size: 14px; font-weight: 500; color: var(--text-main); }
         .dots-btn { position: absolute; top: 20px; right: 20px; color: #cbd5e1; cursor: pointer; }
 
-        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
-        footer {
-            grid-column: 1 / -1;
-            border-radius: 26px;
-            background: #fff; padding: 60px 40px; border-top: 1px solid #f1f5f9;
-            display: flex; justify-content: flex-start; gap: 100px; flex-wrap: wrap; margin-top: 40px;
-        }
-        .f-brand { flex: 1; min-width: 250px; }
-        .f-logo-circle { width: 60px; height: 60px; border-radius: 50%; background: #f8fafc; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .f-logo-circle img { height: 35px; }
-        .f-brand p { color: #64748b; font-size: 14.5px; line-height: 1.6; }
-        .f-col { flex: 0.6; min-width: 150px; }
-        .f-col ul { list-style: none; padding: 0; margin: 0; }
-        .f-col ul li { margin-bottom: 15px; }
-        .f-col ul li a { text-decoration: none; color: #475569; font-size: 14.5px; transition: 0.2s; }
-        .f-col ul li a:hover { color: var(--primary); }
-        .f-right { flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
-        .f-lang-select { 
-            padding: 10px 15px; border-radius: 25px; border: 1px solid #e2e8f0; background: #fff; 
-            color: #475569; font-size: 14px; outline: none; cursor: pointer; width: 140px;
-        }
-        .f-socials { display: flex; gap: 12px; }
-        .f-socials a { 
-            width: 38px; height: 38px; border-radius: 50%; background: #f1f5f9; 
-            display: flex; align-items: center; justify-content: center; transition: 0.2s; 
-        }
-        .f-socials a:hover { transform: translateY(-3px); background: #e2e8f0; }
-        .f-socials a img { height: 18px; width: 18px; object-fit: contain; }
-        .f-apps { display: flex; gap: 10px; }
-        .f-apps a img { height: 38px; }
+
 
         /* MODALS */
         .modal-overlay {
@@ -236,58 +207,109 @@
             width: 100%; background: #003a70; color: #fff; border: none; padding: 14px; 
             border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 15px; 
         }
-        @media (max-width: 1200px) {
-            .content-header-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .header-actions {
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
-
         @media (max-width: 1024px) {
-            .f-brand { margin-bottom: 20px; }
-            footer { flex-direction: column; gap: 40px; }
-            .f-right { align-items: flex-start; border-top: 1px solid #e2e8f0; padding-top: 30px; }
+            .shared-shell { 
+                grid-template-columns: 1fr !important;
+                padding: 0 16px 24px !important;
+            }
+            .shared-sidebar { display: block !important; }
+            .main-content { 
+                margin-top: 75px !important; /* Fixed clearance only */
+                gap: 0 !important; /* Removed extra gap below calendar */
+                width: 100%;
+            }
+            .calendar-section { margin-bottom: 0 !important; }
+            .schedule-section { margin-top: 0 !important; }
+            .section-title { margin-top: 10px !important; margin-bottom: 10px !important; }
+            footer { padding: 40px 24px; text-align: left; }
+            .f-right { align-items: flex-start; }
         }
 
         @media (max-width: 768px) {
             .header-actions {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
+                align-items: stretch; /* Back to full-width left-align */
+                gap: 15px;
+                width: 100%;
+                margin-bottom: 25px !important;
             }
             .sched-search-wrap, .btn-download {
                 width: 100%;
+                max-width: none; /* Full width as per image */
             }
             .btn-download {
                 justify-content: center;
+                padding: 14px; /* Slightly taller for modern look */
+                font-size: 14px;
+            }
+            .sched-search-wrap input {
+                padding: 14px 15px 14px 40px;
+                font-size: 14px;
+                border-radius: 40px; /* More rounded like image */
             }
             
+            .card { padding: 20px; border-radius: 20px; }
             .calendar-nav-bar {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 15px;
+                gap: 20px;
             }
-            .tab-group { width: 100%; }
+            
+            .cal-title { 
+                text-align: left !important; 
+                margin-bottom: 5px !important; /* Gap removed as requested */
+                font-size: 26px !important;
+            }
+            
+            .main-content {
+                gap: 0 !important; 
+                margin-top: 75px !important;
+            }
             .btn-new-schedule { width: 100%; justify-content: center; }
 
-            .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 10px; }
-            .cal-cell { padding: 4px; font-size: 11px; }
+            .calendar-grid { 
+                grid-template-columns: repeat(7, 1fr); 
+                gap: 2px; 
+                width: 100%;
+                table-layout: fixed; /* prevent content from expanding cells */
+            }
+            .day-label {
+                font-size: 7px;
+                padding: 4px 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .cal-cell { 
+                padding: 3px; 
+                font-size: 9px; 
+                min-height: 45px;
+                min-width: 0; /* important for grid items to shrink */
+                overflow: hidden;
+            }
             .date-num { margin-bottom: 2px; }
-            .circle-num { width: 18px; height: 18px; font-size: 10px; }
-            .event-box h5 { font-size: 8px; }
+            .circle-num { width: 14px; height: 14px; font-size: 8px; }
+            .event-box {
+                padding: 2px;
+                margin-top: 2px;
+            }
+            .event-box h5 { 
+                font-size: 6px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .event-box p { display: none; }
             
-            footer { padding: 40px 24px; }
+            footer { padding: 40px 24px; text-align: left; }
+            .f-right { align-items: flex-start; }
         }
 
         @media (max-width: 480px) {
-            .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 3px; }
-            .cal-cell { min-height: 40px; }
+            .calendar-grid { gap: 1px; }
+            .cal-cell { min-height: 40px; border-radius: 4px; }
             .tab-group { overflow-x: auto; width: 100%; white-space: nowrap; padding-bottom: 5px; }
+            .month-selector { font-size: 14px; }
+            .cal-title { font-size: 20px; }
         }
     </style>
 </head>
@@ -372,40 +394,7 @@
             </div>
         </main>
 
-        <footer>
-            <div class="f-brand">
-                <div class="f-logo-circle"><img src="{{ asset('images/icons/logo.svg') }}" alt="Logo"></div>
-                <p>Learn anytime and anywhere from IL2 career skills</p>
-            </div>
-            <div class="f-col">
-                <ul>
-                    <li><a href="#">Teach on IL2</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Help and Support</a></li>
-                </ul>
-            </div>
-            <div class="f-col">
-                <ul>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookies Policy</a></li>
-                    <li><a href="#">Career</a></li>
-                </ul>
-            </div>
-            <div class="f-right">
-                <select class="f-lang-select"><option>English</option><option>Thai</option></select>
-                <div class="f-socials">
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitter_Logo.png"></a>
-                </div>
-                <div class="f-apps">
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"></a>
-                </div>
-            </div>
-        </footer>
+        @include('partials.footer-dashboard')
     </div>
 
     <!-- MODAL 1: Download -->

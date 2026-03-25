@@ -241,25 +241,99 @@ body {
     }
 
     .shared-sidebar {
-        position: static;
+        position: fixed;
+        top: 0;
+        left: -280px;
+        width: 260px;
+        height: 100vh;
+        z-index: 2000;
+        transition: 0.3s ease;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        border-radius: 0;
+        background: #fff;
+    }
+
+    .shared-sidebar.active {
+        left: 0;
     }
 }
 
 @media (max-width: 768px) {
     .shared-header {
-        padding: 10px 16px;
+        padding: 8px 12px;
+        height: 64px; /* Fixed height for single row */
+        display: flex;
+        align-items: center;
     }
 
     .header-pill {
-        flex-wrap: wrap;
-        gap: 10px;
+        flex-direction: row !important; /* Force single row */
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 0;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
     }
 
-    .search-wrap {
-        width: 100%;
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .mobile-menu-btn {
+        display: block !important;
+    }
+
+    .logo img {
+        height: 28px !important;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Hide everything extra to fit in one line */
+    .cat-dropdown, 
+    .search-wrap, 
+    .profile-pill span, 
+    .profile-pill svg,
+    .language-selector,
+    .h-icon-btn[title="Wishlist"] {
+        display: none !important;
+    }
+
+    .h-icon-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .h-icon-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .profile-pill {
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+
+    .avatar-head {
+        width: 32px;
+        height: 32px;
     }
 
     .shared-shell {
-        padding: 90px 16px 24px;
+        padding: 0 16px 24px !important;
+    }
+
+    .shared-content {
+        margin-top: 75px !important; /* Standardized header clearance */
+        gap: 0 !important; /* No extra gaps between sections */
     }
 }

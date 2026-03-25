@@ -32,62 +32,6 @@
 
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        /* â”€â”€â”€ MAIN LAYOUT â”€â”€â”€ */
-        .wrapper {
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 25px;
-            max-width: 1450px;
-            margin: 0 auto;
-            padding: 90px 30px 50px;
-            flex: 1;
-        }
-
-        /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
-        .sidebar {
-            grid-row: 1 / span 2;
-            background: #fff;
-            border-radius: 20px;
-            padding: 20px 10px 40px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            min-height: 850px;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 18px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #64748b;
-            font-size: 14px;
-            font-weight: 400;
-            margin-bottom: 2px;
-            transition: 0.2s;
-        }
-
-        .nav-link:hover {
-            background: #f1f5f9;
-            color: #0f172a;
-        }
-
-        .nav-link.active {
-            background: #f1f5f9;
-            color: var(--primary-blue);
-            font-weight: 800;
-        }
-
-        .nav-link img {
-            width: 22px;
-            height: 22px;
-            opacity: 0.7;
-        }
-
-        .nav-link.active img {
-            opacity: 1;
-        }
-
         /* â”€â”€â”€ CONTENT AREA â”€â”€â”€ */
         .content-header {
             margin-bottom: 24px;
@@ -217,49 +161,54 @@
             opacity: 0.9;
         }
 
-        /* â”€â”€â”€ FOOTER â”€â”€â”€ */
-        footer {
-            grid-column: 2; border-radius: 26px; box-sizing: border-box;
-            background: #fff; padding: 60px 30px; border-top: 1px solid #f1f5f9;
-            display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-top: 10px;
-        }
-        .f-brand { flex: 1; min-width: 250px; }
-        .f-logo-circle { width: 60px; height: 60px; border-radius: 50%; background: #f8fafc; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .f-logo-circle img { height: 35px; }
-        .f-brand p { color: #64748b; font-size: 14.5px; line-height: 1.6; }
-        .f-col { flex: 0.6; min-width: 150px; }
-        .f-col ul { list-style: none; padding: 0; margin: 0; }
-        .f-col ul li { margin-bottom: 15px; }
-        .f-col ul li a { text-decoration: none; color: #475569; font-size: 14.5px; transition: 0.2s; }
-        .f-col ul li a:hover { color: var(--primary); }
-        .f-right { flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
-        .f-lang-select { 
-            padding: 10px 15px; border-radius: 25px; border: 1px solid #e2e8f0; background: #fff; 
-            color: #475569; font-size: 14px; outline: none; cursor: pointer; width: 140px;
-        }
-        .f-socials { display: flex; gap: 12px; }
-        .f-socials a { 
-            width: 38px; height: 38px; border-radius: 50%; background: #f1f5f9; 
-            display: flex; align-items: center; justify-content: center; transition: 0.2s; 
-        }
-        .f-socials a:hover { transform: translateY(-3px); background: #e2e8f0; }
-        .f-socials a img { height: 18px; width: 18px; object-fit: contain; }
-        .f-apps { display: flex; gap: 10px; }
-        .f-apps a img { height: 38px; }
-
         @media (max-width: 1024px) {
-            footer {
-                grid-template-columns: 1fr 1fr;
-                padding: 40px 20px;
+            .account-card {
+                padding: 40px 30px;
             }
-            .footer-right {
-                align-items: flex-start;
-            }
-            .wrapper {
-                grid-template-columns: 1fr;
+        }
+
+        @media (max-width: 768px) {
+            .account-card {
+                padding: 30px 20px;
+                border-radius: 20px;
+                min-height: auto;
             }
             .form-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .avatar-section {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 30px;
+            }
+            .avatar-lg {
+                width: 80px;
+                height: 80px;
+            }
+            .btn-update {
+                width: 100%;
+                margin-top: 30px;
+            }
+            .btn-navy {
+                width: 100%;
+            }
+            .content-header h1 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .account-card {
+                padding: 25px 15px;
+            }
+            .form-group input, 
+            .form-group select {
+                height: 48px;
+                font-size: 13.5px;
+            }
+            .form-group label {
+                font-size: 13px;
             }
         }
     </style>
@@ -277,7 +226,7 @@
         @include('partials.sidebar', ['activePage' => 'account'])
 
         <!-- Main Content -->
-        <main class="content">
+        <main class="shared-content">
             <div class="content-header">
                 <h1>My Account</h1>
             </div>
@@ -351,44 +300,7 @@
                 <form id="password-form" action="{{ route('account.password') }}" method="POST" style="display:none;">@csrf</form>
             </div>
         </main>
-
-        <!-- Footer -->
-        <footer>
-            <div class="f-brand">
-                <div class="f-logo-circle"><img src="{{ asset('images/icons/logo.svg') }}" alt="Logo"></div>
-                <p>Learn anytime and anywhere from IL2 career skills</p>
-            </div>
-            <div class="f-col">
-                <ul>
-                    <li><a href="#">Teach on IL2</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Help and Support</a></li>
-                </ul>
-            </div>
-            <div class="f-col">
-                <ul>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookies Policy</a></li>
-                    <li><a href="#">Career</a></li>
-                </ul>
-            </div>
-            <div class="f-right">
-                <select class="f-lang-select"><option>English</option><option>Thai</option></select>
-                <div class="f-socials">
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitter_Logo.png"></a>
-                </div>
-                <div class="f-apps">
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"></a>
-                </div>
-            </div>
-        </footer>
+        @include('partials.footer-dashboard')
     </div>
-
 </body>
 </html>
-

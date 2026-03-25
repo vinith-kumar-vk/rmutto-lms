@@ -20,7 +20,7 @@
 
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        .shell {
+        .shared-shell {
             display: grid;
             grid-template-columns: 240px 1fr;
             gap: 30px;
@@ -117,16 +117,20 @@
         .wallet-item h4 { font-size: 14px; color: #1e293b; margin-bottom: 4px; }
         .wallet-item p { font-size: 12px; color: #94a3b8; word-break: break-all; }
 
-        @media (max-width: 1100px) {
-            .shell { grid-template-columns: 1fr; }
-            .wallet-grid { grid-template-columns: 1fr; }
-            .sidebar { position: static; }
-        }
-
-        @media (max-width: 768px) {
-            .shell { padding: 90px 16px 24px; }
-            .header-pill { gap: 10px; flex-wrap: wrap; }
-            .search-wrap { width: 100%; }
+        @media (max-width: 1024px) {
+            .shared-shell {
+                grid-template-columns: 1fr;
+                padding: 0 16px 24px !important;
+            }
+            .sidebar { display: block !important; }
+            .content {
+                margin-top: 75px !important;
+                gap: 0 !important;
+                width: 100%;
+            }
+            .wallet-grid { grid-template-columns: 1fr; gap: 0 !important; }
+            .card { margin-bottom: 0 !important; }
+            footer { flex-direction: column !important; padding: 40px 20px !important; }
         }
     </style>
 </head>
@@ -178,6 +182,7 @@
                 </section>
             </div>
         </main>
+        @include('partials.footer-dashboard')
     </div>
 </body>
 </html>

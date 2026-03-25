@@ -20,7 +20,7 @@
 
         .avatar-head { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
 
-        .shell {
+        .shared-shell {
             display: grid;
             grid-template-columns: 240px 1fr;
             gap: 30px;
@@ -108,16 +108,27 @@
 
         .btn-primary:hover { background: #002a55; }
 
-        @media (max-width: 1100px) {
-            .shell { grid-template-columns: 1fr; }
-            .quiz-grid { grid-template-columns: 1fr; }
-            .sidebar { position: static; }
+        @media (max-width: 1024px) {
+            .shared-shell { 
+                grid-template-columns: 1fr; 
+                padding: 0 16px 24px !important; 
+            }
+            .sidebar { display: block !important; }
+            .content { 
+                margin-top: 75px !important; 
+                gap: 0 !important; 
+                width: 100%;
+            }
+            .quiz-grid { grid-template-columns: 1fr; gap: 0 !important; }
+            .card { margin-bottom: 0 !important; }
+            footer { flex-direction: column !important; padding: 40px 20px !important; }
         }
 
         @media (max-width: 768px) {
-            .shell { padding: 90px 16px 24px; }
-            .header-pill { gap: 10px; flex-wrap: wrap; }
-            .search-wrap { width: 100%; }
+            .page-title { font-size: 20px; }
+            .card { padding: 20px 15px; }
+            .quiz-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .quiz-item .badge, .quiz-item .btn-primary { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -183,6 +194,7 @@
                 </section>
             </div>
         </main>
+        @include('partials.footer-dashboard')
     </div>
 </body>
 </html>

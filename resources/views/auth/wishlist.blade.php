@@ -153,7 +153,17 @@
             .plans-grid { margin-bottom: 30px; }
             .plan-price-wrapper { justify-content: center; }
         }
-        /* Footer removed */
+        /* Make footer act as a boxed section matching main content */
+        .shared-footer-old {
+            background: #ffffff !important;
+            border-radius: 24px !important;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.02) !important;
+            padding: 20px 40px !important; /* Shorter vertically */
+            margin-top: 20px !important;
+            border-top: none !important;
+            max-width: 100% !important; /* Shorter width constraint */
+            box-sizing: border-box !important;
+        }
     </style>
 </head>
 <body>
@@ -283,7 +293,7 @@
                 <div id="account-pane" class="tab-pane" style="display:none;">
                     <div class="account-detail-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 40px; padding-left: 10px;">
                         <h3 style="font-size: 16px; font-weight: 800; margin: 0;">Account Detail</h3>
-                        <img src="{{ asset('images/icons/account details.png') }}" alt="Edit" style="width: 20px; height: 20px; cursor: pointer;" onclick="switchTab(null, 'payment')">
+                        <img src="{{ asset('images/icons/Group 147.png') }}" alt="Edit" style="width: 20px; height: 20px; cursor: pointer;" onclick="switchTab(null, 'payment')">
                     </div>
 
                     <div class="detail-rows" style="display: flex; flex-direction: column; gap: 20px; padding-left: 10px;">
@@ -333,13 +343,13 @@
                     
                     <div style="display: flex; gap: 20px; margin-bottom: 50px;">
                         <div style="width: 110px; height: 110px; background: #f1f5f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                            <img src="{{ asset('images/icons/Group 108.png') }}" alt="PayPal" style="width: 60px; object-fit: contain;">
+                            <img src="{{ asset('images/icons/paypal.png') }}" alt="PayPal" style="width: 60px; object-fit: contain;">
                         </div>
                         <div style="width: 110px; height: 110px; background: #f1f5f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                            <img src="{{ asset('images/icons/_x31_c1oSP_00000147916934300794265040000004632205909703336862_.png') }}" alt="Visa" style="width: 50px; object-fit: contain;">
+                            <img src="{{ asset('images/icons/visa.png') }}" alt="Visa" style="width: 50px; object-fit: contain;">
                         </div>
                         <div style="width: 110px; height: 110px; background: #f1f5f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                            <img src="{{ asset('images/icons/Group.png') }}" alt="Apple Pay" style="width: 55px; object-fit: contain;">
+                            <img src="{{ asset('images/icons/apple-pay.png') }}" alt="Apple Pay" style="width: 55px; object-fit: contain;">
                         </div>
                     </div>
 
@@ -563,9 +573,9 @@
                         </div>
                         </div>
                     </div>
-                </div>
             </div>
         </main>
+        @include('partials.footer-dashboard')
     </div>
 
     <script>

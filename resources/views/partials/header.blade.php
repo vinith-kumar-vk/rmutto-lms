@@ -7,6 +7,9 @@
 <header class="shared-header">
     <div class="header-pill">
         <div class="header-left">
+            <button class="mobile-menu-btn" aria-label="Toggle menu" style="display: none; background: none; border: none; cursor: pointer; color: #64748b; padding: 4px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
             <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
@@ -61,3 +64,17 @@
         </div>
     </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const sidebar = document.querySelector('.shared-sidebar');
+    
+    if (menuBtn && sidebar) {
+        menuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            sidebar.classList.toggle('active');
+        });
+    }
+});
+</script>

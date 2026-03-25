@@ -25,77 +25,39 @@
             color: var(--text-dark);
         }
 
-        /* HEADER */
-        header {
-            padding: 24px 30px;
-            display: flex;
-            justify-content: center;
+        /* ─── MOBILE RESPONSIVE TWEAKS ─── */
+        @media (max-width: 1024px) {
+            .shared-shell { 
+                grid-template-columns: 1fr !important;
+                padding: 0 16px 24px !important;
+            }
+            .shared-sidebar { display: block !important; }
+            .content { 
+                margin-top: 75px !important; /* Clearance only */
+                width: 100%;
+                gap: 0 !important;
+            }
         }
 
-        .header-pill {
-            background: var(--white);
-            width: 100%;
-            max-width: 1500px;
-            height: 72px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo-img { height: 35px; }
-
-        .cat-btn {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 500;
-            color: #475569;
-            cursor: pointer;
-        }
-
-        .search-box {
-            position: relative;
-            width: 320px;
-        }
-
-        .search-box input {
-            width: 100%;
-            height: 44px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 25px;
-            padding: 0 20px 0 45px;
-            font-size: 14px;
-            outline: none;
-            color: #333;
-        }
-
-        .search-box svg {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr !important; }
+            .page-title { font-size: 28px !important; text-align: left; }
+            .main-card { padding: 15px; border-radius: 20px; }
+            .tabs { 
+                flex-wrap: wrap; 
+                gap: 5px; 
+                padding: 5px;
+                border-radius: 12px;
+                margin-bottom: 25px;
+            }
+            .tab { 
+                flex: none; 
+                width: calc(50% - 5px); 
+                padding: 10px 5px;
+                font-size: 11px;
+            }
+            .cc-img { height: 160px; }
+            .cc-title { font-size: 16px; }
         }
 
         .h-icon {
@@ -344,21 +306,24 @@
         }
 
         @media (max-width: 1024px) {
-            .wrapper { grid-template-columns: 1fr; }
+            .shared-shell { grid-template-columns: 1fr; }
+            .shared-sidebar { display: block !important; }
             .grid { grid-template-columns: repeat(2, 1fr); }
+            footer { flex-direction: column !important; padding: 40px 24px !important; }
         }
 
         @media (max-width: 768px) {
-            header { padding: 12px 24px; position: fixed; top: 0; width: 100%; box-sizing: border-box; background: #fff; z-index: 1000; }
-            .header-pill { height: auto; padding: 12px 20px; border-radius: 20px; flex-direction: column; gap: 10px; width: 100%; max-width: 100%; }
-            .search-box { width: 100%; }
-            .header-left { flex-direction: column; width: 100%; }
-            .header-right { width: 100%; justify-content: center; }
-            
-            .wrapper { padding: 140px 24px 40px; flex-direction: column; }
-            .sidebar { width: 100%; margin-bottom: 20px; }
-            .main-card { padding: 40px 24px; }
+            .main-card { padding: 30px 15px; border-radius: 20px; }
             .grid { grid-template-columns: 1fr; }
+            .page-title { font-size: 28px; margin-bottom: 10px !important; }
+            .tabs { margin-bottom: 25px; }
+            .tab { padding: 10px; font-size: 12px; }
+        }
+
+        @media (max-width: 480px) {
+            .cc-img { height: 160px; }
+            .course-wrap { padding: 8px; }
+            .cc-title { font-size: 14px; }
         }
     </style>
 </head>
@@ -434,6 +399,7 @@
                 </div>
             </div>
         </main>
+        @include('partials.footer-dashboard')
     </div>
 
 </body>

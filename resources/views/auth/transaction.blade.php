@@ -61,8 +61,22 @@
         .btn-download.active { background: #003a70; color: #fff; }
         .btn-download.inactive { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
 
+        @media (max-width: 1024px) {
+            .shared-shell { grid-template-columns: 1fr; padding: 0 16px 24px !important; }
+            .shared-sidebar { display: block !important; }
+            .shared-content { 
+                margin-top: 75px !important; 
+                gap: 0 !important; 
+                width: 100%;
+            }
+            .page-title { margin-bottom: 10px !important; }
+            .table-card { padding: 20px 15px; border-radius: 20px; }
+            .table-wrap { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+            table { min-width: 600px; } /* Ensure table doesn't get too squished */
+            footer { flex-direction: column !important; padding: 40px 24px !important; }
+        }
+
         @media (max-width: 768px) {
-            .table-card { padding: 25px 15px; border-radius: 20px; }
             .tabs-wrap { overflow-x: auto; white-space: nowrap; padding-bottom: 2px; }
             .tab-btn { flex: 0 0 auto; padding: 10px 20px; }
             tbody td { padding: 15px; }
@@ -74,7 +88,7 @@
     @include('partials.header')
 
     <div class="shared-shell">
-        @include('partials.sidebar', ['activePage' => 'transaction', 'type' => 'billing'])
+        @include('partials.sidebar', ['activePage' => 'transaction', 'type' => 'dashboard'])
 
         <!-- Main Content -->
         <main class="shared-content">
@@ -89,83 +103,85 @@
 
                 <!-- Table Content -->
                 <div id="transactions">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>{{ __('transactions_page.th_txn_id') }}</th>
-                                <th>{{ __('transactions_page.th_invoice') }}</th>
-                                <th>{{ __('transactions_page.th_payment_method') }}</th>
-                                <th>{{ __('transactions_page.th_details') }}</th>
-                                <th>{{ __('transactions_page.th_amount') }}</th>
-                                <th>{{ __('transactions_page.th_status') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="txn-id">Txn980723</span></td>
-                                <td>
-                                    <div class="invoice-cell">
-                                        <div class="invoice-avatar"></div>
-                                        <div>
-                                            <div class="invoice-name">{{ __('transactions_page.teacher_1') }}</div>
-                                            <div class="invoice-sub">{{ __('transactions_page.course_1') }}</div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>{{ __('transactions_page.th_txn_id') }}</th>
+                                    <th>{{ __('transactions_page.th_invoice') }}</th>
+                                    <th>{{ __('transactions_page.th_payment_method') }}</th>
+                                    <th>{{ __('transactions_page.th_details') }}</th>
+                                    <th>{{ __('transactions_page.th_amount') }}</th>
+                                    <th>{{ __('transactions_page.th_status') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="txn-id">Txn980723</span></td>
+                                    <td>
+                                        <div class="invoice-cell">
+                                            <div class="invoice-avatar"></div>
+                                            <div>
+                                                <div class="invoice-name">{{ __('transactions_page.teacher_1') }}</div>
+                                                <div class="invoice-sub">{{ __('transactions_page.course_1') }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td><a href="#" class="stripe-link">Stripe</a></td>
-                                <td><span class="date-cell">{{ __('transactions_page.date_1') }}</span></td>
-                                <td><span class="amount-cell">$9.99</span></td>
-                                <td>
-                                    <div class="status-cell">
-                                        <span class="badge badge-paid">{{ __('transactions_page.paid') }}</span>
-                                        <button type="button" class="btn-download active">{{ __('transactions_page.download') }}</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span class="txn-id">Txn980724</span></td>
-                                <td>
-                                    <div class="invoice-cell">
-                                        <div class="invoice-avatar"></div>
-                                        <div>
-                                            <div class="invoice-name">{{ __('transactions_page.teacher_2') }}</div>
-                                            <div class="invoice-sub">{{ __('transactions_page.course_2') }}</div>
+                                    </td>
+                                    <td><a href="#" class="stripe-link">Stripe</a></td>
+                                    <td><span class="date-cell">{{ __('transactions_page.date_1') }}</span></td>
+                                    <td><span class="amount-cell">$9.99</span></td>
+                                    <td>
+                                        <div class="status-cell">
+                                            <span class="badge badge-paid">{{ __('transactions_page.paid') }}</span>
+                                            <button type="button" class="btn-download active">{{ __('transactions_page.download') }}</button>
                                         </div>
-                                    </div>
-                                </td>
-                                <td><a href="#" class="stripe-link">Stripe</a></td>
-                                <td><span class="date-cell">{{ __('transactions_page.date_2') }}</span></td>
-                                <td><span class="amount-cell">$10.00</span></td>
-                                <td>
-                                    <div class="status-cell">
-                                        <span class="badge badge-unpaid">{{ __('transactions_page.unpaid') }}</span>
-                                        <button type="button" class="btn-download inactive" disabled>{{ __('transactions_page.download') }}</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span class="txn-id">Txn980725</span></td>
-                                <td>
-                                    <div class="invoice-cell">
-                                        <div class="invoice-avatar"></div>
-                                        <div>
-                                            <div class="invoice-name">{{ __('transactions_page.teacher_3') }}</div>
-                                            <div class="invoice-sub">{{ __('transactions_page.course_3') }}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="txn-id">Txn980724</span></td>
+                                    <td>
+                                        <div class="invoice-cell">
+                                            <div class="invoice-avatar"></div>
+                                            <div>
+                                                <div class="invoice-name">{{ __('transactions_page.teacher_2') }}</div>
+                                                <div class="invoice-sub">{{ __('transactions_page.course_2') }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td><a href="#" class="stripe-link">Stripe</a></td>
-                                <td><span class="date-cell">{{ __('transactions_page.date_3') }}</span></td>
-                                <td><span class="amount-cell">$9.99</span></td>
-                                <td>
-                                    <div class="status-cell">
-                                        <span class="badge badge-paid">{{ __('transactions_page.paid') }}</span>
-                                        <button type="button" class="btn-download active">{{ __('transactions_page.download') }}</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                    <td><a href="#" class="stripe-link">Stripe</a></td>
+                                    <td><span class="date-cell">{{ __('transactions_page.date_2') }}</span></td>
+                                    <td><span class="amount-cell">$10.00</span></td>
+                                    <td>
+                                        <div class="status-cell">
+                                            <span class="badge badge-unpaid">{{ __('transactions_page.unpaid') }}</span>
+                                            <button type="button" class="btn-download inactive" disabled>{{ __('transactions_page.download') }}</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="txn-id">Txn980725</span></td>
+                                    <td>
+                                        <div class="invoice-cell">
+                                            <div class="invoice-avatar"></div>
+                                            <div>
+                                                <div class="invoice-name">{{ __('transactions_page.teacher_3') }}</div>
+                                                <div class="invoice-sub">{{ __('transactions_page.course_3') }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><a href="#" class="stripe-link">Stripe</a></td>
+                                    <td><span class="date-cell">{{ __('transactions_page.date_3') }}</span></td>
+                                    <td><span class="amount-cell">$9.99</span></td>
+                                    <td>
+                                        <div class="status-cell">
+                                            <span class="badge badge-paid">{{ __('transactions_page.paid') }}</span>
+                                            <button type="button" class="btn-download active">{{ __('transactions_page.download') }}</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- Refunds tab content (hidden by default) -->
@@ -174,6 +190,7 @@
                 </div>
             </div>
         </main>
+        @include('partials.footer-dashboard')
     </div>
 
     <script>

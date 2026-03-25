@@ -221,7 +221,7 @@
     @include('partials.header')
 
     <div class="shared-shell">
-        @include('partials.sidebar', ['activePage' => 'payment', 'type' => 'billing'])
+        @include('partials.sidebar', ['activePage' => 'payment', 'type' => 'dashboard'])
 
         <!-- Main Content -->
         <main class="shared-content">
@@ -278,48 +278,7 @@
             </div>
 
             <!-- FOOTER -->
-            <footer class="footer">
-                <div class="footer-inner">
-                    <div class="footer-logo-section">
-                        <div class="logo-circle">
-                            <img src="{{ asset('images/logo.png') }}" alt="IL2" style="height: 35px;">
-                        </div>
-                        <p class="footer-tagline">Learn anytime and anywhere from IL² career skills</p>
-                    </div>
-                    
-                    <div class="footer-links-container">
-                        <div class="footer-col">
-                            <a href="#">Teach on IL²</a>
-                            <a href="#">About Us</a>
-                            <a href="#">Contact Us</a>
-                            <a href="#">Help and Support</a>
-                        </div>
-                        <div class="footer-col">
-                            <a href="#">Terms</a>
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Cookies Policy</a>
-                            <a href="#">Career</a>
-                        </div>
-                    </div>
-
-                    <div class="footer-right">
-                        <select class="footer-lang">
-                            <option>English</option>
-                        </select>
-                        
-                        <div class="social-icons">
-                            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
-                            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
-                            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Twitter_Logo.png" alt="Twitter"></a>
-                        </div>
-                        
-                        <div class="app-badges">
-                            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
-                            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store"></a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            @include('partials.footer-dashboard')
         </main>
     </div>
 
